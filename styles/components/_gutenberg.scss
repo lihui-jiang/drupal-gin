@@ -1,0 +1,24 @@
+.gutenberg__editor {
+    // Fixes 'Search for a block' loop icon not being aligned
+    .components-visually-hidden {
+        position: absolute;
+    }
+
+    // Fixes the offsets of the editor relative to the gin toolbars
+    @media (min-width: 782px) {
+        .interface-interface-skeleton {
+            top: 39px;
+            left: 0;
+
+            .gin--horizontal-toolbar & {
+                top: 53px;
+                left: 0;
+            }
+
+            .gin--vertical-toolbar & {
+                top: 0;
+                left: 80px;
+            }
+        }
+    }
+}
