@@ -1,24 +1,399 @@
+/**
+ * @file
+ * Stylesheet for the Gutenberg editor.
+ */
+
 .gutenberg__editor {
-    // Fixes 'Search for a block' loop icon not being aligned
-    .components-visually-hidden {
-        position: absolute;
+
+  svg {
+
+    path {
+      fill: currentColor;
+
+      &:hover,
+      &:focus {
+        fill: currentColor;
+      }
     }
+  }
 
-    // Fixes the offsets of the editor relative to the gin toolbars
-    @media (min-width: 782px) {
-        .interface-interface-skeleton {
-            top: 39px;
-            left: 0;
+  // Fixes 'Search for a block' loop icon not being aligned
+  .components-visually-hidden {
+    position: absolute;
+  }
 
-            .gin--horizontal-toolbar & {
-                top: 53px;
-                left: 0;
-            }
+  // Fixes the offsets of the editor relative to the gin toolbars
+  @media (min-width: 782px) {
+    .interface-interface-skeleton {
+      top: 39px;
+      left: 0;
 
-            .gin--vertical-toolbar & {
-                top: 0;
-                left: 80px;
-            }
+      .gin--horizontal-toolbar & {
+        top: 53px;
+        left: 0;
+      }
+
+      .gin--vertical-toolbar & {
+        top: 0;
+        left: 80px;
+      }
+    }
+  }
+
+  .edit-post-layout {
+
+    .interface-interface-skeleton__body {
+
+      // * Gutenberg Main
+      .interface-interface-skeleton__content {
+
+        *:focus {
+          box-shadow: none;
         }
+
+        // * Gutenberg Meta fields
+        .edit-post-layout__metaboxes {
+          border-top: 1px solid var(--colorGinBorder);
+          background-color: var(--colorGinAppBackground);
+        }
+      }
+
+      // * Gutenberg Sidebar
+      .interface-interface-skeleton__sidebar {
+
+        .edit-post-sidebar {
+          @media screen and (min-width: 85em) {
+            min-width: 440px !important;
+          }
+
+          .entity-meta {
+            max-width: 100%;
+
+            >* {
+              max-width: 100%;
+            }
+          }
+
+          select {
+            width: 100%;
+          }
+
+          // Single Checkbox: show as toggle
+          .form-checkboxes {
+            @extend .checkbox-toggle;
+          }
+
+          // Radio field overrides
+          .form-boolean--type-radio {
+            @extend .form-boolean--type-radio;
+          }
+
+          // Table fixes
+          table {
+
+            tr.draggable {
+              display: inherit;
+
+              td {
+                padding: 0;
+
+                // Make sure paragraphs behave properly in the sidebar
+                .paragraph-top {
+                  grid-template-columns: 140px 1fr 1fr;
+                }
+
+                .paragraphs-subform {
+                  margin-right: 10px;
+                }
+              }
+
+              .tabledrag-handle {
+                min-width: 10px;
+                padding-left: 15px;
+              }
+            }
+          }
+
+          // Multi-value items field
+          .form-item--multiple {
+
+            .layer-wrapper {
+              padding: 12px;
+              max-width: 100%;
+            }
+          }
+
+          // Field: Entity reference
+          .field--type-entity-reference {
+
+            // * Chosen widget
+            &.field--widget-chosen-select {
+
+              .chosen-container {
+                border-radius: 0;
+                box-shadow: none;
+
+                &.form-element {
+
+                  // Single choice
+                  &.chosen-container-single {
+                    width: 100% !important;
+                  }
+
+                  // Multi choice
+                  &.chosen-container-multi {
+                    width: 100% !important;
+
+                    .chosen-drop {
+                      left: 0;
+                    }
+
+                    ul.chosen-choices {
+
+                      li.search-choice {
+                        background-color: var(--colorGinPrimaryLightActive);
+                        color: var(--colorGinText);
+                        padding: 5px 20px 5px 5px;
+                        background-image: none;
+                        box-shadow: none;
+                        border: none;
+
+                        span {
+                          line-height: 1;
+                        }
+
+                        .search-choice-close {
+                          top: 8px;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                // Results dropdown
+                &.chosen-with-drop {
+
+                  .chosen-drop {
+
+                    .chosen-results {
+
+                      li {
+                        padding: 8px 6px;
+                        line-height: 1rem;
+
+                        &.highlighted {
+                          background-color: var(--colorGinPrimaryActive);
+                          background-image: none;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          // Paragraphs in sidebar: space is limited, squeezing things a bit
+          [class*='paragraph-type-'] {
+
+            .paragraphs-actions {
+
+              .button {
+
+                &.button--small {
+                  // Extending .button--extrasmall
+                  padding: .25rem .75rem;
+                }
+              }
+            }
+          }
+
+          .components-font-size-picker__controls {
+
+            .components-color-palette__clear {
+              margin-top: auto;
+            }
+          }
+        }
+
+        .form-items-inline {
+
+          div.form-item {
+            width: 49%;
+
+            input {
+              width: 100%;
+            }
+          }
+        }
+
+        fieldset {
+          color: var(--colorGinText);
+          padding-top: 0;
+          margin-bottom: 1rem;
+
+          legend {
+            display: contents;
+            float: left;
+            width: 100%;
+            color: #545560;
+            font-weight: bold;
+            margin-bottom: 1rem;
+
+            @media screen and (min-width: 48em) {
+              margin-bottom: 1.5rem;
+            }
+
+            >div {
+              margin-bottom: 0;
+
+              >span {
+                margin-bottom: 0;
+                display: block;
+                padding: 1rem;
+                line-height: 1rem;
+                color: var(--colorGinText);
+              }
+            }
+
+            &+div {
+              margin-bottom: 1rem;
+              min-width: 100%;
+              max-width: max-content;
+
+              &.components-circular-option-picker {
+                padding: 0 8px 4px 8px;
+              }
+            }
+          }
+        }
+
+        .components-circular-option-picker__custom-clear-wrapper {
+          flex-basis: 100%;
+          margin-top: 1rem;
+        }
+      }
     }
+  }
+
+
+  // * Gutenberg footer line
+  .interface-interface-skeleton__footer {}
+
+  // Stuff that popover open
+  .popover-slot {
+
+    @media screen and (min-width: 782px) {
+      .block-editor-inserter__popover {
+        >.components-popover__content {
+          height: 50vh;
+        }
+      }
+    }
+
+    .components-dropdown-menu__menu {
+
+      .components-button {
+        padding-left: 12px;
+      }
+    }
+
+
+    fieldset {
+
+      // Overrides the Gin global fieldset styling
+      &.block-editor-link-control__settings {
+        padding: 16px 24px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
+    }
+  }
+}
+
+// * Modal overlay
+.components-modal__screen-overlay {
+
+  // Gutenberg block manager modal
+  .components-modal__frame {
+    @media screen and (min-width: 85em) {
+      min-width: 500px;
+    }
+
+    .edit-post-manage-blocks-modal__content {
+
+      .edit-post-manage-blocks-modal__disabled-blocks-count {
+        border-top: 1px solid var(--colorGinBorder);
+        background-color: var(--colorGinAppBackground);
+      }
+
+      input[type=checkbox] {
+        border: 2px solid var(--colorGinBorder);
+        margin-right: 0;
+        box-shadow: none;
+        background: var(--colorGinLayer2Background);
+
+        &:hover {
+          background: var(--colorGinLayerBackground);
+        }
+
+        &:checked {
+          background: var(--colorGinPrimary);
+
+          &:focus {
+            outline: 2px solid var(--colorGinFocus);
+          }
+        }
+
+        &[aria-checked=mixed] {
+
+          &:before {
+            color: var(--colorGinPrimary);
+            display: flex;
+            height: 16px;
+            margin: -2px auto auto auto;
+          }
+        }
+      }
+
+
+
+      svg.components-checkbox-control__checked {
+        width: 18px;
+        height: 18px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: 0 auto;
+
+        path {
+          fill: var(--colorGinAppBackground);
+        }
+      }
+
+      .block-editor-block-icon {
+
+        svg {
+
+          path {
+            fill: initial !important;
+          }
+        }
+      }
+    }
+
+
+    .edit-post-manage-blocks-modal__results {
+
+      ul.edit-post-manage-blocks-modal__checklist {
+        margin-left: 0;
+
+        li.edit-post-manage-blocks-modal__checklist-item {
+          list-style: none;
+        }
+      }
+    }
+  }
 }
