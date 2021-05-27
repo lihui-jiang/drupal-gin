@@ -10,6 +10,9 @@ gin_ckeditor:
   version: VERSION
   js:
     dist/js/gin_ckeditor.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_init:
   version: VERSION
@@ -24,6 +27,9 @@ gin_toolbar:
       dist/css/gin_toolbar.css: { minified: false }
   js:
     dist/js/gin_toolbar.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_classic_toolbar:
   version: VERSION
@@ -32,6 +38,9 @@ gin_classic_toolbar:
       dist/css/gin_classic_toolbar.css: { minified: false }
   js:
     dist/js/gin_toolbar.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_horizontal_toolbar:
   version: VERSION
@@ -40,6 +49,9 @@ gin_horizontal_toolbar:
       dist/css/gin_horizontal_toolbar.css: { minified: false }
   js:
     dist/js/gin_toolbar.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_accent:
   version: VERSION
@@ -48,11 +60,17 @@ gin_accent:
       dist/css/gin_accent.css: { minified: false }
   js:
     dist/js/gin_accent.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_settings:
   version: VERSION
   js:
     dist/js/gin_settings.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_dialog:
   version: VERSION
@@ -64,11 +82,18 @@ gin_editform:
   version: VERSION
   js:
     dist/js/gin_editform.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 gin_messages:
   version: VERSION
   js:
     dist/js/gin_messages.js: { minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
 
 gin_custom_css:
   version: VERSION
@@ -80,8 +105,14 @@ gin_tabledrag:
   version: VERSION
   js:
     js/overrides/gin_tabledrag.js: { weight: -1, minified: false }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
 
 gin_media_embed_ckeditor_theme:
   version: VERSION
   js:
     js/overrides/gin_media_embed_ckeditor.theme.js: {}
+  dependencies:
+    - core/drupal
