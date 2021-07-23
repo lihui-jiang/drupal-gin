@@ -205,6 +205,7 @@
 .toolbar .toolbar-bar #toolbar-item-administration-tray .toolbar-logo img {
   max-width: 36px;
   max-height: 40px;
+  height: 100%;
 }
 .toolbar .toolbar-bar #toolbar-item-administration-tray a.toolbar-icon-admin-toolbar-tools-help.toolbar-icon-default {
   -webkit-mask-size: 22px 22px;
