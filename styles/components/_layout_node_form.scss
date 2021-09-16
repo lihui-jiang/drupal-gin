@@ -18,20 +18,6 @@
         opacity: 0;
       }
     }
-
-    .region-sticky {
-      opacity: 1;
-      height: 88px;
-      backdrop-filter: none;
-      background: rgba($colorAppBackground, .98);
-    }
-
-    // Darkmode overrides
-    &.gin--dark-mode {
-      .region-sticky {
-        background: rgba($colorDarkAppBackground, .98);
-      }
-    }
   }
 
   .layout-node-form {
@@ -77,6 +63,8 @@
 
     // More room for content to breathe
     .node-form {
+      box-shadow: none;
+
       @include mq($breakpointBig) {
         padding-left: 2.5rem;
         padding-right: 2.5rem;
@@ -196,6 +184,24 @@
 
             .claro-details__wrapper {
               margin: 1.5rem;
+            }
+          }
+
+          .redirect-table__path {
+            width: 47%;
+          }
+
+          .form-type--entity-autocomplete .claro-autocomplete {
+            width: 100%;
+          }
+
+          .form-datetime-wrapper {
+            .form-date {
+              max-width: 170px;
+            }
+
+            .form-time {
+              max-width: 134px;
             }
           }
         }
