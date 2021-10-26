@@ -5,6 +5,7 @@
  * gin.theme
  */
 
+use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Form\FormStateInterface;
@@ -1007,10 +1008,14 @@ function _gin_is_content_form($form = NULL, $form_state = NULL, $form_id = NULL)
   }
 
   if (!empty($form_state)) {
-    $entity = $form_state->getFormObject()->getEntity();
+    $form_object = $form_state->getFormObject();
 
-    if (_gin_is_gutenberg_enabled($entity)) {
-      $is_content_form = FALSE;
+    if ($form_object instanceof EntityFormInterface) {
+      $entity = $form_object->getEntity();
+
+      if (_gin_is_gutenberg_enabled($entity)) {
+        $is_content_form = FALSE;
+      }
     }
   }
 
