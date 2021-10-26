@@ -5,11 +5,13 @@
  * gin.theme
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
-use Drupal\user\Entity\User;
 use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
 use Drupal\gin\GinSettings;
 
 /**
@@ -1004,5 +1006,31 @@ function _gin_is_content_form($form = NULL, $form_state = NULL, $form_id = NULL)
     }
   }
 
+  if (!empty($form_state)) {
+    $entity = $form_state->getFormObject()->getEntity();
+
+    if (_gin_is_gutenberg_enabled($entity)) {
+      $is_content_form = FALSE;
+    }
+  }
+
   return $is_content_form;
+}
+
+/**
+ * Checks whether Gutenberg is enabled for an entity.
+ */
+function _gin_is_gutenberg_enabled(EntityInterface $entity = NULL) {
+  if (empty($entity)) {
+    return FALSE;
+  }
+
+  if (!$entity instanceof NodeInterface) {
+    return FALSE;
+  }
+
+  $config = \Drupal::service('config.factory')->get('gutenberg.settings');
+  $node_type = $entity->bundle();
+
+  return (bool) $config->get($node_type . '_enable_full');
 }
