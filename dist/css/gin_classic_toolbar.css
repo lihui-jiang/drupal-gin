@@ -7,6 +7,7 @@
 #coffee-form #coffee-q {
   color: var(--colorGinText);
   background: var(--colorGinLayerBackground);
+  border-radius: 8px;
 }
 #coffee-form #coffee-results a {
   border-radius: 8px;
@@ -201,7 +202,8 @@
   -webkit-mask-image: url("../media/sprite.svg#reports-view");
           mask-image: url("../media/sprite.svg#reports-view");
 }
-.toolbar .toolbar-bar .toolbar-icon-help-main:before {
+.toolbar .toolbar-bar .toolbar-icon-help-main:before,
+.toolbar .toolbar-bar .toolbar-icon-help:before {
   -webkit-mask-image: url("../media/sprite.svg#help-view");
           mask-image: url("../media/sprite.svg#help-view");
 }
@@ -216,6 +218,10 @@
 .toolbar .toolbar-bar .toolbar-icon-tmgmt-admin-tmgmt:before {
   -webkit-mask-image: url("../media/sprite.svg#tmgmt-view");
           mask-image: url("../media/sprite.svg#tmgmt-view");
+}
+.toolbar .toolbar-bar .toolbar-icon-bat-admin:before {
+  -webkit-mask-image: url();
+          mask-image: url();
 }
 .toolbar .toolbar-bar .toolbar-icon-escape-admin:before {
   -webkit-mask-image: url("../media/sprite.svg#backtosite-view");
@@ -260,6 +266,10 @@
 .toolbar .toolbar-bar .toolbar-icon-user:before {
   -webkit-mask-image: url("../media/sprite.svg#user-view");
           mask-image: url("../media/sprite.svg#user-view");
+}
+.toolbar .toolbar-bar .toolbar-icon-environment:before {
+  -webkit-mask-image: url("../media/sprite.svg#server-view");
+          mask-image: url("../media/sprite.svg#server-view");
 }
 .toolbar .toolbar-bar .toolbar-icon-toggle-vertical:before {
   -webkit-mask-image: url("../media/sprite.svg#nav-toggle-toleft-view");
@@ -523,6 +533,10 @@
 .responsive-preview {
   z-index: 502;
 }
+.responsive-preview-item-list {
+  top: 74px !important;
+}
+
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-trigger {
   width: 4em;
   background: none;
@@ -550,6 +564,7 @@
           mask-repeat: no-repeat;
 }
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options {
+  padding: 0.5rem;
   background-color: var(--colorGinLayer3Background);
   border-bottom: 0 none;
   border-radius: 4px;
@@ -688,6 +703,11 @@
 .toolbar .toolbar-tray .menu-item > .toolbar-box > .is-active.responsive-preview-icon:before,
 .toolbar .toolbar-tray a.is-active:before {
   background: var(--colorGinPrimary);
+}
+
+.toolbar .toolbar-tray .hover-intent > .toolbar-icon, .toolbar .toolbar-tray .hover-intent > .responsive-preview-icon {
+  color: var(--colorGinPrimaryHover);
+  background-color: var(--colorGinItemHover);
 }
 
 .toolbar-tab > .toolbar-icon.toolbar-icon-edit.toolbar-item, .toolbar-tab > .toolbar-icon-edit.toolbar-item.responsive-preview-icon,

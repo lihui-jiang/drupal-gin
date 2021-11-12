@@ -8,8 +8,8 @@
   }
 
   .paragraphs-subform {
-    margin-top: 20px;
-    margin-right: 31px;
+    margin-top: 0;
+    margin-right: 1rem;
   }
 
   .tabledrag-toggle-weight-wrapper {
@@ -88,6 +88,14 @@
       .tabledrag-changed {
         display: none;
       }
+
+      // Highlight current paragraph.
+      &:hover,
+      &:focus-within {
+        position: relative;
+        border: 1px solid var(--colorGinText);
+        box-shadow: 0 0 0 1px var(--colorGinText);
+      }
     }
   }
 
@@ -122,7 +130,7 @@
 .paragraphs-add-wrapper,
 .paragraphs-dropbutton-wrapper {
   .button--small {
-    float: left;
+    margin-top: .5rem;
     margin-bottom: .5rem;
   }
 }
@@ -157,6 +165,46 @@
     &::after {
       background-color: var(--colorGinPrimary);
     }
+  }
+}
+
+.js .field--widget-entity-reference-paragraphs,
+.js .field--widget-paragraphs {
+  .draggable .tabledrag-handle {
+    min-width: 20px;
+
+    @include mq($breakpointMedium) {
+      min-width: 24px;
+    }
+
+    &::after {
+      position: relative;
+      left: 0;
+      padding: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+.js .paragraphs-collapsed-description::after,
+.js .draggable:hover .paragraphs-collapsed-description::after {
+  background: var(--colorGinLayer2Background);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--colorGinLayer2Background) 100%);
+}
+
+.js .field--widget-entity-reference-paragraphs {
+  .draggable .tabledrag-handle {
+    min-width: 32px;
+
+    @include mq($breakpointMedium) {
+      min-width: 40px;
+    }
+  }
+
+  .paragraphs-collapsed-description::after,
+  .draggable:hover .paragraphs-collapsed-description::after {
+    background: var(--colorGinLayerBackground);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--colorGinLayerBackground) 100%);
   }
 }
 
@@ -200,6 +248,11 @@
 
 // Darkmode overrides
 .gin--dark-mode {
+  .paragraphs-tabs-wrapper .field-multiple-table .draggable {
+    background: var(--colorGinLayer2Background);
+    box-shadow: none;
+  }
+
   .paragraphs-dropdown-actions {
     background: var(--colorGinLayer2Background);
     border-color: var(--colorGinBorder);

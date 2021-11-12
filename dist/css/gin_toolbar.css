@@ -7,6 +7,7 @@
 #coffee-form #coffee-q {
   color: var(--colorGinText);
   background: var(--colorGinLayerBackground);
+  border-radius: 8px;
 }
 #coffee-form #coffee-results a {
   border-radius: 8px;
@@ -35,6 +36,10 @@
 .responsive-preview {
   z-index: 502;
 }
+.responsive-preview-item-list {
+  top: 74px !important;
+}
+
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-trigger {
   width: 4em;
   background: none;
@@ -62,6 +67,7 @@
           mask-repeat: no-repeat;
 }
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options {
+  padding: 0.5rem;
   background-color: var(--colorGinLayer3Background);
   border-bottom: 0 none;
   border-radius: 4px;
@@ -813,7 +819,8 @@ a.toolbar-menu__trigger,
   -webkit-mask-image: url("../media/sprite.svg#reports-view");
           mask-image: url("../media/sprite.svg#reports-view");
 }
-.toolbar .toolbar-bar .toolbar-icon-help-main:before {
+.toolbar .toolbar-bar .toolbar-icon-help-main:before,
+.toolbar .toolbar-bar .toolbar-icon-help:before {
   -webkit-mask-image: url("../media/sprite.svg#help-view");
           mask-image: url("../media/sprite.svg#help-view");
 }
@@ -828,6 +835,10 @@ a.toolbar-menu__trigger,
 .toolbar .toolbar-bar .toolbar-icon-tmgmt-admin-tmgmt:before {
   -webkit-mask-image: url("../media/sprite.svg#tmgmt-view");
           mask-image: url("../media/sprite.svg#tmgmt-view");
+}
+.toolbar .toolbar-bar .toolbar-icon-bat-admin:before {
+  -webkit-mask-image: url();
+          mask-image: url();
 }
 .toolbar .toolbar-bar .toolbar-icon-escape-admin:before {
   -webkit-mask-image: url("../media/sprite.svg#backtosite-view");
@@ -872,6 +883,10 @@ a.toolbar-menu__trigger,
 .toolbar .toolbar-bar .toolbar-icon-user:before {
   -webkit-mask-image: url("../media/sprite.svg#user-view");
           mask-image: url("../media/sprite.svg#user-view");
+}
+.toolbar .toolbar-bar .toolbar-icon-environment:before {
+  -webkit-mask-image: url("../media/sprite.svg#server-view");
+          mask-image: url("../media/sprite.svg#server-view");
 }
 .toolbar .toolbar-bar .toolbar-icon-toggle-vertical:before {
   -webkit-mask-image: url("../media/sprite.svg#nav-toggle-toleft-view");
@@ -1171,7 +1186,7 @@ a.toolbar-menu__trigger,
     position: relative;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab:hover, .toolbar-meta .toolbar-bar .toolbar-tab:focus-within {
-    border-radius: 4px 4px 0 0;
+    border-radius: 6px 6px 0 0;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab:hover .toolbar-tray, .toolbar-meta .toolbar-bar .toolbar-tab:focus-within .toolbar-tray {
     display: block;
@@ -1182,14 +1197,14 @@ a.toolbar-menu__trigger,
     width: 39px;
     height: 39px;
     margin: 0;
-    border-radius: 4px 4px 0 0;
+    border-radius: 6px 6px 0 0;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-item:before {
     top: 0;
     left: 10px;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-item:focus {
-    border-radius: 4px;
+    border-radius: 6px;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-item:focus ~ .toolbar-tray {
     display: block;
@@ -1215,14 +1230,14 @@ a.toolbar-menu__trigger,
     width: 170px;
     background-color: var(--colorGinLayer3Background);
     border-bottom: 0 none;
-    border-radius: 0 4px 4px 4px;
+    border-radius: 0 6px 6px 6px;
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 20px 20px 40px rgba(0, 0, 0, 0.12);
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 20px 20px 40px rgba(0, 0, 0, 0.12);
   }
   .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-tray a {
     color: var(--colorGinPrimary);
     padding: 12px 16px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-tray a:hover, .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-tray a:active {
     color: var(--colorGinButtonText);
@@ -1234,8 +1249,8 @@ a.toolbar-menu__trigger,
   .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-tray a.action-link:hover::before {
     background-color: var(--colorGinButtonText);
   }
-  .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-tray .toolbar-lining {
-    padding-right: 0;
+  .toolbar-meta .toolbar-bar .toolbar-tab .toolbar-tray .toolbar-lining:not(:empty) {
+    padding: 0.5rem;
   }
   .toolbar-meta .toolbar-bar .toolbar-tab.hidden {
     display: none;
@@ -1247,13 +1262,13 @@ a.toolbar-menu__trigger,
   .toolbar-meta .toolbar-bar .toolbar-id--toolbar-icon-user .toolbar-tray {
     left: auto;
     right: 0;
-    border-radius: 4px 0 4px 4px;
+    border-radius: 6px 0 6px 6px;
   }
   .toolbar-meta .toolbar-bar .toolbar-id--toolbar-icon-user:not(.has-user-icon) {
     margin-right: -1.333em;
   }
   .toolbar-meta .toolbar-bar .toolbar-id--toolbar-icon-user .icon-user ~ .toolbar-tray {
-    border-radius: 4px;
+    border-radius: 6px;
   }
   .toolbar-meta .toolbar-bar .toolbar-id--toolbar-icon-user .icon-user {
     border: 1px solid var(--colorGinBorder);

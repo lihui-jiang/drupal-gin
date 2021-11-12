@@ -7,6 +7,7 @@ $sprites: (
     'asterisk': "../media/sprite.svg#asterisk-view",
     'checked': "../media/sprite.svg#checked-view",
     'add': "../media/sprite.svg#add-view",
+    'calendar': "../media/sprite.svg#calendar-view",
     'circle': "../media/sprite.svg#circle-view",
     'close': "../media/sprite.svg#close-view",
     'drop': "../media/sprite.svg#drop-view",
@@ -39,9 +40,11 @@ $sprites: (
     'rebuild-cache': "../media/sprite.svg#rebuild-cache-view",
     'responsive-preview': "../media/sprite.svg#responsive-preview-view",
     'search': "../media/sprite.svg#search-view",
+    'shortcut-filled': "../media/sprite.svg#shortcut-filled-view",
     'shortcut': "../media/sprite.svg#shortcut-view",
     'user': "../media/sprite.svg#user-view",
     'appearance': "../media/sprite.svg#appearance-view",
+    'bat': "../media/sprite.svg#bat-view",
     'commerce': "../media/sprite.svg#commerce-view",
     'config': "../media/sprite.svg#config-view",
     'content': "../media/sprite.svg#content-view",
@@ -90,6 +93,10 @@ $sizes: (
         'height': 24px
     ),
     'add': (
+        'width': 24px,
+        'height': 24px
+    ),
+    'calendar': (
         'width': 24px,
         'height': 24px
     ),
@@ -221,6 +228,10 @@ $sizes: (
         'width': 24px,
         'height': 24px
     ),
+    'shortcut-filled': (
+        'width': 24px,
+        'height': 24px
+    ),
     'shortcut': (
         'width': 24px,
         'height': 24px
@@ -230,6 +241,10 @@ $sizes: (
         'height': 24px
     ),
     'appearance': (
+        'width': 24px,
+        'height': 24px
+    ),
+    'bat': (
         'width': 24px,
         'height': 24px
     ),
