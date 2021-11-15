@@ -4722,7 +4722,7 @@ a.button:active {
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 20px 20px 40px rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 20px 20px 40px rgba(0, 0, 0, 0.12);
 }
-.node-form .dropbutton .dropbutton__items {
+.form-actions .dropbutton .dropbutton__items, .node-form .dropbutton .dropbutton__items {
   left: 0;
   right: auto;
 }
