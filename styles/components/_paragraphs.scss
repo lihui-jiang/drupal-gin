@@ -127,6 +127,19 @@
   }
 }
 
+.paragraphs-tabs-container {
+  .paragraphs-tabs {
+    .gin--edit-form & {
+      padding: 0 0 0 4px;
+    }
+  }
+
+  .sticky-shadow {
+    width: 100%;
+
+  }
+}
+
 .paragraphs-add-wrapper,
 .paragraphs-dropbutton-wrapper {
   .button--small {

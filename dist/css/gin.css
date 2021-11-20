@@ -2215,6 +2215,13 @@ fieldset.fieldset.erl-field > .fieldset__wrapper > .active-items:not(:empty) ~ .
   display: none;
 }
 
+.gin--edit-form .paragraphs-tabs-container .paragraphs-tabs {
+  padding: 0 0 0 4px;
+}
+.paragraphs-tabs-container .sticky-shadow {
+  width: 100%;
+}
+
 .paragraphs-add-wrapper .button--small,
 .paragraphs-dropbutton-wrapper .button--small {
   margin-top: 0.5rem;
