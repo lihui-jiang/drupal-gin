@@ -4978,6 +4978,30 @@ a.button.button--danger:active:before,
   background-color: var(--colorGinLayerBackground);
 }
 
+.node-article-delete-form > [data-drupal-selector="edit-actions"] >  .button[data-drupal-selector=edit-submit]{
+  background-color: var(--colorGinDanger);
+  border-color: var(--colorGinDanger) !important;
+}
+
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:hover,
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:focus,
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:active {
+  background-color: var(--colorGinDangerLightHover);
+}
+
+.node-article-delete-form > [data-drupal-selector="edit-actions"] >  .button[data-drupal-selector=edit-cancel]{
+  background-color: var(--colorGinLayerBackground);
+  border-color: var(--colorGinPrimary) !important;
+  color: var(--colorGinPrimary);
+}
+
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:hover,
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:focus,
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:active {
+  background-color: var(--colorGinPrimary);
+  color: var(--colorGinLayerBackground);
+}
+
 .form-element.chosen-container-single {
   width: auto !important;
   padding: 0;
