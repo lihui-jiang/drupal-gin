@@ -4984,8 +4984,8 @@ a.button.button--danger:active:before,
 }
 
 .node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:hover,
-.button[data-drupal-selector=edit-submit]:focus,
-.button[data-drupal-selector=edit-submit]:active {
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:focus,
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:active {
   background-color: var(--colorGinDangerLightHover);
 }
 
@@ -4996,8 +4996,8 @@ a.button.button--danger:active:before,
 }
 
 .node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:hover,
-.button[data-drupal-selector=edit-cancel]:focus,
-.button[data-drupal-selector=edit-cancel]:active {
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:focus,
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:active {
   background-color: var(--colorGinPrimary);
   color: var(--colorGinLayerBackground);
 }
