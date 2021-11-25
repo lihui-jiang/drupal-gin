@@ -4915,9 +4915,9 @@ table tr:last-of-type td .dropbutton__items {
 .button.button--danger,
 a.button.button--danger,
 .button[data-drupal-selector=edit-cancel] {
-  color: var(--colorGinPrimary);
-  -webkit-box-shadow: 0 1px 2px var(--colorGinPrimaryLight);
-          box-shadow: 0 1px 2px var(--colorGinPrimaryLight);
+  color: var(--colorGinDanger);
+  -webkit-box-shadow: 0 1px 2px var(--colorGinDangerLightest);
+          box-shadow: 0 1px 2px var(--colorGinDangerLightest);
 }
 .action-link--icon-trash.action-link--danger, .action-link--icon-trash.action-link--danger:hover, .action-link--icon-trash.action-link--danger:focus, .action-link--icon-trash.action-link--danger:active,
 .button.button--danger,
@@ -4932,7 +4932,7 @@ a.button.button--danger:active,
 .button[data-drupal-selector=edit-cancel]:hover,
 .button[data-drupal-selector=edit-cancel]:focus,
 .button[data-drupal-selector=edit-cancel]:active {
-  border-color: var(--colorGinPrimary) !important;
+  border-color: var(--colorGinDanger) !important;
 }
 .action-link--icon-trash.action-link--danger:before, .action-link--icon-trash.action-link--danger:hover:before, .action-link--icon-trash.action-link--danger:focus:before, .action-link--icon-trash.action-link--danger:active:before,
 .button.button--danger:before,
@@ -4948,7 +4948,7 @@ a.button.button--danger:active:before,
 .button[data-drupal-selector=edit-cancel]:focus:before,
 .button[data-drupal-selector=edit-cancel]:active:before {
   background-image: none;
-  background-color: var(--colorGinPrimary);
+  background-color: var(--colorGinDanger);
   -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6'/%3e%3c/svg%3e");
           mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6'/%3e%3c/svg%3e");
 }
@@ -4963,7 +4963,7 @@ a.button.button--danger:active,
 .button[data-drupal-selector=edit-cancel]:focus,
 .button[data-drupal-selector=edit-cancel]:active {
   color: var(--colorGinLayerBackground);
-  background-color: var(--colorGinPrimary);
+  background-color: var(--colorGinDanger);
 }
 .action-link--icon-trash.action-link--danger:hover:before, .action-link--icon-trash.action-link--danger:focus:before, .action-link--icon-trash.action-link--danger:active:before,
 .button.button--danger:hover:before,
@@ -4978,75 +4978,29 @@ a.button.button--danger:active:before,
   background-color: var(--colorGinLayerBackground);
 }
 
-.action-link--icon-trash.action-link--danger,
-.button.button--danger,
-a.button.button--danger,
-.button[data-drupal-selector=edit-submit] {
-  color: var(--colorGinDanger);
-  -webkit-box-shadow: 0 1px 2px var(--colorGinDangerLightest);
-          box-shadow: 0 1px 2px var(--colorGinDangerLightest);
-}
-.action-link--icon-trash.action-link--danger, .action-link--icon-trash.action-link--danger:hover, .action-link--icon-trash.action-link--danger:focus, .action-link--icon-trash.action-link--danger:active,
-.button.button--danger,
-.button.button--danger:hover,
-.button.button--danger:focus,
-.button.button--danger:active,
-a.button.button--danger,
-a.button.button--danger:hover,
-a.button.button--danger:focus,
-a.button.button--danger:active,
-.button[data-drupal-selector=edit-submit],
-.button[data-drupal-selector=edit-submit]:hover,
-.button[data-drupal-selector=edit-submit]:focus,
-.button[data-drupal-selector=edit-submit]:active {
-  border-color: var(--colorGinDanger) !important;
-  background-color: var(--colorGinDanger); /**n e esse**/
-  color: var(--colorGinLayerBackground);
-}
-.action-link--icon-trash.action-link--danger:before, .action-link--icon-trash.action-link--danger:hover:before, .action-link--icon-trash.action-link--danger:focus:before, .action-link--icon-trash.action-link--danger:active:before,
-.button.button--danger:before,
-.button.button--danger:hover:before,
-.button.button--danger:focus:before,
-.button.button--danger:active:before,
-a.button.button--danger:before,
-a.button.button--danger:hover:before,
-a.button.button--danger:focus:before,
-a.button.button--danger:active:before,
-.button[data-drupal-selector=edit-submit]:before,
-.button[data-drupal-selector=edit-submit]:hover:before,
-.button[data-drupal-selector=edit-submit]:focus:before,
-.button[data-drupal-selector=edit-submit]:active:before {
-  background-image: none;
-  background-color: var(--colorGinDanger); /** n e esse**/
-  -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6'/%3e%3c/svg%3e");
-          mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6'/%3e%3c/svg%3e");
-}
-.action-link--icon-trash.action-link--danger:hover, .action-link--icon-trash.action-link--danger:focus, .action-link--icon-trash.action-link--danger:active,
-.button.button--danger:hover,
-.button.button--danger:focus,
-.button.button--danger:active,
-a.button.button--danger:hover,
-a.button.button--danger:focus,
-a.button.button--danger:active,
-.button[data-drupal-selector=edit-submit]:hover,
-.button[data-drupal-selector=edit-submit]:focus,
-.button[data-drupal-selector=edit-submit]:active {
-  color: var(--colorGinLayerBackground);
-  background-color: var(--colorGinDangerLightHover);
-}
-.action-link--icon-trash.action-link--danger:hover:before, .action-link--icon-trash.action-link--danger:focus:before, .action-link--icon-trash.action-link--danger:active:before,
-.button.button--danger:hover:before,
-.button.button--danger:focus:before,
-.button.button--danger:active:before,
-a.button.button--danger:hover:before,
-a.button.button--danger:focus:before,
-a.button.button--danger:active:before,
-.button[data-drupal-selector=edit-submit]:hover:before,
-.button[data-drupal-selector=edit-submit]:focus:before,
-.button[data-drupal-selector=edit-submit]:active:before {
+.node-article-delete-form > [data-drupal-selector="edit-actions"] >  .button[data-drupal-selector=edit-submit]{
   background-color: var(--colorGinDanger);
+  border-color: var(--colorGinDanger) !important;
 }
 
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-submit]:hover,
+.button[data-drupal-selector=edit-submit]:focus,
+.button[data-drupal-selector=edit-submit]:active {
+  background-color: var(--colorGinDangerLightHover);
+}
+
+.node-article-delete-form > [data-drupal-selector="edit-actions"] >  .button[data-drupal-selector=edit-cancel]{
+  background-color: var(--colorGinLayerBackground);
+  border-color: var(--colorGinPrimary) !important;
+  color: var(--colorGinPrimary);
+}
+
+.node-article-delete-form > [data-drupal-selector="edit-actions"] > .button[data-drupal-selector=edit-cancel]:hover,
+.button[data-drupal-selector=edit-cancel]:focus,
+.button[data-drupal-selector=edit-cancel]:active {
+  background-color: var(--colorGinPrimary);
+  color: var(--colorGinLayerBackground);
+}
 
 .form-element.chosen-container-single {
   width: auto !important;
