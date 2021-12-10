@@ -5523,29 +5523,29 @@ table.diff tr .diff-addedline .diffchange {
   color: var(--colorGinGreenLightest);
 }
 
-.ui-dialog:not(.ui-dialog-off-canvas) {
+.ui-dialog:not(.ui-dialog-off-canvas):not(.ief-popup-wrapper) {
   max-width: 1280px;
   margin: 1rem;
   border: 0 none !important;
   border-radius: 16px;
   background: var(--colorGinLayerBackground);
 }
-.ui-dialog:not(.ui-dialog-off-canvas) .ui-dialog-content:first-of-type {
+.ui-dialog:not(.ui-dialog-off-canvas):not(.ief-popup-wrapper) .ui-dialog-content:first-of-type {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
-.ui-dialog:not(.ui-dialog-off-canvas) .layout-region-node-actions {
+.ui-dialog:not(.ui-dialog-off-canvas):not(.ief-popup-wrapper) .layout-region-node-actions {
   position: absolute;
   bottom: 0;
   left: 1rem;
   top: auto;
   right: auto;
 }
-.ui-dialog:not(.ui-dialog-off-canvas) .layout-region-node-secondary {
+.ui-dialog:not(.ui-dialog-off-canvas):not(.ief-popup-wrapper) .layout-region-node-secondary {
   width: 100%;
 }
-.ui-dialog:not(.ui-dialog-off-canvas) .views-exposed-form.views-exposed-form,
-.ui-dialog:not(.ui-dialog-off-canvas) .views-displays {
+.ui-dialog:not(.ui-dialog-off-canvas):not(.ief-popup-wrapper) .views-exposed-form.views-exposed-form,
+.ui-dialog:not(.ui-dialog-off-canvas):not(.ief-popup-wrapper) .views-displays {
   border: 1px solid var(--colorGinLayerBorder);
 }
 
