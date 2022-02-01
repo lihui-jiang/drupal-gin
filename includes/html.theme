@@ -43,14 +43,15 @@ function gin_preprocess_html(&$variables) {
 
     // Only add gin--classic-toolbar class if user has permission.
     if (!\Drupal::currentUser()->hasPermission('access toolbar')) {
-      return;
+      $variables['attributes']['class'][] = 'gin--' . $toolbar . '-toolbar';
     }
 
     // Gin secondary toolbar.
     if ($toolbar !== 'classic' || _gin_module_is_active('navigation')) {
       $variables['page']['gin_secondary_toolbar'] = [
         '#type' => 'toolbar',
-        '#access' => \Drupal::currentUser()->hasPermission('access toolbar'),
+        '#access' => \Drupal::currentUser()->hasPermission('access toolbar')
+          || \Drupal::currentUser()->hasPermission('access secondary toolbar'),
         '#cache' => [
           'keys' => ['toolbar_secondary'],
           'contexts' => ['user.permissions'],
