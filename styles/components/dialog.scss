@@ -258,3 +258,15 @@ table.treetable {
 #drupal-modal .gin-sticky-form-actions.form-actions {
   display: none;
 }
+
+.gin--add-modal {
+  overflow: hidden;
+
+  .ui-widget-content.ui-dialog-content {
+    padding: 0;
+  }
+
+  .panel {
+    margin-bottom: 0;
+  }
+}

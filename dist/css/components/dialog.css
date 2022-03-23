@@ -297,3 +297,15 @@ table.treetable tr.branch {
   display: none;
 }
 
+.gin--add-modal {
+  overflow: hidden;
+}
+
+.gin--add-modal .ui-widget-content.ui-dialog-content {
+  padding: 0;
+}
+
+.gin--add-modal .panel {
+  margin-bottom: 0;
+}
+
