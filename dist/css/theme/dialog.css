@@ -302,6 +302,10 @@
   max-width: 100%;
 }
 
+.ui-dialog .form-type--textfield input {
+  width: 100%;
+}
+
 .ui-dialog .form-item--editor-format,
 .ui-dialog .form-element--editor-format {
   width: auto;
