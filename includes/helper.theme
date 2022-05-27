@@ -57,6 +57,7 @@ function _gin_user_form_submit(&$form, FormStateInterface $form_state) {
       'focus_color' => $form_state->getValue('focus_color'),
       'high_contrast_mode' => (bool) $form_state->getValue('high_contrast_mode'),
       'layout_density' => $form_state->getValue('layout_density'),
+      'bundle_select' => $form_state->getValue('bundle_select'),
       'show_description_toggle' => $form_state->getValue('show_description_toggle'),
       'sticky_action_buttons' => $form_state->getValue('sticky_action_buttons'),
     ];

@@ -39,6 +39,9 @@ gin.settings:
     sticky_action_buttons:
       type: boolean
       label: 'Sticky action buttons'
+    bundle_select:
+      type: string
+      label: 'Bundle select mode'
     third_party_settings:
       type: mapping
       label: 'Third party settings'

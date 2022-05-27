@@ -306,6 +306,9 @@ table.treetable tr.branch {
 }
 
 .gin--add-modal .panel {
+  margin-top: 0;
   margin-bottom: 0;
+  border: none;
+  box-shadow: none;
 }
 
