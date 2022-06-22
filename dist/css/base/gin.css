@@ -491,7 +491,9 @@ body:not(.toolbar-tray-open) .layout-container .layout-container {
   }
 }
 
-.layer-wrapper .form-wrapper:first-of-type .form-item,
+.layer-wrapper .form-wrapper:first-of-type .form-item {
+  margin-top: 1;
+}
 .block-system > form .form-wrapper:first-of-type .form-item,
 .view-content .views-form .form-wrapper:first-of-type .form-item,
 .views-exposed-form.views-exposed-form .form-wrapper:first-of-type .form-item,
