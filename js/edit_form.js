@@ -5,13 +5,18 @@
 ((Drupal) => {
   Drupal.behaviors.ginEditForm = {
     attach: (context) => {
-      const ginEditForm = once('ginEditForm', context.querySelector('.region-content .block-system-main-block form'));
+      const ginEditForm = once('ginEditForm', document.querySelector('.region-content .block-system-main-block form'));
       ginEditForm.forEach(form => {
         const sticky = context.querySelector('.gin-sticky');
-        const newParent = context.querySelector('.region-sticky__items__inner');
+        const newParent = document.querySelector('.region-sticky__items__inner');
 
-        if (newParent && newParent.querySelectorAll('.gin-sticky').length === 0) {
-          newParent.appendChild(sticky);
+        if (newParent && !sticky.getAttribute('gin-sticky-applied')) {
+          let stickyPresent = newParent.querySelector('.gin-sticky');
+          if(stickyPresent) {
+            stickyPresent.replaceWith(sticky);
+          } else {
+            newParent.appendChild(sticky);
+          }
 
           // Attach form elements to main form
           const actionButtons = newParent.querySelectorAll('button, input, select, textarea');
@@ -22,6 +27,7 @@
               el.setAttribute('id', el.getAttribute('id') + '--gin-edit-form');
             });
           }
+          sticky.setAttribute('gin-sticky-applied', 1);
         }
       });
     }
