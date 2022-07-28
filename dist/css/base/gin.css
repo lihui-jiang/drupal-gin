@@ -2071,7 +2071,6 @@ fieldset:not(.fieldgroup) > .fieldset-wrapper {
 
 .form-item__description,
 .fieldset__description {
-  max-width: 520px;
   color: var(--colorGinTextLight);
 }
 
