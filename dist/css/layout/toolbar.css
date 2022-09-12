@@ -107,7 +107,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--ginSpacingXsmall) 0;
+  padding: var(--ginSpacingXsmall);
 }
 
 @media (min-width: 61em) {

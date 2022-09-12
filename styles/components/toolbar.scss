@@ -617,15 +617,10 @@ body.gin--classic-toolbar {
 }
 
 // Custom logo
-#toolbar-item-administration-tray .toolbar-logo {
-  padding-top: var(--ginSpacingXsmall);
-  padding-bottom: var(--ginSpacingXsmall);
-
-  img {
-    max-height: 35px;
-    object-fit: contain;
-    object-position: center;
-  }
+#toolbar-item-administration-tray .toolbar-logo img {
+  max-height: 35px;
+  object-fit: contain;
+  object-position: center;
 }
 
 #toolbar-item-user {

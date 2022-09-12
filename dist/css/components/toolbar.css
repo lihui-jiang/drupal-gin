@@ -650,11 +650,6 @@ body.gin--classic-toolbar {
   right: .55rem;
 }
 
-#toolbar-item-administration-tray .toolbar-logo {
-  padding-top: var(--ginSpacingXsmall);
-  padding-bottom: var(--ginSpacingXsmall);
-}
-
 #toolbar-item-administration-tray .toolbar-logo img {
   max-height: 35px;
   object-fit: contain;
