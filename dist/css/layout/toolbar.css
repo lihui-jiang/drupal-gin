@@ -89,12 +89,6 @@
     height: var(--ginStickyHeight);
   }
 
-  .toolbar .toolbar-bar .toolbar-icon-home {
-    display: block;
-    width: 100%;
-    margin: var(--ginSpacingXsmall) 0;
-  }
-
   .toolbar .toolbar-bar #toolbar-item-administration-tray a.toolbar-icon.override-icon:before {
     width: 0;
     content: none;
@@ -110,12 +104,10 @@
 }
 
 .toolbar .toolbar-bar #toolbar-item-administration-tray .toolbar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: var(--ginSpacingXsmall) 0;
-}
-
-.toolbar .toolbar-bar #toolbar-item-administration-tray .toolbar-logo img {
-  max-width: calc(var(--ginToolbarWidthCollapsed) - 1px);
-  max-height: 40px;
 }
 
 @media (min-width: 61em) {
