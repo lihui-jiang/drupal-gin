@@ -178,7 +178,7 @@
 
 #toolbar-item-administration-tray .toolbar-logo {
   display: flex;
-  height: 100%;
+  max-height: var(--ginToolbarHeight);
 }
 
 .toolbar-tray-horizontal ul li.menu-item--expanded ul li.menu-item--expanded,

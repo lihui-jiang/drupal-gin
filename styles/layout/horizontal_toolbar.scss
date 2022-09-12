@@ -156,7 +156,7 @@
 
   .toolbar-logo {
     display: flex;
-    height: 100%;
+    max-height: var(--ginToolbarHeight);
   }
 }
 
