@@ -49,9 +49,10 @@
       });
       once('ginMetaSidebarClose', $closeSidebarTrigger);
 
-      $(window)
-        .on('resize', Drupal.debounce(Drupal.behaviors.ginSidebar.handleResize, 150))
-        .trigger('resize');
+      once('ginMetaSidebarResize', 'html').forEach(() => {
+        window.addEventListener('resize', Drupal.debounce(Drupal.behaviors.ginSidebar.handleResize, 150));
+        window.dispatchEvent(new Event("resize"));
+      });
     },
     toggleSidebar: function toggleSidebar() {
       // Set active state.
