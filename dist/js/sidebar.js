@@ -16,7 +16,7 @@
         e.preventDefault(), Drupal.behaviors.ginSidebar.removeInlineStyles(), Drupal.behaviors.ginSidebar.collapseSidebar();
       }));
       once("ginMetaSidebarClose", $closeSidebarTrigger), once("ginMetaSidebarResize", "html").forEach((() => {
-        console.log("111"), window.addEventListener("resize", Drupal.debounce(Drupal.behaviors.ginSidebar.handleResize, 150)), 
+        window.addEventListener("resize", Drupal.debounce(Drupal.behaviors.ginSidebar.handleResize, 150)), 
         window.dispatchEvent(new Event("resize"));
       }));
     },
