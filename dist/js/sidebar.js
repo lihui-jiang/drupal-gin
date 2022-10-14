@@ -15,7 +15,10 @@
       const $closeSidebarTrigger = $(".meta-sidebar__close, .meta-sidebar__overlay", context).on("click", (function(e) {
         e.preventDefault(), Drupal.behaviors.ginSidebar.removeInlineStyles(), Drupal.behaviors.ginSidebar.collapseSidebar();
       }));
-      once("ginMetaSidebarClose", $closeSidebarTrigger), $(window).on("resize", Drupal.debounce(Drupal.behaviors.ginSidebar.handleResize, 150)).trigger("resize");
+      once("ginMetaSidebarClose", $closeSidebarTrigger), once("ginMetaSidebarResize", "html").forEach((() => {
+        window.addEventListener("resize", Drupal.debounce(Drupal.behaviors.ginSidebar.handleResize, 150)), 
+        window.dispatchEvent(new Event("resize"));
+      }));
     },
     toggleSidebar: function() {
       $(".meta-sidebar__trigger").hasClass("is-active") ? Drupal.behaviors.ginSidebar.collapseSidebar() : Drupal.behaviors.ginSidebar.showSidebar();
