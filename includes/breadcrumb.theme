@@ -18,6 +18,7 @@ function gin_preprocess_breadcrumb(&$variables) {
       $entity = _gin_get_route_entity();
       $entity_id = $entity ? $entity->getEntityTypeId() : NULL;
       $url = $entity ? $entity->toUrl()->toString() : NULL;
+      $item_url = $item instanceof Drupal\Core\Link ? $item->toString() : $item['url'];
 
       // Back to site item.
       if ($key === 0) {
@@ -45,7 +46,7 @@ function gin_preprocess_breadcrumb(&$variables) {
           $variables['breadcrumb'][$key]['attributes']['data'] = 'data-gin-toolbar-escape-admin';
         }
       }
-      elseif ($item['url'] === $url) {
+      elseif ($item_url === $url) {
         // Remove as we already have the back to site link set.
         unset($variables['breadcrumb'][$key]);
       }
