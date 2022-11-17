@@ -132,7 +132,7 @@ $maxWidth: 520px;
 }
 
 // Single Checkbox: show as toggle
-:not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content) > .form-type--checkbox {
+:not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(#drupal-off-canvas-wrapper input[type="checkbox"]) > .form-type--checkbox {
   position: relative;
   margin-left: 0;
 
@@ -256,7 +256,7 @@ $maxWidth: 520px;
     }
   }
 
-  label {
+  :not(#drupal-off-canvas-wrapper input[type="checkbox"]) label {
     z-index: 1;
     position: relative;
     padding-left: var(--gin-spacing-xxs);
@@ -534,7 +534,9 @@ tr .form-item {
   }
 }
 
-// Length indicator
-.length-indicator {
-  margin-bottom: var(--gin-spacing-l);
+// In the default Drupal theme there is the same rule, but without
+// the 'span.checkbox-toggle' element, that gin adds. So seems we need to
+// duplicate this rule.
+:is(#drupal-off-canvas-wrapper input[type="checkbox"]) + span.checkbox-toggle + label:not([data-drupal-ck-style-fence] *) {
+  display: inline;
 }
