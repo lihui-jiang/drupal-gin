@@ -146,7 +146,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       if (index > 0) {
         cell = cells.filter(":nth-child(".concat(index, ")"));
 
-        if (cell[0].colSpan && cell[0].colSpan > 1) {
+        if (cell.colSpan && cell.colSpan > 1) {
           cell.addClass('tabledrag-has-colspan');
         } else {
           cell.addClass('tabledrag-hide');
