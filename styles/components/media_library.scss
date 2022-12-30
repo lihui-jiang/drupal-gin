@@ -75,8 +75,9 @@
       box-shadow: 0 0 48px rgba(0, 0, 0, 0.075) !important;
       outline: none;
 
-      // Hide remove button on ghost.
-      .media-library-item__remove {
+      // Hide remove & edit buttons on ghost.
+      .media-library-item__remove,
+      .media-library-item__edit {
         display: none;
       }
     }
@@ -205,6 +206,7 @@ fieldset.media-library-widget {
   .media-library {
     &-edit__link,
     &-item .media-library-item__edit,
+    &-item .media-library-item__edit.button,
     &-item .media-library-item__remove,
     &-item .media-library-item__remove.button {
       margin: var(--gin-spacing-xs);
