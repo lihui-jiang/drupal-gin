@@ -80,6 +80,12 @@
   padding-left: 0;
 }
 
+.field-group-fieldset > .help-icon > .help-icon__description-toggle,
+fieldset.media-library-widget .help-icon > .help-icon__description-toggle,
+.field--type-datetime fieldset .help-icon > .help-icon__description-toggle {
+  margin-top: var(--space-m);
+}
+
 [dir="ltr"] .field-group-fieldset > .fieldset__description,
 [dir="ltr"] fieldset.media-library-widget .fieldset__description,
 [dir="ltr"] .field--type-datetime fieldset .fieldset__description {

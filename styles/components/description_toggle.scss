@@ -70,6 +70,11 @@ fieldset:not(.fieldgroup) {
 .field-group-fieldset >,
 fieldset.media-library-widget,
 .field--type-datetime fieldset {
+  .help-icon {
+    > .help-icon__description-toggle {
+      margin-top: var(--space-m);
+    }
+  }
 
   .fieldset__description {
     padding-left: var(--gin-spacing-m);
