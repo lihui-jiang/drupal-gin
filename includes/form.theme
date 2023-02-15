@@ -165,12 +165,7 @@ function gin_element_info_alter(&$info) {
  * Implements template_preprocess_HOOK() for text_format_wrapper.
  */
 function gin_preprocess_text_format_wrapper(&$variables) {
-  /** @var \Drupal\gin\GinSettings $settings */
-  $settings = \Drupal::classResolver(GinSettings::class);
-  if ($settings->get('show_description_toggle') && !empty($variables['description'])) {
-    $variables['description_display'] = 'invisible';
-    $variables['description_toggle'] = TRUE;
-  }
+  \Drupal::classResolver(GinDescriptionToggle::class)->preprocess($variables);
 }
 
 /**
