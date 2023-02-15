@@ -10,7 +10,6 @@
 Most of core-provided js assumes that the CSS class pattern js-form-item-[something] or
 js-form-type-[something] exists on form items. We have to keep them.
 #}
-{% set show_description_toggle = description_toggle and description.content %}
 {%
   set classes = [
     'js-form-item',
@@ -23,7 +22,7 @@ js-form-type-[something] exists on form items. We have to keep them.
     title_display not in ['after', 'before'] ? 'form-item--no-label',
     disabled == 'disabled' ? 'form-item--disabled',
     errors ? 'form-item--error',
-    show_description_toggle ? 'help-icon__description-container'
+    description_toggle ? 'help-icon__description-container'
   ]
 %}
 {%
@@ -34,7 +33,7 @@ js-form-type-[something] exists on form items. We have to keep them.
 %}
 <div{{ attributes.addClass(classes) }}>
   {% if label_display in ['before', 'invisible'] %}
-    {% if show_description_toggle %}
+    {% if description_toggle %}
       <div class="help-icon">
         {{ label }}
         {{ attach_library('gin/gin_description_toggle') }}
@@ -44,7 +43,7 @@ js-form-type-[something] exists on form items. We have to keep them.
       {{ label }}
     {% endif %}
   {% endif %}
-  {% if show_description_toggle %}
+  {% if description_toggle %}
   <div class="help-icon__element-has-description">
   {% endif %}
   {% if prefix is not empty %}
@@ -60,7 +59,7 @@ js-form-type-[something] exists on form items. We have to keep them.
     <span class="form-item__suffix{{disabled == 'disabled' ? ' is-disabled'}}">{{ suffix }}</span>
   {% endif %}
   {% if label_display == 'after' %}
-    {% if show_description_toggle %}
+    {% if description_toggle %}
       <div class="help-icon">
         {{ label }}
         {{ attach_library('gin/gin_description_toggle') }}
@@ -70,7 +69,7 @@ js-form-type-[something] exists on form items. We have to keep them.
       {{ label }}
     {% endif %}
   {% endif %}
-  {% if show_description_toggle %}
+  {% if description_toggle %}
   </div>
   {% endif %}
   {% if errors %}
