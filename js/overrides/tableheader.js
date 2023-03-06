@@ -17,10 +17,13 @@
           },
           { threshold: [1], rootMargin: `-${this.stickyPosition()}px 0px 0px 0px` }
         );
-        observer.observe(el.querySelector('thead'));
 
         // Create sticky element.
         this.createStickyHeader(el);
+        let stickyHeaderObservee = document.createElement('span');
+        stickyHeaderObservee.className = 'sticky-header-observee';
+        el.querySelector('thead').prepend(stickyHeaderObservee);
+        observer.observe(stickyHeaderObservee);
 
         // Link horizontal scrolling.
         context.querySelector('.gin-table-scroll-wrapper').addEventListener("scroll", (event) => {
