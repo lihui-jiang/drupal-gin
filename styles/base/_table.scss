@@ -6,35 +6,21 @@
   margin-bottom: -240px;
 }
 
-table.sticky-header {
+.sticky-header {
   visibility: hidden;
   z-index: 98;
   position: fixed;
   left: auto !important;
   top: calc(var(--ginHorizontalToolbarOffset) + var(--ginStickyOffset)) !important;
   background: transparent;
+  overflow: hidden;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 1.5rem;
-    height: 100%;
-  }
-
-  &::before {
-    left: calc(var(--gin-spacing-l) * -1);
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0), var(--gin-bg-layer));
-  }
-
-  &::after {
-    right: calc(var(--gin-spacing-l) * -1);
-    background: linear-gradient(90deg, var(--gin-bg-layer), rgba(255, 255, 255, 0));
+  > table{
+    margin: 0;
   }
 
   .--is-sticky & {
-    box-shadow: 0 10px 20px -16px rgba(0, 0, 0, .4);
+    box-shadow: 0 -1.5rem 1.5rem var(--gin-bg-layer), 0 10px 20px -16px rgba(0, 0, 0, .4);
 
     @include mq(medium) {
       visibility: visible !important;

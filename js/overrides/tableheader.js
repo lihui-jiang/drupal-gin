@@ -22,12 +22,18 @@
         // Create sticky element.
         this.createStickyHeader(el);
 
+        // Link horizontal scrolling.
+        context.querySelector('.gin-table-scroll-wrapper').addEventListener("scroll", (event) => {
+          let scrollOffsetLeft = event.target.scrollLeft;
+          el.parentElement.querySelector('.sticky-header').scrollTo(scrollOffsetLeft,0);
+        });
+
         // SelectAll handling.
         this.syncSelectAll();
 
         // Watch resize event.
         window.onresize = () => {
-          Drupal.debounce(this.handleResize(el), 150);
+          Drupal.debounce(this.handleResize(el.parentElement), 150);
         };
       });
     },
@@ -44,13 +50,15 @@
     createStickyHeader: function createStickyHeader(table) {
       const header = table.querySelector(':scope > thead');
       const stickyTable = document.createElement('table');
-      stickyTable.className = 'sticky-header';
+      const stickyTableWrapper = document.createElement('div');
+      stickyTableWrapper.append(stickyTable);
+      stickyTableWrapper.className = 'sticky-header';
       stickyTable.append(header.cloneNode(true));
-      table.insertBefore(stickyTable, header);
-      this.handleResize(table);
+      table.parentElement.insertBefore(stickyTableWrapper, table);
+      this.handleResize(table.parentElement);
     },
     syncSelectAll: () => {
-      document.querySelectorAll('table.sticky-header th.select-all').forEach(tableHeaderSticky => {
+      document.querySelectorAll('.sticky-header > table th.select-all').forEach(tableHeaderSticky => {
         const table = tableHeaderSticky.closest('table');
         table.querySelectorAll(':scope th.select-all').forEach(tableHeader => {
           tableHeader.addEventListener('click', event => {
@@ -64,10 +72,11 @@
       });
     },
     handleResize: (table) => {
-      const header = table.querySelector(':scope > thead');
+      const header = table.querySelector(':scope > table > thead');
+      table.querySelector('.sticky-header').style.width = table.offsetWidth + 'px';
       header.querySelectorAll('th').forEach((el, i) => {
-        table.querySelector(`table.sticky-header > thead th:nth-of-type(${i+1})`).style.width = `${el.offsetWidth}px`;
-        table.querySelector(`table.sticky-header`).style.width = `${el.parentNode.offsetWidth}px`;
+        table.querySelector(`.sticky-header > table > thead th:nth-of-type(${i+1})`).style.width = `${el.offsetWidth}px`;
+        table.querySelector(`.sticky-header > table`).style.width = `${el.parentNode.offsetWidth}px`;
       });
     },
   };
