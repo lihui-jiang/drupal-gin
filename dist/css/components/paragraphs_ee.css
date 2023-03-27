@@ -84,18 +84,26 @@
 
 [dir="ltr"] .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::before, [dir="ltr"] .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after, [dir="ltr"] .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::before, [dir="ltr"] .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after {
   left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 [dir="rtl"] .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::before, [dir="rtl"] .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after, [dir="rtl"] .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::before, [dir="rtl"] .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after {
   right: 50%;
-  transform: translate(50%, -50%);
 }
 
 .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after,
 .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after {
   z-index: 1;
   background: var(--gin-color-primary);
+}
+
+[dir="ltr"] .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after,
+[dir="ltr"] .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after {
+  transform: translate(-50%, -50%);
+}
+
+[dir="rtl"] .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after,
+[dir="rtl"] .ui-dialog.ui-dialog-off-canvas.paragraphs-ee-off-canvas--browser #drupal-off-canvas .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::after {
+  transform: translate(50%, -50%);
 }
 
 .paragraphs-add-dialog--categorized:not(.paragraphs-style-list) .paragraphs-button--add-more .paragraphs-button--icon::before,
