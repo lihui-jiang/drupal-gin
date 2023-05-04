@@ -50,12 +50,27 @@
                 margin: auto 0;
             }
         }
+
+        li.search-field {
+            margin: var(--gin-spacing-xxs) 0;
+
+            input[type="text"] {
+                color: var(--gin-color-text-light);
+                font-family: inherit;
+            }
+        }
     }
 
     .chosen-drop {
         .result-selected {
             color: var(--gin-color-disabled);
         }
+    }
+}
+
+.form-element.chosen-container-active {
+    .chosen-choices li.search-field input[type="text"] {
+        color: var(--gin-color-text) !important;
     }
 }
 

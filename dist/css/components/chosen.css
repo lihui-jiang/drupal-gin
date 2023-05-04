@@ -12,7 +12,8 @@
   height: 100%;
   display: block;
   line-height: 1.5rem;
-  padding: calc(var(--gin-spacing-s) - 1px) calc(var(--gin-spacing-m) - 1px);
+  padding-block: calc(var(--input-padding-vertical) - 1px);
+  padding-inline: var(--input-padding-horizontal);
   color: var(--gin-color-text);
 }
 
@@ -30,18 +31,19 @@
 
 .form-element.chosen-container-multi .chosen-choices {
   min-width: 160px;
-  margin: calc(var(--gin-spacing-xxs) * -1) 0;
+  margin-block: calc(var(--gin-spacing-xxs) -1);
+  margin-inline: 0 *;
   border: 0 none;
   background: none;
   box-shadow: none;
 }
 
 [dir="ltr"] .form-element.chosen-container-multi .chosen-choices {
-  padding-left: 0;
+  padding-inline-start: 0;
 }
 
 [dir="rtl"] .form-element.chosen-container-multi .chosen-choices {
-  padding-right: 0;
+  padding-inline-end: 0;
 }
 
 .form-element.chosen-container-multi .chosen-choices li.search-choice {
@@ -52,13 +54,17 @@
 }
 
 [dir="ltr"] .form-element.chosen-container-multi .chosen-choices li.search-choice {
-  margin: 0 var(--gin-spacing-xs) 0 0;
-  padding: var(--gin-spacing-xs) var(--gin-spacing-l) var(--gin-spacing-xs) var(--gin-spacing-xs);
+  margin-block: 0;
+  margin-inline: 0 var(--gin-spacing-xs);
+  padding-block: var(--gin-spacing-xs);
+  padding-inline: var(--gin-spacing-xs) var(--gin-spacing-l);
 }
 
 [dir="rtl"] .form-element.chosen-container-multi .chosen-choices li.search-choice {
-  margin: 0 0 0 var(--gin-spacing-xs);
-  padding: var(--gin-spacing-xs) var(--gin-spacing-xs) var(--gin-spacing-xs) var(--gin-spacing-l);
+  margin-block: 0;
+  margin-inline: var(--gin-spacing-xs) 0;
+  padding-block: var(--gin-spacing-xs);
+  padding-inline: var(--gin-spacing-l) var(--gin-spacing-xs);
 }
 
 .form-element.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
@@ -67,8 +73,21 @@
   margin: auto 0;
 }
 
+.form-element.chosen-container-multi .chosen-choices li.search-field {
+  margin: var(--gin-spacing-xxs) 0;
+}
+
+.form-element.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+  color: var(--gin-color-text-light);
+  font-family: inherit;
+}
+
 .form-element.chosen-container-multi .chosen-drop .result-selected {
   color: var(--gin-color-disabled);
+}
+
+.form-element.chosen-container-active .chosen-choices li.search-field input[type=text] {
+  color: var(--gin-color-text) !important;
 }
 
 .form-element.chosen-container .chosen-drop {
@@ -78,11 +97,11 @@
 }
 
 [dir="ltr"] .form-element.chosen-container .chosen-drop {
-  left: 0;
+  inset-inline-start: 0;
 }
 
 [dir="rtl"] .form-element.chosen-container .chosen-drop {
-  right: 0;
+  inset-inline-end: 0;
 }
 
 .form-element.chosen-container .chosen-results {
@@ -121,11 +140,11 @@
 }
 
 [dir="ltr"] .form-element.chosen-container .chosen-search::before {
-  right: var(--gin-spacing-m);
+  inset-inline-end: var(--gin-spacing-m);
 }
 
 [dir="rtl"] .form-element.chosen-container .chosen-search::before {
-  left: var(--gin-spacing-m);
+  inset-inline-start: var(--gin-spacing-m);
 }
 
 .form-element.chosen-container .chosen-search input[type=text] {
