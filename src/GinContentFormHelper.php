@@ -248,6 +248,12 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       'entity.node.content_translation_edit',
       'quick_node_clone.node.quick_clone',
       'entity.node.edit_form',
+      'entity.commerce_product.add_form',
+      'entity.commerce_product.edit_form',
+      'entity.commerce_product_variation.add_form',
+      'entity.commerce_product_variation.edit_form',
+      'entity.commerce_product.content_translation_add',
+      'entity.commerce_product_variation.content_translation_add',
     ];
 
     $additional_routes = $this->moduleHandler->invokeAll('gin_content_form_routes');
