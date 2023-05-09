@@ -29,16 +29,17 @@
         window.onresize = () => {
           Drupal.debounce(this.handleResize(el), 150);
         };
+
+        // Watch Scroll Event.
+        window.onscroll = () => {
+          this.handleScroll(el);
+        };
       });
     },
     stickyPosition: () => {
       let offsetTop = 0;
       if (!document.body.classList.contains('gin--classic-toolbar')) {
-        const toolbar = document.querySelector('#gin-toolbar-bar');
-        offsetTop = document.querySelector('.region-sticky').clientHeight;
-        if (toolbar) {
-          offsetTop += toolbar.clientHeight;
-        }
+        offsetTop = document.querySelector('#gin-toolbar-bar').clientHeight + document.querySelector('.region-sticky').clientHeight;
       } else {
         offsetTop = document.querySelector('#toolbar-bar').clientHeight;
       }
@@ -73,6 +74,16 @@
         table.querySelector(`table.sticky-header > thead th:nth-of-type(${i+1})`).style.width = `${el.offsetWidth}px`;
         table.querySelector(`table.sticky-header`).style.width = `${el.parentNode.offsetWidth}px`;
       });
+    },
+    handleScroll: function (table) {
+      const scrollTop = document.documentElement['scrollTop'] || document.body['scrollTop'];
+      const tableTop = table.getBoundingClientRect().top + scrollTop;
+      const tableBottom = tableTop + table.offsetHeight;
+      if (tableTop < scrollTop && scrollTop < tableBottom - 100) {
+        table.querySelector('.sticky-header').style.visibility = 'visible';
+      } else {
+        table.querySelector('.sticky-header').style.visibility = 'hidden';
+      }
     },
   };
 
