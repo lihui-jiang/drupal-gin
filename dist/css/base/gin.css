@@ -822,18 +822,21 @@ details summary {
 .block-system > .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions,
 .view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-type--select,
 .view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions {
-  flex: 0 0 100%;
+  align-self: center;
   max-width: 100%;
 }
 
-.block-system > .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions,
-.view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions {
-  justify-content: flex-end;
+.block-system > .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .vbo-multipage-selector,
+.view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .vbo-multipage-selector {
+  flex: 0 0 40%;
+  order: -2;
 }
 
 .block-system > .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-type--checkbox,
 .view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-type--checkbox {
   align-self: center;
+  flex: 0 0 55%;
+  order: -1;
 }
 
 .block-system > .views-form [data-drupal-selector*=edit-header] .form-item__label:not([for=edit-select-all]),
