@@ -87,13 +87,13 @@
       margin: 0;
       background-image: none !important;
       border-radius: 50%;
-      transform: translate(-50%, -50%);
       transition: opacity 500ms ease-in-out;
     }
 
     &::after {
       z-index: 1;
       background: var(--gin-color-primary);
+      transform: translate(-50%, -50%);
     }
 
     &::before {
