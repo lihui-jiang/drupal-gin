@@ -17,7 +17,6 @@
 
       & .form-item--moderation-state-0-state {
         text-align: right;
-        margin: 0;
       }
 
       @include mq(small) {
@@ -25,10 +24,16 @@
 
         & .form-item--moderation-state-0-current {
           margin-right: 1rem;
+          margin-top: 0;
+          margin-bottom: 0;
 
           & label {
             margin-bottom: 0;
           }
+        }
+
+        & .form-item--moderation-state-0-state {
+          margin: 0;
         }
       }
     }

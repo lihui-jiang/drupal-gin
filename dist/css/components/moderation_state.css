@@ -24,10 +24,6 @@
   margin-bottom: 1rem;
 }
 
-.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-state {
-  margin: 0;
-}
-
 [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-state {
   text-align: right;
 }
@@ -41,6 +37,11 @@
     align-items: center;
   }
 
+  .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current {
     margin-right: 1rem;
   }
@@ -51,6 +52,10 @@
 
   .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current label {
     margin-bottom: 0;
+  }
+
+  .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-state {
+    margin: 0;
   }
 }
 
