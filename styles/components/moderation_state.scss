@@ -1,0 +1,36 @@
+.gin--edit-form {
+  .page-wrapper__node-edit-form
+    .region-sticky
+    .gin-sticky
+    .field--name-moderation-state {
+    @include mq(small) {
+      margin-left: auto;
+    }
+
+    & .gin--moderation-state {
+      display: flex;
+      margin-right: 0.5rem;
+
+      & .form-item--moderation-state-0-current label {
+        margin-bottom: 1rem;
+      }
+
+      & .form-item--moderation-state-0-state {
+        text-align: right;
+        margin: 0;
+      }
+
+      @include mq(small) {
+        align-items: center;
+
+        & .form-item--moderation-state-0-current {
+          margin-right: 1rem;
+
+          & label {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

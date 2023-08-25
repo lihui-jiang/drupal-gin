@@ -48,6 +48,7 @@ module.exports = {
     'components/layout_paragraphs_2.0': ['./styles/components/layout_paragraphs_2.0.scss'],
     'components/linkit': ['./styles/components/linkit.scss'],
     'components/media_library': ['./styles/components/media_library.scss'],
+    'components/moderation_state': ['./styles/components/moderation_state.scss'],
     'components/module_filter': ['./styles/components/module_filter.scss'],
     'components/node_preview': ['./styles/components/node_preview.scss'],
     'components/paragraphs': ['./styles/components/paragraphs.scss'],

@@ -153,6 +153,12 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       $form['gin_actions']['actions'] = ($form['actions']) ?? [];
       $form['gin_actions']['actions']['#weight'] = 130;
 
+      if (isset($form['moderation_state'])) {
+        $form['#attached']['library'][] = 'gin/moderation_state';
+        $form['moderation_state']['#group'] = 'gin_actions';
+        $form['moderation_state']['widget'][0]['#attributes']['class'] = 'gin--moderation-state';
+      }
+
       // Now let's just remove delete, as we'll move that over to gin_sidebar.
       unset($form['gin_actions']['actions']['delete']);
       unset($form['gin_actions']['actions']['delete_translation']);

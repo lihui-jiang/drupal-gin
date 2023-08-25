@@ -326,6 +326,11 @@ linkit:
     component:
       dist/css/components/linkit.css: { minified: false }
 
+moderation_state:
+  css:
+    component:
+      dist/css/components/moderation_state.css: { minified: false }
+
 # Legacy
 
 legacy_css:
