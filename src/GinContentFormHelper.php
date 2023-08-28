@@ -154,7 +154,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       $form['gin_actions']['actions']['#weight'] = 130;
 
       if (isset($form['moderation_state'])) {
-        $form['#attached']['library'][] = 'gin/moderation_state';
+        $form['#attached']['library'][] = 'gin/content_moderation';
         $form['moderation_state']['#group'] = 'gin_actions';
         $form['moderation_state']['widget'][0]['#attributes']['class'] = 'gin--moderation-state';
       }
