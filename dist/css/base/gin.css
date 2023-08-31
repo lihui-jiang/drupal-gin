@@ -921,6 +921,10 @@ details summary {
   margin-top: var(--gin-spacing-l);
 }
 
+.view-preview-form .form-actions {
+  margin-top: 0;
+}
+
 [dir="ltr"] .view-preview-form .arguments-preview {
   margin-left: 0;
 }
@@ -4313,4 +4317,6 @@ blockquote::before {
     background: none;
   }
 }
-
+.view-preview-form .form-actions {
+  margin-top: 0;
+}
