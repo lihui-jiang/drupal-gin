@@ -1272,22 +1272,22 @@ table.sticky-header::before, table.sticky-header::after {
 
 [dir="ltr"] table.sticky-header::before {
   left: calc(var(--gin-spacing-l) * -1);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), var(--gin-bg-layer));
+  background: linear-gradient(90deg, #f8fafe, var(--gin-bg-layer));
 }
 
 [dir="rtl"] table.sticky-header::before {
   right: calc(var(--gin-spacing-l) * -1);
-  background: linear-gradient(-90deg, rgba(255, 255, 255, 0), var(--gin-bg-layer));
+  background: linear-gradient(-90deg, #f8fafe, var(--gin-bg-layer));
 }
 
 [dir="ltr"] table.sticky-header::after {
   right: calc(var(--gin-spacing-l) * -1);
-  background: linear-gradient(90deg, var(--gin-bg-layer), rgba(255, 255, 255, 0));
+  background: linear-gradient(90deg, var(--gin-bg-layer), #f8fafe);
 }
 
 [dir="rtl"] table.sticky-header::after {
   left: calc(var(--gin-spacing-l) * -1);
-  background: linear-gradient(-90deg, var(--gin-bg-layer), rgba(255, 255, 255, 0));
+  background: linear-gradient(-90deg, var(--gin-bg-layer), #f8fafe);
 }
 
 .--is-sticky table.sticky-header {
