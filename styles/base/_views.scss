@@ -127,6 +127,12 @@
 
   .form-actions {
     align-items: flex-end;
+    // margin-top: 0;
+    input{
+      min-height: 2.25rem;
+      padding-top: 0.474rem;
+      padding-bottom: 0.474rem;
+    }
   }
 
   .form-item--live-preview {
@@ -134,13 +140,12 @@
     margin-top: var(--gin-spacing-l);
   }
 
-  .form-actions {
-    margin-top: 0;
-  }
-
   .arguments-preview {
     margin-left: 0;
   }
+
+  // .button--small.button.js-form-submit.form-submit{
+  
 }
 
 .views-live-preview {

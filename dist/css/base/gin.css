@@ -916,13 +916,15 @@ details summary {
   align-items: flex-end;
 }
 
+.view-preview-form .form-actions input {
+  min-height: 2.25rem;
+  padding-top: .474rem;
+  padding-bottom: .474rem;
+}
+
 .view-preview-form .form-item--live-preview {
   position: static !important;
   margin-top: var(--gin-spacing-l);
-}
-
-.view-preview-form .form-actions {
-  margin-top: 0;
 }
 
 [dir="ltr"] .view-preview-form .arguments-preview {
@@ -4317,6 +4319,4 @@ blockquote::before {
     background: none;
   }
 }
-.view-preview-form .form-actions {
-  margin-top: 0;
-}
+
