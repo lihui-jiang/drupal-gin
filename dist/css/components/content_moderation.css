@@ -1,3 +1,7 @@
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state {
+  /* Textfield form widget *//* Moderation state form widget */
+}
+
 @media (min-width: 48em) {
   [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state {
     margin-left: auto;
@@ -8,8 +12,39 @@
   }
 }
 
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value {
+  display: flex;
+  align-items: center;
+}
+
+[dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value {
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value {
+  margin-left: 1rem;
+}
+
+[dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value .form-item__label {
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value .form-item__label {
+  margin-left: 1rem;
+}
+
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value input {
+  max-width: 15rem;
+}
+
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value .form-item__description {
+  /* Let's hide this until we have a better solution. */
+  display: none;
+}
+
 .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state {
   display: flex;
+  /* Moderation state widget */
 }
 
 [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state {

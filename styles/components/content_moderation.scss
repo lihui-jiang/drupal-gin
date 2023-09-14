@@ -7,10 +7,33 @@
       margin-left: auto;
     }
 
+    /* Textfield form widget */
+    & .form-item--moderation-state-0-value {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+
+      & .form-item__label {
+        margin-right: 1rem;
+        margin-bottom: 0;
+      }
+
+      & input {
+        max-width: 15rem;
+      }
+
+      & .form-item__description {
+        /* Let's hide this until we have a better solution. */
+        display: none;
+      }
+    }
+
+    /* Moderation state form widget */
     & .gin--moderation-state {
       display: flex;
       margin-right: 0.5rem;
 
+      /* Moderation state widget */
       & .form-item--moderation-state-0-current label {
         margin-bottom: 1rem;
       }
