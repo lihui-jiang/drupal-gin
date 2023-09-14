@@ -2,7 +2,7 @@
   /* Textfield form widget *//* Moderation state form widget */
 }
 
-@media (min-width: 48em) {
+@media (min-width: 61em) {
   [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state {
     margin-left: auto;
   }
@@ -25,6 +25,10 @@
   margin-left: 1rem;
 }
 
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value .form-item__label {
+  margin-bottom: 0;
+}
+
 [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .form-item--moderation-state-0-value .form-item__label {
   margin-right: 1rem;
 }
@@ -44,7 +48,7 @@
 
 .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state {
   display: flex;
-  /* Moderation state widget */
+  /* Moderation state current state */
 }
 
 [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state {
@@ -55,8 +59,12 @@
   margin-left: .5rem;
 }
 
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current {
+  display: none;
+}
+
 .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current label {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 [dir="ltr"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-state {
@@ -67,12 +75,19 @@
   text-align: left;
 }
 
+.gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-state label {
+  display: none;
+}
+
 @media (min-width: 48em) {
   .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state {
     align-items: center;
   }
 
   .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -83,10 +98,6 @@
 
   [dir="rtl"] .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current {
     margin-left: 1rem;
-  }
-
-  .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-current label {
-    margin-bottom: 0;
   }
 
   .gin--edit-form .page-wrapper__node-edit-form .region-sticky .gin-sticky .field--name-moderation-state .gin--moderation-state .form-item--moderation-state-0-state {

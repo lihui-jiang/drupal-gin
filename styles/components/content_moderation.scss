@@ -3,7 +3,7 @@
     .region-sticky
     .gin-sticky
     .field--name-moderation-state {
-    @include mq(small) {
+    @include mq(medium) {
       margin-left: auto;
     }
 
@@ -33,26 +33,33 @@
       display: flex;
       margin-right: 0.5rem;
 
-      /* Moderation state widget */
-      & .form-item--moderation-state-0-current label {
-        margin-bottom: 1rem;
+      /* Moderation state current state */
+      & .form-item--moderation-state-0-current {
+        display: none;
+
+        & label {
+          margin-bottom: 0;
+        }
       }
 
       & .form-item--moderation-state-0-state {
         text-align: right;
+
+        & label {
+          display: none;
+        }
       }
 
       @include mq(small) {
         align-items: center;
 
         & .form-item--moderation-state-0-current {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
           margin-right: 1rem;
           margin-top: 0;
           margin-bottom: 0;
-
-          & label {
-            margin-bottom: 0;
-          }
         }
 
         & .form-item--moderation-state-0-state {
