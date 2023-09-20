@@ -270,11 +270,6 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       $term = $form_object->getEntity();
       assert($term instanceof TermInterface);
 
-      if (isset($form['langcode'])) {
-        $form['langcode']['widget'][0]['#type'] = 'details';
-        $form['langcode']['widget'][0]['#group'] = 'advanced';
-      }
-
       // Move pathauto into sidebar. We have to copy this code from the PathWidget
       // because, at the time the PathWidget is processed the advanced group is
       // still not present. The group will be created later in a form alter.
@@ -420,6 +415,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       'entity.taxonomy_term.edit_form',
       'entity.taxonomy_term.add_form',
       'entity.taxonomy_term.content_translation_add',
+      'entity.taxonomy_term.content_translation_edit',
       'quick_node_clone.node.quick_clone',
       'entity.node.edit_form',
     ];
