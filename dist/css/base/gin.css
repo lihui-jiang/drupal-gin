@@ -90,12 +90,6 @@ button.link:active,
   color: var(--gin-color-primary-active);
 }
 
-*|*:-webkit-any-link:not(svg|a) {
-  text-decoration: underline;
-  -webkit-text-decoration-style: dotted;
-          text-decoration-style: dotted;
-}
-
 *|*:any-link:not(svg|a) {
   text-decoration: underline;
   -webkit-text-decoration-style: dotted;
@@ -1715,6 +1709,10 @@ table td.field-plugin-summary-cell {
 
 .field-plugin-settings-edit-wrapper + a {
   margin-top: var(--gin-spacing-s);
+}
+
+.table-file-multiple-widget .tabledrag-cell-content {
+  display: flex;
 }
 
 .form-element {
