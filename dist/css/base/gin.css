@@ -158,6 +158,7 @@ button.link:active,
     width: 100%;
     height: var(--gin-height-sticky);
     padding: var(--gin-spacing-s) 0;
+    padding-bottom: 35px;
   }
 
   .region-sticky-watcher {
@@ -193,6 +194,10 @@ button.link:active,
   .gin--classic-toolbar:not(.gin--edit-form) .region-sticky {
     position: static;
   }
+}
+
+.toolbar-horizontal.gin---toolbar .page-wrapper{
+  padding-left: 30px;
 }
 
 .region-sticky__items {
@@ -4224,3 +4229,7 @@ blockquote::before {
   }
 }
 
+/* with layout builder */
+.layout-builder-add-block .form-type--checkbox label{
+  margin-left: 30px!important;
+}

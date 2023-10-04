@@ -319,3 +319,20 @@ legacy_css:
   css:
     theme:
       dist/css/theme/legacy.css: { minified: false }
+
+
+core/drupal.dialog.off_canvas:
+    css:
+      base:
+        misc/dialog/off-canvas.reset.css: false
+        misc/dialog/off-canvas.base.css: false
+        misc/dialog/off-canvas.css: false
+        misc/dialog/off-canvas.theme.css: false
+      component:
+        misc/dialog/off-canvas.button.css: false
+        misc/dialog/off-canvas.form.css: false
+        misc/dialog/off-canvas.table.css: false
+        misc/dialog/off-canvas.details.css: false
+        misc/dialog/off-canvas.tabledrag.css: false
+        misc/dialog/off-canvas.dropbutton.css: false
+        misc/dialog/off-canvas.layout.css: false
