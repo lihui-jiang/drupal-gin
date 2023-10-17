@@ -507,3 +507,11 @@
     width: 100%;
   }
 }
+
+.block-local-tasks-block {
+  .tabs__link {
+    &:hover {
+      color: var(--gin-color-primary-active);
+    }
+  }
+}
