@@ -2,9 +2,15 @@
 
 namespace Drupal\gin;
 
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\block_content\Entity\BlockContentType;
+use Drupal\Core\Breadcrumb\BreadcrumbManager;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Menu\MenuLinkTree;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\shortcut\ShortcutLazyBuilders;
 use Drupal\Core\Url;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -15,10 +21,84 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class GinNavigation implements ContainerInjectionInterface {
 
   /**
+   * The menu link tree service.
+   *
+   * @var \Drupal\Core\Menu\MenuLinkTree
+   */
+  protected $menuLinkTree;
+
+  /**
+   * The entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The current user service.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected $currentUser;
+
+  /**
+   * The breadcrumb service.
+   *
+   * @var \Drupal\Core\Breadcrumb\BreadcrumbManager
+   */
+  protected $breadcrumb;
+
+  /**
+   * The current route match service.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $currentRouteMatch;
+
+  /**
+   * The shortcut lazy builders service.
+   *
+   * @var \Drupal\shortcut\ShortcutLazyBuilders
+   */
+  protected $shortcutLazyBuilders;
+
+  /**
+   * GinNavigation constructor.
+   *
+   * @param \Drupal\Core\Menu\MenuLinkTree $menu_link_tree
+   *   The menu link tree service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
+   * @param \Drupal\Core\Session\AccountProxyInterface $current_user
+   *   The current user service.
+   * @param \Drupal\Core\Breadcrumb\BreadcrumbManager $breadcrumb
+   *   The breadcrumb service.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
+   *   The current route match service.
+   * @param \Drupal\shortcut\ShortcutLazyBuilders|null $shortcut_lazy_builders
+   *   The shortcut lazy builders service.
+   */
+  public function __construct(MenuLinkTree $menu_link_tree, EntityTypeManagerInterface $entity_type_manager, AccountProxyInterface $current_user, BreadcrumbManager $breadcrumb, RouteMatchInterface $current_route_match, ShortcutLazyBuilders $shortcut_lazy_builders = NULL) {
+    $this->menuLinkTree = $menu_link_tree;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->currentUser = $current_user;
+    $this->breadcrumb = $breadcrumb;
+    $this->currentRouteMatch = $current_route_match;
+    $this->shortcutLazyBuilders = $shortcut_lazy_builders;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static();
+    return new static(
+      $container->get('menu.link_tree'),
+      $container->get('entity_type.manager'),
+      $container->get('current_user'),
+      $container->get('breadcrumb'),
+      $container->get('current_route_match'),
+      $container->has('shortcut.lazy_builders') ? $container->get('shortcut.lazy_builders') : NULL
+    );
   }
 
   /**
@@ -28,15 +108,14 @@ class GinNavigation implements ContainerInjectionInterface {
     $parameters = new MenuTreeParameters();
     $parameters->setMinDepth(2)->setMaxDepth(4)->onlyEnabledLinks();
     /** @var Drupal\Core\Menu\MenuLinkTree $menu_tree */
-    $menu_tree = \Drupal::service('menu.link_tree');
-    $tree = $menu_tree->load('admin', $parameters);
+    $tree = $this->menuLinkTree->load('admin', $parameters);
     $manipulators = [
       ['callable' => 'menu.default_tree_manipulators:checkAccess'],
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
       ['callable' => 'toolbar_menu_navigation_links'],
     ];
-    $tree = $menu_tree->transform($tree, $manipulators);
-    $build = $menu_tree->build($tree);
+    $tree = $this->menuLinkTree->transform($tree, $manipulators);
+    $build = $this->menuLinkTree->build($tree);
     /** @var \Drupal\Core\Menu\MenuLinkInterface $link */
     $first_link = reset($tree)->link;
     // Get the menu name of the first link.
@@ -64,8 +143,8 @@ class GinNavigation implements ContainerInjectionInterface {
    */
   public function getNavigationBookmarksMenuItems(): array {
     // Check if the shortcut module is installed.
-    if (\Drupal::hasService('shortcut.lazy_builders') === TRUE) {
-      $shortcuts = \Drupal::service('shortcut.lazy_builders')->lazyLinks()['shortcuts'];
+    if ($this->shortcutLazyBuilders) {
+      $shortcuts = $this->shortcutLazyBuilders->lazyLinks()['shortcuts'];
       $shortcuts['#theme'] = 'menu_region__top';
       $shortcuts['#menu_name'] = 'bookmarks';
       $shortcuts['#title'] = t('Bookmarks');
@@ -80,9 +159,6 @@ class GinNavigation implements ContainerInjectionInterface {
    * Get Navigation Create menu.
    */
   public function getNavigationCreateMenuItems(): array {
-    // Get the Entity Type Manager service.
-    $entity_type_manager = \Drupal::entityTypeManager();
-
     // Needs to be this syntax to
     // support older PHP versions
     // for Druapl 9.0+.
@@ -90,9 +166,9 @@ class GinNavigation implements ContainerInjectionInterface {
     $create_item_url = '';
 
     // Get node types.
-    if ($entity_type_manager->hasDefinition('node')) {
+    if ($this->entityTypeManager->hasDefinition('node')) {
       $create_item_url = Url::fromRoute('node.add_page')->toString();
-      $content_types = $entity_type_manager->getStorage('node_type')->loadMultiple();
+      $content_types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();
       $content_type_items = [];
 
       foreach ($content_types as $item) {
@@ -107,7 +183,7 @@ class GinNavigation implements ContainerInjectionInterface {
     }
 
     // Get block types.
-    if ($entity_type_manager->hasDefinition('block_content')) {
+    if ($this->entityTypeManager->hasDefinition('block_content')) {
       $block_content_types = BlockContentType::loadMultiple();
       $block_type_items = [];
 
@@ -133,8 +209,8 @@ class GinNavigation implements ContainerInjectionInterface {
     }
 
     // Get media types.
-    if ($entity_type_manager->hasDefinition('media')) {
-      $media_types = $entity_type_manager->getStorage('media_type')->loadMultiple();
+    if ($this->entityTypeManager->hasDefinition('media')) {
+      $media_types = $this->entityTypeManager->getStorage('media_type')->loadMultiple();
       $media_type_items = [];
 
       foreach ($media_types as $item) {
@@ -159,7 +235,7 @@ class GinNavigation implements ContainerInjectionInterface {
     }
 
     // Get taxomony types.
-    if ($entity_type_manager->hasDefinition('taxonomy_term')) {
+    if ($this->entityTypeManager->hasDefinition('taxonomy_term')) {
       $taxonomy_types = Vocabulary::loadMultiple();
       $taxonomy_type_items = [];
 
@@ -208,12 +284,10 @@ class GinNavigation implements ContainerInjectionInterface {
    * Get Navigation Content menu.
    */
   public function getNavigationContentMenuItems(): array {
-    $entity_type_manager = \Drupal::entityTypeManager();
-
     $create_content_items = [];
 
     // Get Content menu item.
-    if ($entity_type_manager->hasDefinition('node')) {
+    if ($this->entityTypeManager->hasDefinition('node')) {
       $create_content_items['content'] = [
         'title' => t('Content'),
         'class' => 'content',
@@ -222,7 +296,7 @@ class GinNavigation implements ContainerInjectionInterface {
     }
 
     // Get Blocks menu item.
-    if ($entity_type_manager->hasDefinition('block_content')) {
+    if ($this->entityTypeManager->hasDefinition('block_content')) {
       $create_content_items['blocks'] = [
         'title' => t('Blocks'),
         'class' => 'blocks',
@@ -231,7 +305,7 @@ class GinNavigation implements ContainerInjectionInterface {
     }
 
     // Get File menu item.
-    if ($entity_type_manager->hasDefinition('file')) {
+    if ($this->entityTypeManager->hasDefinition('file')) {
       $create_content_items['files'] = [
         'title' => t('Files'),
         'class' => 'files',
@@ -240,7 +314,7 @@ class GinNavigation implements ContainerInjectionInterface {
     }
 
     // Get Media menu item.
-    if ($entity_type_manager->hasDefinition('media')) {
+    if ($this->entityTypeManager->hasDefinition('media')) {
       $create_content_items['media'] = [
         'title' => t('Media'),
         'class' => 'media',
@@ -305,7 +379,7 @@ class GinNavigation implements ContainerInjectionInterface {
           'gin/navigation',
         ],
       ],
-      '#access' => \Drupal::currentUser()->hasPermission('access toolbar'),
+      '#access' => $this->currentUser->hasPermission('access toolbar'),
     ];
   }
 
@@ -314,7 +388,7 @@ class GinNavigation implements ContainerInjectionInterface {
    */
   public function getNavigationActiveTrail() {
     // Get the breadcrumb paths to maintain active trail in the toolbar.
-    $links = \Drupal::service('breadcrumb')->build(\Drupal::routeMatch())->getLinks();
+    $links = $this->breadcrumb->build($this->currentRouteMatch)->getLinks();
     $paths = [];
     foreach ($links as $link) {
       $paths[] = $link->getUrl()->getInternalPath();
