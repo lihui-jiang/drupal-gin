@@ -84,9 +84,16 @@
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
   background-color: var(--gin-icon-color);
   height: 18px;
-  left: 0.667em;
-  top: 0.87em;
+  top: .87em;
   width: 18px;
+}
+
+[dir="ltr"] .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  left: .667em;
+}
+
+[dir="rtl"] .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  right: .667em;
 }
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab.open, .toolbar .toolbar-tab-responsive-preview.toolbar-tab.open::before {
