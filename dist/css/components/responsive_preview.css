@@ -1,5 +1,5 @@
 .responsive-preview {
-  z-index: 502;
+  z-index: 500;
 }
 
 .responsive-preview-item-list {
@@ -74,6 +74,19 @@
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-configure:hover {
   color: var(--gin-color-primary);
+}
+
+.toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active {
+  color: var(--gin-color-button-text);
+  background-color: var(--gin-color-primary);
+}
+
+.toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  background-color: var(--gin-icon-color);
+  height: 18px;
+  left: 0.667em;
+  top: 0.87em;
+  width: 18px;
 }
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab.open, .toolbar .toolbar-tab-responsive-preview.toolbar-tab.open::before {

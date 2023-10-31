@@ -1,5 +1,5 @@
 .responsive-preview {
-  z-index: 502;
+  z-index: 500;
 
   &-item-list {
     top: 36px !important;
@@ -69,6 +69,20 @@
 
         &:hover {
           color: var(--gin-color-primary);
+        }
+      }
+
+      // Active responsive views.
+      .responsive-preview-device.responsive-preview-icon-active.active  {
+        color: var(--gin-color-button-text);
+        background-color: var(--gin-color-primary);
+
+        &:before {
+          background-color: var(--gin-icon-color);
+          height: 18px;
+          left: 0.667em;
+          top: 0.87em;
+          width: 18px;
         }
       }
     }
