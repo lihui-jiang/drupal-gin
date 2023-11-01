@@ -83,7 +83,7 @@
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
   background-position: center -160px;
-  background-color: var(--gin-icon-color);
+  background-color: var(--gin-color-button-text);
   height: 18px;
   top: .7em;
   width: 18px;
