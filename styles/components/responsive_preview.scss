@@ -78,10 +78,11 @@
         background-color: var(--gin-color-primary);
 
         &:before {
+          background-position: center -160px;
           background-color: var(--gin-icon-color);
           height: 18px;
           left: 0.667em;
-          top: 0.87em;
+          top: .7em;
           width: 18px;
         }
       }

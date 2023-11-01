@@ -82,9 +82,10 @@
 }
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  background-position: center -160px;
   background-color: var(--gin-icon-color);
   height: 18px;
-  top: .87em;
+  top: .7em;
   width: 18px;
 }
 
