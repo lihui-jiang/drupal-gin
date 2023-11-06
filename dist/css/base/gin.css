@@ -1473,7 +1473,6 @@ table td .group-label {
 [dir=rtl] .tablesort--asc {
   -webkit-mask-image: url("../../media/sprite.svg#sort-asc-view");
           mask-image: url("../../media/sprite.svg#sort-asc-view");
-          rotate: 180deg;
 }
 
 @media (forced-colors: active) {
