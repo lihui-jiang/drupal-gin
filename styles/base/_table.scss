@@ -171,11 +171,10 @@ table {
 .tablesort--asc,
 [dir="rtl"] .tablesort--asc {
   mask-image: icon('sort-asc');
-
+  rotate: 180deg;
   @media (forced-colors: active) {
     background: linktext;
   }
-  rotate: 180deg;
 }
 
 .tablesort--desc,
