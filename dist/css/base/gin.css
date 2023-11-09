@@ -1281,9 +1281,7 @@ a.views-field-excluded {
 .gin-table-scroll-wrapper {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 240px;
   margin-top: calc(var(--gin-spacing-xs) * -1);
-  margin-bottom: -240px;
 }
 
 .gin-horizontal-scroll-shadow {
