@@ -274,16 +274,15 @@ button.link:active,
 }
 
 .region-sticky__items__inner {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   width: 100%;
+  grid-template-columns: auto;
 }
 
 @media (min-width: 64em) {
   .region-sticky__items__inner {
-    flex-wrap: nowrap;
-    align-items: center;
     margin-bottom: 0;
+    grid-template-columns: auto auto;
   }
 
   .region-sticky__items__inner .block-page-title-block {
