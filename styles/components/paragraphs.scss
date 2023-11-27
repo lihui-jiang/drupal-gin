@@ -18,9 +18,34 @@
 
   .field-multiple-table {
     > tbody {
+      display: block;
+
       > .draggable {
         > td + td {
           width: 100%;
+          display: block;
+        }
+      }
+    }
+
+    thead {
+      display: block;
+
+      > tr {
+        display: flex;
+
+        th:first-child {
+          display: flex;
+          width: 100%;
+
+          .paragraphs-actions {
+            margin-left: auto;
+            margin-right: 0;
+          }
+        }
+
+        .tabledrag-hide {
+          margin: auto;
         }
       }
     }
@@ -104,6 +129,41 @@
   .paragraph-type-add-modal,
   .field--widget-paragraphs .paragraphs-dropbutton-wrapper {
     margin-right: var(--gin-spacing-xs);
+  }
+}
+
+.js {
+  .field--widget-paragraphs {
+    .field-multiple-table {
+      display: block;
+    }
+  }
+}
+
+td .claro-details {
+  width: 100%;
+}
+
+
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-wrap: nowrap;
+  flex-direction: row;
+
+  > td {
+    display: block;
+    min-width: 0;
+    position: relative;
+
+    &:first-child {
+      width: 30px;
+    }
+
+    &:last-child {
+      width: 60px;
+    }
   }
 }
 
