@@ -40,6 +40,16 @@
     min-width: 92%;
     max-width: 92%;
   }
+
+  #drupal-off-canvas-wrapper.workspaces-dialog {
+    padding-top: 100px;
+
+    .ui-dialog-titlebar {
+      .ui-dialog-titlebar-close {
+        top: 8%;
+      }
+    }
+  }
 }
 
 .ui-dialog {
@@ -248,4 +258,22 @@ table.treetable {
 // Removes spacing from views dialog
 .views-ui-dialog.views-ui-dialog > .ui-dialog-content {
   padding: 0;
+}
+
+@include mq(small) {
+  #drupal-off-canvas-wrapper.workspaces-dialog {
+    .ui-dialog-content,
+    .ui-dialog-content > div {
+      margin-left: min(5vw,var(--gin-spacing-xxl));
+      margin-right: min(5vw,var(--gin-spacing-xxl));
+    }
+  }
+}
+
+#drupal-off-canvas-wrapper.workspaces-dialog {
+  .ui-dialog-content > div {
+    .workspaces {
+      display: block;
+    }
+  }
 }
