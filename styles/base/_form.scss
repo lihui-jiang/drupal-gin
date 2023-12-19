@@ -188,6 +188,8 @@
     opacity: 0;
     cursor: pointer;
     z-index: 1;
+    left: calc(50% - 45px);
+    top: 50%;
 
     &:hover,
     &:focus,
