@@ -242,22 +242,9 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     // Get route name.
     $route_name = $this->routeMatch->getRouteName();
 
-    // Routes to include.
-    $route_names = [
-      'node.add',
-      'entity.node.content_translation_add',
-      'entity.node.content_translation_edit',
-      'quick_node_clone.node.quick_clone',
-      'entity.node.edit_form',
-    ];
-
-    $additional_routes = $this->moduleHandler->invokeAll('gin_content_form_routes');
-    $route_names = array_merge($additional_routes, $route_names);
-    $this->moduleHandler->alter('gin_content_form_routes', $route_names);
-    $this->themeManager->alter('gin_content_form_routes', $route_names);
-
     if (
-      in_array($route_name, $route_names, TRUE) ||
+      // There is no need to check by route if form_state is not null.
+      (is_null($form_state) && $this->isContentFormRoute($route_name)) ||
       ($form_state && ($form_state->getBuildInfo()['base_form_id'] ?? NULL) === 'node_form') ||
       ($route_name === 'entity.group_content.create_form' && strpos($form_id, 'group_node') === FALSE)
     ) {
@@ -283,6 +270,33 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     }
 
     return $is_content_form;
+  }
+
+  /**
+   * Check if route is content form route.
+   *
+   * @param string $route_name
+   *   Route name.
+   *
+   * @return bool
+   *   TRUE if route is content form route, FALSE otherwise.
+   */
+  protected function isContentFormRoute($route_name) {
+    // Routes to include.
+    $route_names = [
+      'node.add',
+      'entity.node.content_translation_add',
+      'entity.node.content_translation_edit',
+      'quick_node_clone.node.quick_clone',
+      'entity.node.edit_form',
+    ];
+
+    $additional_routes = $this->moduleHandler->invokeAll('gin_content_form_routes');
+    $route_names = array_merge($additional_routes, $route_names);
+    $this->moduleHandler->alter('gin_content_form_routes', $route_names);
+    $this->themeManager->alter('gin_content_form_routes', $route_names);
+
+    return in_array($route_name, $route_names, TRUE);
   }
 
 }
