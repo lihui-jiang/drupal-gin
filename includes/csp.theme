@@ -27,6 +27,7 @@ function gin_library_info_alter(array &$libraries, string $extension): void {
  * Implements hook_csp_policy_alter().
  */
 function gin_csp_policy_alter(Csp $policy, Response $response): void {
-  $nonce = \Drupal::service('csp.nonce')->getValue();
-  $policy->appendDirective('style-src', ["'self'", sprintf("'nonce-%s'", $nonce)]);
+  $nonce = \Drupal::service('csp.nonce')->getSource();
+  $policy->fallbackAwareAppendIfEnabled('style-src', [$nonce]);
+  $policy->fallbackAwareAppendIfEnabled('style-src-elem', [$nonce]);
 }
