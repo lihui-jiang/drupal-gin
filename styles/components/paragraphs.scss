@@ -133,7 +133,8 @@
 }
 
 .js {
-  .field--widget-paragraphs {
+  .field--widget-paragraphs,
+  .field--widget-paragraphs-previewer {
     .field-multiple-table {
       display: block;
     }
@@ -162,7 +163,7 @@ td .claro-details {
       width: 30px;
     }
 
-    &:last-child {
+    &.delta-order {
       width: 60px;
     }
   }

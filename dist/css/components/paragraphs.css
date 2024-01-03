@@ -165,7 +165,8 @@
   margin-left: var(--gin-spacing-xs);
 }
 
-.js .field--widget-paragraphs .field-multiple-table {
+.js .field--widget-paragraphs .field-multiple-table,
+.js .field--widget-paragraphs-previewer .field-multiple-table {
   display: block;
 }
 
@@ -192,7 +193,7 @@ td .claro-details {
   width: 30px;
 }
 
-.paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td:last-child {
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td.delta-order {
   width: 60px;
 }
 
