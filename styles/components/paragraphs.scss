@@ -142,6 +142,7 @@
 
 td .claro-details {
   width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -232,12 +233,6 @@ td .claro-details {
 html.js .field--widget-entity-reference-paragraphs,
 html.js .field--widget-paragraphs {
   .draggable .tabledrag-handle {
-    min-width: 20px;
-
-    @include mq(medium) {
-      min-width: 24px;
-    }
-
     &::after {
       position: relative;
       left: 0;
@@ -251,21 +246,6 @@ html.js .field--widget-paragraphs {
 .js .draggable:hover .paragraphs-collapsed-description::after {
   top: 2px;
   background: var(--gin-bg-layer2);
-}
-
-html.js .field--widget-entity-reference-paragraphs {
-  .draggable .tabledrag-handle {
-    min-width: 32px;
-
-    @include mq(medium) {
-      min-width: 48px;
-
-      &::after {
-        top: -2px;
-        left: 8px;
-      }
-    }
-  }
 }
 
 .paragraphs-collapsed-description::after,

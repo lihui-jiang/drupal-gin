@@ -171,6 +171,7 @@
 
 td .claro-details {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .paragraphs-tabs-wrapper .field-multiple-table tr.draggable {
@@ -261,18 +262,6 @@ td .claro-details {
   margin-top: var(--gin-spacing-m);
 }
 
-html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle,
-html.js .field--widget-paragraphs .draggable .tabledrag-handle {
-  min-width: 20px;
-}
-
-@media (min-width: 61em) {
-  html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle,
-  html.js .field--widget-paragraphs .draggable .tabledrag-handle {
-    min-width: 24px;
-  }
-}
-
 html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after,
 html.js .field--widget-paragraphs .draggable .tabledrag-handle::after {
   position: relative;
@@ -295,28 +284,6 @@ html[dir="rtl"].js .field--widget-paragraphs .draggable .tabledrag-handle::after
 .js .draggable:hover .paragraphs-collapsed-description::after {
   top: 2px;
   background: var(--gin-bg-layer2);
-}
-
-html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle {
-  min-width: 32px;
-}
-
-@media (min-width: 61em) {
-  html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle {
-    min-width: 48px;
-  }
-
-  html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after {
-    top: -2px;
-  }
-
-  html[dir="ltr"].js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after {
-    left: 8px;
-  }
-
-  html[dir="rtl"].js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after {
-    right: 8px;
-  }
 }
 
 [dir="ltr"] .paragraphs-collapsed-description::after,
