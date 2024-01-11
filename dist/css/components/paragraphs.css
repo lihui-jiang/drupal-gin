@@ -35,7 +35,7 @@
   display: flex;
 }
 
-.paragraphs-tabs-wrapper .field-multiple-table > thead > tr th:first-child {
+.paragraphs-tabs-wrapper .field-multiple-table > thead > tr th:first-child.field-label {
   display: flex;
   width: 100%;
 }

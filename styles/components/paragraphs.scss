@@ -35,8 +35,11 @@
         display: flex;
 
         th:first-child {
-          display: flex;
-          width: 100%;
+
+          &.field-label {
+            display: flex;
+            width: 100%;
+          }
 
           .paragraphs-actions {
             margin-left: auto;
