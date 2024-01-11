@@ -469,3 +469,15 @@ html[dir="rtl"].js .paragraph-type-icon {
   right: 0;
 }
 
+.js .field--widget-paragraphs .field-actions {
+  align-items: center;
+}
+
+[dir="ltr"] .js .field--widget-paragraphs .field-actions .placeholder {
+  margin-left: 4px;
+}
+
+[dir="rtl"] .js .field--widget-paragraphs .field-actions .placeholder {
+  margin-right: 4px;
+}
+
