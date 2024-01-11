@@ -196,6 +196,7 @@
     align-items: center;
     height: 100%;
     border-bottom: none;
+    margin-top: 0 !important;
   }
 }
 

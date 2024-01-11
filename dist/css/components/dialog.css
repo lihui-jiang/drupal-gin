@@ -300,3 +300,15 @@ table.treetable tr.branch {
   display: none;
 }
 
+@media (min-width: 48em) {
+  #drupal-off-canvas-wrapper.workspaces-dialog .ui-dialog-content,
+  #drupal-off-canvas-wrapper.workspaces-dialog .ui-dialog-content > div {
+    margin-left: min(5vw, var(--gin-spacing-xxl));
+    margin-right: min(5vw, var(--gin-spacing-xxl));
+  }
+}
+
+#drupal-off-canvas-wrapper.workspaces-dialog .ui-dialog-content > div .workspaces {
+  display: block;
+}
+
