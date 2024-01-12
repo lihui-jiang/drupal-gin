@@ -390,14 +390,12 @@ html.js .paragraph-type-icon {
   }
 }
 
-html.js {
+.js {
   .field--widget-paragraphs {
     .field-actions {
-      align-items: center;
-
-      .placeholder {
-        margin-left: 4px;
-      }
+      display: flex;
+      align-items: baseline;
+      gap: var(--gin-spacing-xs);
     }
   }
 }
