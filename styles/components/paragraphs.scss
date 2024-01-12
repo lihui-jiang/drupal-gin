@@ -185,6 +185,13 @@ html.js .field--widget-paragraphs {
       margin-left: 0;
     }
   }
+
+  .field-actions {
+    font-size: var(--gin-font-size-s);
+    display: flex;
+    align-items: baseline;
+    gap: var(--gin-spacing-xs);
+  }
 }
 
 .js .paragraphs-collapsed-description::after,
@@ -386,16 +393,6 @@ html.js .paragraph-type-icon {
           border-bottom: 2px solid var(--gin-color-primary);
         }
       }
-    }
-  }
-}
-
-.js {
-  .field--widget-paragraphs {
-    .field-actions {
-      display: flex;
-      align-items: baseline;
-      gap: var(--gin-spacing-xs);
     }
   }
 }
