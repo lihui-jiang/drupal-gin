@@ -62,6 +62,12 @@
   }
 }
 
+.tabs__link {
+  &:hover {
+    color: var(--gin-color-primary-hover);
+  }
+}
+
 .tabs__link.is-active,
 .claro-details__summary[aria-expanded=true],
 .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button.selected a {
@@ -505,13 +511,5 @@
     overflow: visible;
     float: left;
     width: 100%;
-  }
-}
-
-.block-local-tasks-block {
-  .tabs__link {
-    &:hover {
-      color: var(--gin-color-primary-active);
-    }
   }
 }
