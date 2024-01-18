@@ -189,7 +189,6 @@ td .claro-details {
 
 .paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td {
   display: block;
-  min-width: 0;
   position: relative;
 }
 
