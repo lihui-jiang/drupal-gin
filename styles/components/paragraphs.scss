@@ -25,6 +25,9 @@
           width: 100%;
           display: block;
         }
+        > td:nth-child(3) {
+          display: none;
+        }
       }
     }
 
@@ -159,8 +162,11 @@ td .claro-details {
 
   > td {
     display: block;
-    min-width: 0;
     position: relative;
+    @media screen and (max-width: 1200px) {
+      display: block;
+      min-width: 0;
+    }
 
     &:first-child {
       width: 30px;

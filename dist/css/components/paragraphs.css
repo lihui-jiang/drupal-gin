@@ -27,6 +27,10 @@
   display: block;
 }
 
+.paragraphs-tabs-wrapper .field-multiple-table > tbody > .draggable > td:nth-child(3) {
+  display: none;
+}
+
 .paragraphs-tabs-wrapper .field-multiple-table > thead {
   display: block;
 }
@@ -187,6 +191,13 @@ td .claro-details {
   display: block;
   min-width: 0;
   position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+  .paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td {
+    display: block;
+    min-width: 0;
+  }
 }
 
 .paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td:first-child {
