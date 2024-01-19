@@ -227,3 +227,39 @@
     background-color: var(--gin-bg-layer);
   }
 }
+
+.gin-back-to-admin {
+  font-family: var(--gin-font);
+  font-size: var(--gin-font-size-xs);
+  font-weight: var(--gin-font-weight-normal);
+  line-height: 2;
+  color: var(--gin-color-text-light);
+  text-decoration: none;
+  position: relative;
+  padding-inline-start: 2em;
+  border-bottom: 0 none;
+  border-radius: var(--gin-border-xxs);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 0;
+    width: var(--gin-icon-size-toolbar-secondary);
+    height: var(--gin-icon-size-toolbar-secondary);
+    transform: translateY(-50%);
+    background-color: var(--gin-icon-color);
+    mask-image: icon("backtosite");
+    mask-size: 100% 100%;
+    mask-position: center center;
+  }
+
+  &:hover {
+    color: var(--gin-color-primary-hover);
+
+    &::before {
+      background-color: var(--gin-color-primary-hover);
+    }
+  }
+}
