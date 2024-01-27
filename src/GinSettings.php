@@ -91,7 +91,7 @@ class GinSettings implements ContainerInjectionInterface {
       $account = $this->currentUser;
     }
     // If we have this value, return early.
-    if (is_array(self::$staticCache) && (self::$staticCache[$account->id()]) && isset(self::$staticCache[$account->id()][$name])) {
+    if (!empty(self::$staticCache[$account->id()][$name])) {
       return self::$staticCache[$account->id()][$name];
     }
     if ($this->userOverrideEnabled($account)) {
