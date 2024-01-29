@@ -22,6 +22,7 @@
   border: 3px solid transparent;
   border-radius: var(--gin-border-xl);
   overflow: hidden;
+  text-align: center;
 }
 
 .entities-list .item-container .field__item:hover, .entities-list .item-container .field__item:focus {
