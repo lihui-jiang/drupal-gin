@@ -282,6 +282,11 @@ body.gin--classic-toolbar {
           mask-image: url("../../media/sprite.svg#commerce-view");
 }
 
+.toolbar .toolbar-bar .toolbar-icon-entity-sync-admin:before {
+  -webkit-mask-image: url("../../media/sprite.svg#sync-view");
+          mask-image: url("../../media/sprite.svg#sync-view");
+}
+
 .toolbar .toolbar-bar .toolbar-icon-entity-webform-collection:before {
   -webkit-mask-image: url("../../media/sprite.svg#webform-view");
           mask-image: url("../../media/sprite.svg#webform-view");
