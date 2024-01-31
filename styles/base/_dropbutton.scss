@@ -272,9 +272,3 @@ html.js.no-touchevents {
     margin-right: 0;
   }
 }
-
-// Last item in table
-table tr:not(:first-of-type):nth-last-child(2) td .dropbutton__items,
-table tr:not(:first-of-type):last-of-type td .dropbutton__items {
-  bottom: 100%;
-}
