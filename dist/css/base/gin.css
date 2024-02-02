@@ -1611,6 +1611,10 @@ td.webform-has-field-suffix > .form-item > .form-element {
   margin-bottom: var(--gin-spacing-m);
 }
 
+.field-multiple-table tr .form-item {
+  margin-block: var(--space-s);
+}
+
 .gin-layer-wrapper .views-table {
   margin-top: 0;
 }

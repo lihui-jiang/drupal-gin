@@ -252,6 +252,12 @@ td.webform-has-field-suffix > .form-item > .form-element {
   tr .form-item:not(:last-of-type) {
     margin-bottom: var(--gin-spacing-m);
   }
+
+  tr {
+    .form-item {
+      margin-block: var(--space-s);
+    }
+  }
 }
 
 .gin-layer-wrapper .views-table {
