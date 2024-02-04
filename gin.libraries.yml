@@ -79,6 +79,7 @@ gin_horizontal_toolbar:
   js:
     dist/js/toolbar.js: { minified: false }
   dependencies:
+    - gin/breadcrumb
     - gin/coffee
     - gin/node_preview
     - gin/responsive_preview
