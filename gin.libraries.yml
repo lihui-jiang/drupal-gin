@@ -110,6 +110,7 @@ gin_accent:
     dist/js/accent.js: { minified: false }
   dependencies:
     - core/drupalSettings
+    - core/once
 
 gin_dialog:
   css:
