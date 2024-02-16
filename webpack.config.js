@@ -75,6 +75,7 @@ module.exports = {
     'components/webform': ['./styles/components/webform.scss'],
     'components/workbench': ['./styles/components/workbench.scss'],
     'components/workspaces': ['./styles/components/workspaces.scss'],
+    'components/workspaces.toolbar': ['./styles/components/workspaces.toolbar.scss'],
     // Layout
     'layout/core_navigation': ['./styles/layout/core_navigation.scss'],
     'layout/navigation': ['./styles/layout/navigation.scss'],

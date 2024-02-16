@@ -464,3 +464,8 @@ project_browser:
   css:
     theme:
       dist/css/components/project_browser.css: { minified: false }
+
+workspaces.toolbar:
+  css:
+    component:
+      dist/css/components/workspaces.toolbar.css: { minified: false }

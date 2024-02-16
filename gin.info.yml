@@ -138,6 +138,8 @@ libraries-extend:
     - gin/workspaces
   project_browser/project_browser:
     - gin/project_browser
+  workspaces/drupal.workspaces.toolbar:
+    - gin/workspaces.toolbar
 
 ckeditor_stylesheets:
   - dist/css/theme/accent.css
