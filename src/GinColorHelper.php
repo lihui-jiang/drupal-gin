@@ -73,7 +73,7 @@ class GinColorHelper {
    */
   public function hexToRgb(string $hex_color) {
     $shorthand_regex = '/^#?([a-f\d])([a-f\d])([a-f\d])$/i';
-    $hex = preg_replace_callback($shorthand_regex, function($matches) {
+    $hex = preg_replace_callback($shorthand_regex, function ($matches) {
       return $matches[1] . $matches[1] . $matches[2] . $matches[2] . $matches[3] . $matches[3];
     }, $hex_color);
 
