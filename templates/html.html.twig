@@ -37,6 +37,11 @@
     <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
+    {% if gin_custom_colors %}
+      <style class="gin-custom-colors">
+        {{ gin_custom_colors }}
+      </style>
+    {% endif %}
     <js-placeholder token="{{ placeholder_token }}">
   </head>
 
