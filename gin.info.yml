@@ -40,8 +40,6 @@ libraries-override:
         css/layout/local-actions.css: false
       theme:
         css/theme/colors.css: false
-      components:
-        css/components/form.css: false
 
 libraries-extend:
   core/drupal.tableselect:
