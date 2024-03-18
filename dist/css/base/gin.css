@@ -1327,6 +1327,7 @@ table.sticky-header {
   position: fixed;
   top: calc(var(--ginHorizontalToolbarOffset) + var(--ginStickyOffset)) !important;
   background: transparent;
+  max-width: fit-content;
 }
 
 [dir="ltr"] table.sticky-header {
