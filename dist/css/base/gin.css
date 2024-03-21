@@ -1326,6 +1326,7 @@ table.sticky-header {
   position: fixed;
   top: calc(var(--gin-toolbar-y-offset) + var(--gin-sticky-offset)) !important;
   background: transparent;
+  max-width: fit-content;
 }
 
 [dir="ltr"] table.sticky-header {
