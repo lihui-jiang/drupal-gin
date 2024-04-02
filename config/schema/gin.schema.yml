@@ -36,6 +36,9 @@ gin.settings:
     show_user_theme_settings:
       type: boolean
       label: 'Let user override theme'
+    sticky_actions_routes:
+      type: string
+      label: 'Set actions as sticky on the listed routes'
     third_party_settings:
       type: mapping
       label: 'Third party settings'

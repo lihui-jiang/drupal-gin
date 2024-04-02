@@ -91,34 +91,36 @@ class GinContentFormHelper implements ContainerInjectionInterface {
    */
   public function formAlter(array &$form, FormStateInterface $form_state, $form_id) {
     // Are we on an edit form?
-    if (!$this->isContentForm($form, $form_state, $form_id)) {
+    if (!$this->isContentForm($form, $form_state, $form_id) && !$this->isStickyActionsRoute()) {
       return;
     }
 
     // Provide a default meta form element if not already provided.
     // @see NodeForm::form()
-    $form['advanced']['#attributes']['class'][] = 'entity-meta';
-    if (!isset($form['meta'])) {
-      $form['meta'] = [
-        '#type' => 'container',
-        '#group' => 'advanced',
-        '#weight' => -10,
-        '#title' => $this->t('Status'),
-        '#attributes' => ['class' => ['entity-meta__header']],
-        '#tree' => TRUE,
-        '#access' => TRUE,
-      ];
+    if (!$this->isStickyActionsRoute()) {
+      $form['advanced']['#attributes']['class'][] = 'entity-meta';
+      if (!isset($form['meta'])) {
+        $form['meta'] = [
+          '#type' => 'container',
+          '#group' => 'advanced',
+          '#weight' => -10,
+          '#title' => $this->t('Status'),
+          '#attributes' => ['class' => ['entity-meta__header']],
+          '#tree' => TRUE,
+          '#access' => TRUE,
+        ];
+      }
+
+      // Ensure correct settings for advanced, meta and revision form elements.
+      $form['advanced']['#type'] = 'container';
+      $form['advanced']['#accordion'] = TRUE;
+      $form['meta']['#type'] = 'container';
+      $form['meta']['#access'] = TRUE;
+
+      $form['revision_information']['#type'] = 'container';
+      $form['revision_information']['#group'] = 'meta';
+      $form['revision_information']['#attributes']['class'][] = 'entity-meta__revision';
     }
-
-    // Ensure correct settings for advanced, meta and revision form elements.
-    $form['advanced']['#type'] = 'container';
-    $form['advanced']['#accordion'] = TRUE;
-    $form['meta']['#type'] = 'container';
-    $form['meta']['#access'] = TRUE;
-
-    $form['revision_information']['#type'] = 'container';
-    $form['revision_information']['#group'] = 'meta';
-    $form['revision_information']['#attributes']['class'][] = 'entity-meta__revision';
 
     // Action buttons.
     if (isset($form['actions'])) {
@@ -158,48 +160,50 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       unset($form['gin_actions']['actions']['delete_translation']);
 
       // Add sidebar toggle.
-      $hide_panel = t('Hide sidebar panel');
-      $form['gin_actions']['gin_sidebar_toggle'] = [
-        '#markup' => '<a href="#toggle-sidebar" class="meta-sidebar__trigger trigger" role="button" title="' . $hide_panel . '" aria-controls="gin_sidebar"><span class="visually-hidden">' . $hide_panel . '</span></a>',
-        '#weight' => '999',
-      ];
-      $form['#attached']['library'][] = 'gin/sidebar';
+      if (!$this->isStickyActionsRoute()) {
+        $hide_panel = t('Hide sidebar panel');
+        $form['gin_actions']['gin_sidebar_toggle'] = [
+          '#markup' => '<a href="#toggle-sidebar" class="meta-sidebar__trigger trigger" role="button" title="' . $hide_panel . '" aria-controls="gin_sidebar"><span class="visually-hidden">' . $hide_panel . '</span></a>',
+          '#weight' => '999',
+        ];
+        $form['#attached']['library'][] = 'gin/sidebar';
 
-      // Create gin_sidebar group.
-      $form['gin_sidebar'] = [
-        '#group' => 'meta',
-        '#type' => 'container',
-        '#weight' => 99,
-        '#multilingual' => TRUE,
-        '#attributes' => [
-          'class' => [
-            'gin-sidebar',
+        // Create gin_sidebar group.
+        $form['gin_sidebar'] = [
+          '#group' => 'meta',
+          '#type' => 'container',
+          '#weight' => 99,
+          '#multilingual' => TRUE,
+          '#attributes' => [
+            'class' => [
+              'gin-sidebar',
+            ],
           ],
-        ],
-      ];
-      // Copy footer over.
-      $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
-      // Copy actions.
-      $form['gin_sidebar']['actions'] = [];
-      $form['gin_sidebar']['actions']['#type'] = ($form['actions']['#type']) ?? [];
-      // Copy delete action.
-      $form['gin_sidebar']['actions']['delete'] = ($form['actions']['delete']) ?? [];
-      // Copy delete_translation action.
-      if (isset($form['actions']['delete_translation'])) {
-        $form['gin_sidebar']['actions']['delete_translation'] = ($form['actions']['delete_translation']) ?? [];
-        $form['gin_sidebar']['actions']['delete_translation']['#attributes']['class'][] = 'button--danger';
-        $form['gin_sidebar']['actions']['delete_translation']['#attributes']['class'][] = 'action-link';
+        ];
+        // Copy footer over.
+        $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
+        // Copy actions.
+        $form['gin_sidebar']['actions'] = [];
+        $form['gin_sidebar']['actions']['#type'] = ($form['actions']['#type']) ?? [];
+        // Copy delete action.
+        $form['gin_sidebar']['actions']['delete'] = ($form['actions']['delete']) ?? [];
+        // Copy delete_translation action.
+        if (isset($form['actions']['delete_translation'])) {
+          $form['gin_sidebar']['actions']['delete_translation'] = ($form['actions']['delete_translation']) ?? [];
+          $form['gin_sidebar']['actions']['delete_translation']['#attributes']['class'][] = 'button--danger';
+          $form['gin_sidebar']['actions']['delete_translation']['#attributes']['class'][] = 'action-link';
+        }
+
+        // Sidebar close button.
+        $close_sidebar_translation = t('Close sidebar panel');
+        $form['gin_sidebar']['gin_sidebar_close'] = [
+          '#markup' => '<a href="#close-sidebar" class="meta-sidebar__close trigger" role="button" title="' . $close_sidebar_translation . '"><span class="visually-hidden">' . $close_sidebar_translation . '</span></a>',
+        ];
+
+        $form['gin_sidebar_overlay'] = [
+          '#markup' => '<div class="meta-sidebar__overlay trigger"></div>',
+        ];
       }
-
-      // Sidebar close button.
-      $close_sidebar_translation = t('Close sidebar panel');
-      $form['gin_sidebar']['gin_sidebar_close'] = [
-        '#markup' => '<a href="#close-sidebar" class="meta-sidebar__close trigger" role="button" title="' . $close_sidebar_translation . '"><span class="visually-hidden">' . $close_sidebar_translation . '</span></a>',
-      ];
-
-      $form['gin_sidebar_overlay'] = [
-        '#markup' => '<div class="meta-sidebar__overlay trigger"></div>',
-      ];
     }
 
     // Specify necessary node form theme and library.
@@ -284,6 +288,21 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     }
 
     return $is_content_form;
+  }
+
+  /**
+   * Check if we´re on a route listed to show sticky actions.
+   *
+   * @return bool
+   */
+  public function isStickyActionsRoute() {
+    $route = $this->routeMatch->getRouteName();
+    $sticky_actions_routes = array_map(
+      'trim',
+      explode("\n", theme_get_setting('sticky_actions_routes'))
+    );
+
+    return in_array($route, $sticky_actions_routes);
   }
 
 }

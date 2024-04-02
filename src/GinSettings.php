@@ -460,6 +460,14 @@ class GinSettings implements ContainerInjectionInterface {
       '#default_value' => $account ? $this->get('show_description_toggle', $account) : $this->getDefault('show_description_toggle'),
     ];
 
+    // Sticky actions routes.
+    $form['sticky_actions_routes'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Routes with sticky actions'),
+      '#description' => $this->t('Display actions as sticky on the listed routes. One route per line.'),
+      '#default_value' => $account ? $this->get('sticky_actions_routes', $account) : $this->getDefault('sticky_actions_routes'),
+    ];
+
     if (!$account) {
       foreach ($form as $key => $element) {
         $form[$key]['#after_build'][] = [
