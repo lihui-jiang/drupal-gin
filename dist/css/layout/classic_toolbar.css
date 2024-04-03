@@ -164,6 +164,10 @@
   padding-top: var(--gin-toolbar-y-offset);
 }
 
+.gin--classic-toolbar .toolbar .toolbar-bar #toolbar-item-administration-search::before, .gin--classic-toolbar .toolbar .toolbar-bar #toolbar-item-administration-search:hover::before {
+  background-color: rgba(255, 255, 255, .75);
+}
+
 @media (min-width: 64em) {
   .gin--classic-toolbar table.sticky-header {
     margin-top: 0;
@@ -226,15 +230,29 @@
 }
 
 #admin-toolbar-search-tab .form-item::before {
-  top: 6px;
+  top: 33px;
 }
 
 [dir="ltr"] #admin-toolbar-search-tab .form-item::before {
-  left: 26px;
+  left: 10px;
 }
 
 [dir="rtl"] #admin-toolbar-search-tab .form-item::before {
-  right: 26px;
+  right: 10px;
+}
+
+@media (min-width: 64em) {
+  #admin-toolbar-search-tab .form-item::before {
+    top: 6px;
+  }
+
+  [dir="ltr"] #admin-toolbar-search-tab .form-item::before {
+    left: 68px;
+  }
+
+  [dir="rtl"] #admin-toolbar-search-tab .form-item::before {
+    right: 68px;
+  }
 }
 
 [dir="ltr"] #admin-toolbar-search-input {
@@ -256,3 +274,5 @@
   background-color: var(--gin-bg-layer);
 }
 
+
+/*# sourceMappingURL=classic_toolbar.css.map*/
