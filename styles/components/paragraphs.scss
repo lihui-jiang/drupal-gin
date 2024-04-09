@@ -22,7 +22,7 @@
 
       > .draggable {
         > td + td {
-          width: 100%;
+          width: 95% !important;
           display: block;
         }
         > td:nth-child(3) {
