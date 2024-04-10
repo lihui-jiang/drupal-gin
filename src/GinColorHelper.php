@@ -103,15 +103,17 @@ class GinColorHelper {
   public function shadeColor(string $color, float $percent) {
     $num = hexdec(str_replace('#', '', $color));
     $amt = round(2.55 * $percent);
-    $r = (($num >> 16) + $amt) & 0xff;
-    $b = (($num >> 8) & 0xff) + $amt;
-    $g = ($num & 0xff) + $amt;
+    $r = ($num >> 16) + $amt;
+    $b = (($num >> 8) & 0x00ff) + $amt;
+    $g = ($num & 0x0000ff) + $amt;
 
     $r = ($r < 255 ? ($r < 1 ? 0 : $r) : 255);
     $b = ($b < 255 ? ($b < 1 ? 0 : $b) : 255);
     $g = ($g < 255 ? ($g < 1 ? 0 : $g) : 255);
 
-    $shaded_color = sprintf("#%02x%02x%02x", $r, $b, $g);
+    $shaded_dec = ($r << 16) + ($b << 8) + $g;
+
+    $shaded_color = '#' . sprintf('%06X', $shaded_dec);
     return $shaded_color;
   }
 
