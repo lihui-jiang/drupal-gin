@@ -15,7 +15,7 @@ class GinColorHelper {
    * @param bool $minify
    *   Boolean to indicate if generated css should be minified.
    */
-  public function prepareStyles(array $styles, $minify = TRUE) {
+  public static function prepareStyles(array $styles, $minify = TRUE) {
     $css = '';
     foreach ($styles as $style_item) {
       $selectors = implode(', ', $style_item['selectors']);
@@ -49,7 +49,7 @@ class GinColorHelper {
    * @param int $weight
    *   The weight of the mix.
    */
-  public function mixColor(string $color_1, string $color_2, int $weight = 50) {
+  public static function mixColor(string $color_1, string $color_2, int $weight = 50) {
     $color = '#';
     for ($i = 0; $i <= 5; $i += 2) {
       $v1 = hexdec(substr($color_1, $i, 2));
@@ -71,7 +71,7 @@ class GinColorHelper {
    * @param string $hex_color
    *   The hexadecimal color to convert.
    */
-  public function hexToRgb(string $hex_color) {
+  public static function hexToRgb(string $hex_color) {
     $shorthand_regex = '/^#?([a-f\d])([a-f\d])([a-f\d])$/i';
     $hex = preg_replace_callback($shorthand_regex, function ($matches) {
       return $matches[1] . $matches[1] . $matches[2] . $matches[2] . $matches[3] . $matches[3];
@@ -100,7 +100,7 @@ class GinColorHelper {
    * @param float $percent
    *   The percentage by which to shade the color.
    */
-  public function shadeColor(string $color, float $percent) {
+  public static function shadeColor(string $color, float $percent) {
     $num = hexdec(str_replace('#', '', $color));
     $amt = round(2.55 * $percent);
     $r = ($num >> 16) + $amt;
