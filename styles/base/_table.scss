@@ -1,9 +1,27 @@
 .gin-table-scroll-wrapper {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 240px;
   margin-top: calc(var(--gin-spacing-xs) * -1);
-  margin-bottom: -240px;
+}
+
+.gin-horizontal-scroll-shadow {
+  background-image:
+
+    /* Shadows */
+    linear-gradient(to right, white, white),
+    linear-gradient(to right, white, white),
+
+    /* Shadow covers */
+    linear-gradient(to right, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0)),
+    linear-gradient(to left, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0));
+
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+
+  /* Opera doesn't support this in the shorthand */
+  background-attachment: local, local, scroll, scroll;
 }
 
 table.sticky-header {
@@ -69,7 +87,8 @@ table {
     font-weight: var(--gin-font-weight-bold);
     background: var(--gin-bg-layer);
 
-    &, .form-item__label {
+    &,
+    .form-item__label {
       color: var(--gin-color-title);
     }
 
@@ -134,11 +153,11 @@ table {
 .sortable-heading {
   padding: var(--gin-spacing-xs) var(--gin-spacing-m);
 
-  > a::before {
+  >a::before {
     bottom: -1px;
   }
 
-  > a::after {
+  >a::after {
     background: var(--gin-color-text-light);
     mask-image: icon('sort');
     mask-repeat: no-repeat;
@@ -149,8 +168,11 @@ table {
     }
   }
 
-  &.is-active > a {
-    &, &:hover, &:active {
+  &.is-active>a {
+
+    &,
+    &:hover,
+    &:active {
       color: var(--gin-color-primary-active);
     }
 
@@ -189,7 +211,7 @@ table {
 .field-plugin-settings-edit-wrapper {
   float: right;
 
-  + a {
+  +a {
     float: left;
   }
 }
@@ -198,7 +220,7 @@ table {
   border-bottom: 2px solid var(--gin-color-text);
 }
 
-td.webform-has-field-suffix > .form-item > .form-element {
+td.webform-has-field-suffix>.form-item>.form-element {
   max-width: 100%;
   width: auto;
 }
