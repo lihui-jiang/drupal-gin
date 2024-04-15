@@ -92,10 +92,6 @@ a {
   background-color: #26a769;
 }
 
-.shortcut-action__message{
-  display: none;
-}
-
 a,
 .link,
 button.link,
@@ -680,6 +676,7 @@ body:not(.toolbar-tray-open) .layout-container {
 .shortcut-action__message {
   z-index: 2;
   position: absolute;
+  display: none;
   top: 0;
   min-width: 120px;
   pointer-events: none;
