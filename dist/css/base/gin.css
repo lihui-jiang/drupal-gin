@@ -1333,6 +1333,10 @@ a.views-field-excluded {
   margin-bottom: var(--gin-spacing-l);
 }
 
+.feeds-mapping-form .gin-table-scroll-wrapper {
+  overflow: visible;
+}
+
 .gin-table-scroll-wrapper {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
