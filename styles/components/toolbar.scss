@@ -659,6 +659,11 @@ body.gin--classic-toolbar {
   left: .55rem;
 }
 
+.toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon::before, .toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .responsive-preview-icon::before {
+  background-color: var(--gin-icon-color);
+  font-size: initial;
+}
+
 // Custom logo
 #toolbar-item-administration-tray .toolbar-logo {
   padding-top: var(--gin-spacing-xs);
