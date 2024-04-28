@@ -2979,6 +2979,10 @@ html[dir="rtl"].js.no-touchevents .dropbutton--multiple.dropbutton--extrasmall .
   margin-left: 0;
 }
 
+table tr:not(:first-of-type):nth-last-child(-n+2) td .dropbutton__items {
+  bottom: 100%;
+}
+
 .action-link {
   color: var(--gin-color-primary);
   background: transparent;

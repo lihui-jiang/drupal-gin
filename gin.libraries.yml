@@ -207,6 +207,10 @@ tableheader:
   js:
     dist/js/tableheader.js: { minified: false }
 
+dropbutton:
+  js:
+    dist/js/dropbutton.js: { minified: false }
+
 tabs:
   css:
     component:

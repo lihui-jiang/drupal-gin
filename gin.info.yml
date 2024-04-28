@@ -58,6 +58,8 @@ libraries-extend:
     - gin/dialog
   core/drupal.ajax:
     - gin/ajax
+  claro/dropbutton:
+    - gin/dropbutton
   media/media_embed_ckeditor_theme:
     - gin/gin_media_embed_ckeditor_theme
   media_library/view:

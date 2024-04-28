@@ -286,3 +286,8 @@ html.js.no-touchevents {
     margin-right: 0;
   }
 }
+
+// Last 2 items in table
+table tr:not(:first-of-type):nth-last-child(-n+2) td .dropbutton__items {
+  bottom: 100%;
+}
