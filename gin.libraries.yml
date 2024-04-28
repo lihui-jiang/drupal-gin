@@ -43,11 +43,28 @@ navigation:
   - gin/node_preview
   - gin/responsive_preview
   - gin/contextual_links
+  - gin/breadcrumb
   - gin/settings_tray
   - gin/settings_tray_edit
   - core/drupalSettings
   - core/once
   - core/drupal.displace
+
+core_navigation:
+  css:
+    component:
+      dist/css/components/toolbar.css: { minified: false }
+      dist/css/components/toolbar_secondary.css: { minified: false }
+    theme:
+      dist/css/layout/core_navigation.css: { minified: false }
+  dependencies:
+  - gin/coffee
+  - gin/node_preview
+  - gin/responsive_preview
+  - gin/contextual_links
+  - gin/breadcrumb
+  - gin/settings_tray
+  - gin/settings_tray_edit
 
 gin_toolbar:
   css:
@@ -63,6 +80,7 @@ gin_toolbar:
     - gin/node_preview
     - gin/responsive_preview
     - gin/contextual_links
+    - gin/breadcrumb
     - gin/settings_tray
     - gin/settings_tray_edit
     - core/drupalSettings
@@ -83,6 +101,7 @@ gin_horizontal_toolbar:
     - gin/node_preview
     - gin/responsive_preview
     - gin/contextual_links
+    - gin/breadcrumb
     - gin/settings_tray
     - gin/settings_tray_edit
     - core/once
@@ -99,6 +118,7 @@ gin_classic_toolbar:
     - gin/coffee
     - gin/node_preview
     - gin/contextual_links
+    - gin/breadcrumb
     - gin/settings_tray_edit
     - core/once
 
@@ -110,6 +130,7 @@ gin_accent:
     dist/js/accent.js: { minified: false }
   dependencies:
     - core/drupalSettings
+    - core/once
 
 gin_dialog:
   css:
@@ -157,6 +178,7 @@ sticky:
     dist/js/sticky.js: { minified: false }
   dependencies:
     - core/drupal.displace
+    - core/once
 
 sidebar:
   css:

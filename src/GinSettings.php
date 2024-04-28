@@ -7,7 +7,6 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\user\UserDataInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -415,7 +414,10 @@ class GinSettings implements ContainerInjectionInterface {
     ];
 
     // Toolbar setting.
+    $is_navigation_active = _gin_module_is_active('navigation');
+
     $form['classic_toolbar'] = [
+      '#disabled' => $is_navigation_active,
       '#type' => 'radios',
       '#title' => $this->t('Navigation (Drupal Toolbar)'),
       '#default_value' => $account ? $this->get('classic_toolbar', $account) : $this->getDefault('classic_toolbar'),
@@ -425,6 +427,8 @@ class GinSettings implements ContainerInjectionInterface {
         'classic' => $this->t('Legacy, Classic Drupal Toolbar'),
         'new' => $this->t('New Drupal Navigation, Test integration') . $new_label . $experimental_label,
       ],
+      '#attributes' => $is_navigation_active ? ['class' => ['gin-core-navigation--is-active']] : [],
+      '#description' => $is_navigation_active ? $this->t('This setting is currently deactivated as it is overwritten by the navigation module.') : '',
       '#after_build' => [
         '_gin_toolbar_radios',
       ],
