@@ -119,4 +119,23 @@
     color: var(--ck-color-image-caption-text);
     background: var(--ck-color-image-caption-background);
   }
+
+  [data-fullscreen=fullscreeneditor] {
+    .ck {
+      .ck {
+        &.ck-sticky-panel {
+          .ck-sticky-panel__content {
+            top: 0 !important;
+          }
+        }
+        &.ck-editor__editable {
+          max-height: 100%;
+        }
+      }
+    }
+  }
+  .toolbar-horizontal [data-fullscreen=fullscreeneditor].ck.ck-editor,
+  .toolbar-horizontal [data-fullscreen=fullscreeneditor] .ck .ck.ck-sticky-panel .ck-sticky-panel__content.ck-sticky-panel__content_sticky {
+    top: var(--gin-toolbar-y-offset) !important;
+  }
 }
