@@ -81,7 +81,7 @@ function hook_gin_form_ids_to_ignore() {
 /**
  * Alter the registered form ids to be ignored by Gin’s edit form layout.
  *
- * @param array $routes
+ * @param array $ids
  *   The list of routes.
  *
  * @see GinContentFormHelper->isContentForm()
