@@ -5,6 +5,7 @@
  * form.theme
  */
 
+use Drupal\claro\ClaroPreRender;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\gin\GinContentFormHelper;
 use Drupal\gin\GinDescriptionToggle;
@@ -154,6 +155,18 @@ function gin_element_info_alter(&$info) {
       GinPreRender::class,
       'textFormat',
     ];
+  }
+
+  // Unset the Claro "tablePositionSticky" pre-render for the table element
+  // since we have our own implementation for sticky tables which is not
+  // compatible.
+  if (isset($info['table'])) {
+    foreach ([ClaroPreRender::class, 'ClaroPreRender'] as $class) {
+      $index = array_search([$class, 'tablePositionSticky'], $info['table']['#pre_render'], TRUE);
+      if ($index !== FALSE) {
+        unset($info['table']['#pre_render'][$index]);
+      }
+    }
   }
 }
 
