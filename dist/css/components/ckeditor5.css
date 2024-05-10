@@ -111,3 +111,16 @@
   background: var(--ck-color-image-caption-background);
 }
 
+.ck [data-fullscreen=fullscreeneditor] .ck .ck.ck-sticky-panel .ck-sticky-panel__content {
+  top: 0 !important;
+}
+
+.ck [data-fullscreen=fullscreeneditor] .ck .ck.ck-editor__editable {
+  max-height: 100%;
+}
+
+.ck .toolbar-horizontal [data-fullscreen=fullscreeneditor].ck.ck-editor,
+.ck .toolbar-horizontal [data-fullscreen=fullscreeneditor] .ck .ck.ck-sticky-panel .ck-sticky-panel__content.ck-sticky-panel__content_sticky {
+  top: var(--gin-toolbar-y-offset) !important;
+}
+
