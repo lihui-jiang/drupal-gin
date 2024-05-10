@@ -111,3 +111,11 @@
   background: var(--ck-color-image-caption-background);
 }
 
+[data-fullscreen=fullscreeneditor] .ck .ck.ck-sticky-panel .ck-sticky-panel__content.ck-sticky-panel__content_sticky {
+  top: 0 !important;
+}
+
+[data-fullscreen=fullscreeneditor] .ck .ck.ck-editor__editable {
+  max-height: 100%;
+}
+
