@@ -253,6 +253,13 @@ body.gin--classic-toolbar {
       }
     }
 
+    // Entity synchronization
+    .toolbar-icon-entity-sync-admin {
+      &:before {
+        mask-image: icon('sync');
+      }
+    }
+
     // Webform
     .toolbar-icon-entity-webform-collection {
       &:before {

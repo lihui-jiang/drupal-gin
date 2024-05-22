@@ -61,6 +61,7 @@ $sprites: (
     'bat': "../../media/sprite.svg#bat-view",
     'commerce-inbox': "../../media/sprite.svg#commerce-inbox-view",
     'commerce': "../../media/sprite.svg#commerce-view",
+    'sync': "../../media/sprite.svg#sync-view",
     'config': "../../media/sprite.svg#config-view",
     'content': "../../media/sprite.svg#content-view",
     'edit': "../../media/sprite.svg#edit-view",
@@ -325,6 +326,10 @@ $sizes: (
         'height': 24px
     ),
     'commerce': (
+        'width': 24px,
+        'height': 24px
+    ),
+    'sync': (
         'width': 24px,
         'height': 24px
     ),
