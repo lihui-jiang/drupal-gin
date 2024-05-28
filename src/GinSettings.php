@@ -93,7 +93,14 @@ class GinSettings implements ContainerInjectionInterface {
       $admin_theme = $this->getAdminTheme();
       $value = theme_get_setting($name, $admin_theme);
     }
-    return $this->handleLegacySettings($name, $value);
+    $value = $this->handleLegacySettings($name, $value);
+    $data = [
+      'name' => $name,
+      'account' => $account,
+      'value' => $value,
+    ];
+    \Drupal::moduleHandler()->invokeAll('gin_settings_data_alter', [&$data]);
+    return $data['value'];
   }
 
   /**
