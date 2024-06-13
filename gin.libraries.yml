@@ -229,6 +229,10 @@ tableheader:
     - core/once
     - gin/scrollsync
 
+dropbutton:
+  js:
+    dist/js/dropbutton.js: { minified: false }
+
 tabs:
   css:
     component:

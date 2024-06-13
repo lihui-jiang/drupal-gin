@@ -14,6 +14,7 @@ module.exports = {
     // ################################################
     'accent': ['./js/accent.js'],
     'description_toggle': ['./js/description_toggle.js'],
+    'dropbutton': ['./js/dropbutton.js'],
     'edit_form': ['./js/edit_form.js'],
     'gin_ckeditor': ['./js/gin_ckeditor.js'], // Can't rename as we would be in trouble
     'init': ['./js/init.js'],
