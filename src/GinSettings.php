@@ -4,6 +4,7 @@ namespace Drupal\gin;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -38,19 +39,29 @@ class GinSettings implements ContainerInjectionInterface {
   protected $currentUser;
 
   /**
+   * The module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
    * Settings constructor.
    *
    * @param \Drupal\Core\Session\AccountInterface $currentUser
    *   The current user.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   The config factory.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+   *   The module handler.
    */
-  public function __construct(AccountInterface $currentUser, ConfigFactoryInterface $configFactory) {
+  public function __construct(AccountInterface $currentUser, ConfigFactoryInterface $configFactory, ModuleHandlerInterface $moduleHandler) {
     if (\Drupal::hasService('user.data')) {
       $this->userData = \Drupal::service('user.data');
     }
     $this->currentUser = $currentUser;
     $this->configFactory = $configFactory;
+    $this->moduleHandler = $moduleHandler;
   }
 
   /**
@@ -59,7 +70,8 @@ class GinSettings implements ContainerInjectionInterface {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('current_user'),
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('module_handler')
     );
   }
 
@@ -93,7 +105,14 @@ class GinSettings implements ContainerInjectionInterface {
       $admin_theme = $this->getAdminTheme();
       $value = theme_get_setting($name, $admin_theme);
     }
-    return $this->handleLegacySettings($name, $value);
+    $value = $this->handleLegacySettings($name, $value);
+    $data = [
+      'name' => $name,
+      'account' => $account,
+      'value' => $value,
+    ];
+    $this->moduleHandler->invokeAll('gin_settings_data_alter', [&$data]);
+    return $data['value'];
   }
 
   /**

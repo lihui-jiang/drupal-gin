@@ -51,5 +51,20 @@ function hook_gin_content_form_routes_alter(array &$routes) {
 }
 
 /**
+ * Provides the ability to dynamically override the gin settings values.
+ *
+ * @param array{name:string,value:string,account:Drupal\Core\Session\AccountProxy} $settings
+ *   An associative array containing the setting details:
+ *   - name: The name of the setting.
+ *   - value: The current value of the setting, which can be modified.
+ *   - account: The user account associated with the current session.
+ */
+function hook_gin_settings_data_alter(array &$settings): void {
+  if ($settings['name'] == 'my_setting') {
+    $settings['value'] = 'my_value';
+  }
+}
+
+/**
  * @} End of "addtogroup hooks".
  */
