@@ -390,6 +390,11 @@ linkit:
     component:
       dist/css/components/linkit.css: { minified: false }
 
+content_moderation:
+  css:
+    component:
+      dist/css/components/content_moderation.css: { minified: false }
+
 # Legacy
 
 legacy_css:
