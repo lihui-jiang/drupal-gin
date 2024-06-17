@@ -9,6 +9,7 @@ high_contrast_mode: false
 layout_density: 'default'
 show_description_toggle: false
 show_user_theme_settings: false
+rearrange_admin_menu_items: true
 sticky_action_buttons: false
 third_party_settings:
   shortcut:
