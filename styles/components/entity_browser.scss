@@ -131,10 +131,17 @@ table.entities-list {
       border: 3px solid transparent;
       border-radius: var(--gin-border-xl);
       overflow: hidden;
+      text-align: center;
+      padding: 10px 0;
+      margin-left: 15px;
 
       &:hover,
       &:focus {
         border-color: var(--gin-color-primary);
+      }
+
+      img {
+        vertical-align: middle;
       }
     }
 

@@ -190,10 +190,24 @@ table.entities-list td {
   border: 3px solid transparent;
   border-radius: var(--gin-border-xl);
   overflow: hidden;
+  text-align: center;
+  padding: 10px 0;
+}
+
+[dir="ltr"] .gin-entity-browser .entity-browser-form .views-field-thumbnail__target-id {
+  margin-left: 15px;
+}
+
+[dir="rtl"] .gin-entity-browser .entity-browser-form .views-field-thumbnail__target-id {
+  margin-right: 15px;
 }
 
 .gin-entity-browser .entity-browser-form .views-field-thumbnail__target-id:hover, .gin-entity-browser .entity-browser-form .views-field-thumbnail__target-id:focus {
   border-color: var(--gin-color-primary);
+}
+
+.gin-entity-browser .entity-browser-form .views-field-thumbnail__target-id img {
+  vertical-align: middle;
 }
 
 .gin-entity-browser .entity-browser-form .entities-list {
