@@ -1,6 +1,7 @@
 .media-library {
   &-edit__link,
   &-item &-item__edit,
+  &-item &-item__edit.button,
   &-item &-item__remove,
   &-item &-item__remove.button {
     border-color: var(--gin-border-color) !important;
