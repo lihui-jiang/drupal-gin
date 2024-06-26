@@ -1348,6 +1348,10 @@ a.views-field-excluded {
   margin-top: calc(var(--gin-spacing-xs) * -1);
 }
 
+.gin-table-scroll-wrapper .tableresponsive-toggle-columns {
+  display: none;
+}
+
 table.gin--sticky-table-header {
   visibility: hidden;
   z-index: 97;

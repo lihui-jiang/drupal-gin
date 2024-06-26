@@ -4,6 +4,10 @@
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   margin-top: calc(var(--gin-spacing-xs) * -1);
+
+  .tableresponsive-toggle-columns {
+    display: none;
+  }
 }
 
 table.gin--sticky-table-header {
