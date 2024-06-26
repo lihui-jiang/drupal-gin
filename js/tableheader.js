@@ -33,7 +33,7 @@
 
       tableHeader.hidden = false;
       tableHeader.style.display = 'block';
-      tableHeader.style.visibility = 'visible';
+      tableHeader.style.visibility = tableHeader.hidden ? 'visible' : 'hidden';
 
       // Fixes whitespace issue in Chrome.
       document.body.style.overflowX = 'hidden';
