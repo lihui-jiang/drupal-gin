@@ -47,6 +47,14 @@ table.sticky-header {
   thead {
     position: static;
   }
+
+  &.--is-processed thead {
+    tr {
+      .sortable-heading.is-active>a::before {
+        display: none;
+      }
+    }
+  }
 }
 
 table {

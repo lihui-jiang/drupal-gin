@@ -1231,6 +1231,11 @@ table.sticky-header thead {
   position: static;
 }
 
+table.position-sticky.--is-processed thead tr .sortable-heading.is-active > a::before,
+table.sticky-header.--is-processed thead tr .sortable-heading.is-active > a::before {
+  display: none;
+}
+
 table thead {
   background: transparent;
   border-radius: var(--gin-border-m);
