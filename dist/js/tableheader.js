@@ -17,7 +17,7 @@
     },
     showTableHeaderOnInit: function() {
       const tableHeader = document.querySelector(".gin--sticky-table-header");
-      tableHeader && (tableHeader.hidden = !1, tableHeader.style.display = "block", tableHeader.style.visibility = tableHeader.hidden ? "visible" : "hidden", 
+      tableHeader && (tableHeader.hidden = !1, tableHeader.style.display = "block", tableHeader.style.visibility = "visible", 
       document.body.style.overflowX = "hidden");
     },
     updateTableHeader: function(el) {

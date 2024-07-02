@@ -1187,6 +1187,12 @@ a.views-field-excluded {
   margin-block-start: calc(var(--gin-spacing-xs) * -1);
 }
 
+@media screen and (max-width: 959px) {
+  .gin-table-scroll-wrapper {
+    overflow: visible;
+  }
+}
+
 table.gin--sticky-table-header {
   visibility: hidden;
   z-index: 97;
@@ -1200,6 +1206,12 @@ table.gin--sticky-table-header {
 table.gin--sticky-table-header tr {
   display: block;
   width: max-content;
+}
+
+@media screen and (max-width: 959px) {
+  table.gin--sticky-table-header.syncscroll {
+    display: none !important;
+  }
 }
 
 .gin-horizontal-scroll-shadow {
@@ -1476,6 +1488,20 @@ table td.field-plugin-summary-cell {
 
 table .views-field.views-field-operations {
   text-align: end;
+}
+
+@media screen and (max-width: 959px) {
+  table.position-sticky > thead {
+    position: sticky;
+  }
+
+  table.position-sticky > thead::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    width: 100%;
+    border-bottom: 2px solid var(--gin-border-color-table-header);
+  }
 }
 
 .draggable a.tabledrag-handle {
