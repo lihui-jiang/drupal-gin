@@ -321,6 +321,8 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     $this->themeManager->alter('gin_ignore_sticky_form_actions', $form_ids);
 
     if (
+      // Temporarily ignore webforms elements
+      strpos($form_id, 'webform_edit_form') !== FALSE ||
       strpos($form_id, '_exposed_form') !== FALSE ||
       strpos($form_id, '_preview_form') !== FALSE ||
       strpos($form_id, '_delete_form') !== FALSE ||
