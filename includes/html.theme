@@ -53,7 +53,8 @@ function gin_preprocess_html(&$variables) {
     if ($toolbar !== 'classic' || _gin_module_is_active('navigation')) {
       $variables['page']['gin_secondary_toolbar'] = [
         '#type' => 'toolbar',
-        '#access' => \Drupal::currentUser()->hasPermission('access toolbar')
+        '#access' => 
+          \Drupal::currentUser()->hasPermission('access toolbar')
           && \Drupal::currentUser()->hasPermission('access secondary toolbar'),
         '#cache' => [
           'keys' => ['toolbar_secondary'],
