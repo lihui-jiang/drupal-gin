@@ -12,7 +12,7 @@
     },
 
     updatePosition: function (el) {
-      const leftAligned = el.closest('.node-form') || false;
+      const leftAligned = el.closest('form') || false;
       const secondaryAction = el.querySelector('.secondary-action');
       const dropbuttonItems = el.querySelector('.dropbutton__items');
       const toggleHeight = el.offsetHeight;
