@@ -204,6 +204,7 @@ td .claro-details {
 }
 
 .paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td.delta-order {
+  max-width: 60px;
   width: 60px;
 }
 
