@@ -5,12 +5,14 @@
     }
   }, Drupal.ginStickyFormActions = {
     init: function(context) {
+      var _context$classList;
+      const newParent = document.querySelector(".gin-sticky-form-actions");
+      newParent && (null !== (_context$classList = context.classList) && void 0 !== _context$classList && _context$classList.contains("gin--has-sticky-form-actions") && context.getAttribute("id") && this.updateFormId(newParent, context), 
       once("ginEditForm", ".region-content form.gin--has-sticky-form-actions", context).forEach((form => {
-        const newParent = document.querySelector(".gin-sticky-form-actions");
         this.updateFormId(newParent, form), this.moveFocus(newParent, form);
       })), once("ginMoreActionsToggle", ".gin-more-actions__trigger", context).forEach((el => el.addEventListener("click", (e => {
         e.preventDefault(), this.toggleMoreActions(), document.addEventListener("click", this.closeMoreActionsOnClickOutside, !1);
-      }))));
+      })))));
     },
     updateFormId: function(newParent, form) {
       const actionButtons = newParent.querySelectorAll("button, input, select, textarea"), formId = form.getAttribute("id");

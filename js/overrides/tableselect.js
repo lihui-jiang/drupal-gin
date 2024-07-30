@@ -63,14 +63,25 @@
            */
           if (stateChanged) {
             $checkbox.prop('checked', state).trigger('change');
+
+            // Update status in Gin sticky table header.
+            $table
+              .parents('.gin-table-scroll-wrapper')
+              .prev('table.gin--sticky-table-header')
+              .find('th.select-all input[type="checkbox"]')
+              .prop('checked', state);
           }
         });
     };
 
+    // Gin: Check if select-all already exists, if not add it.
+    if ($table.find('th.select-all').find('input[type="checkbox"]').length === 0) {
+      $table.find('th.select-all').prepend($(Drupal.theme('checkbox')).attr('title', strings.selectAll));
+    }
+
     // Find all <th> with class select-all, and insert the check all checkbox.
     $table
-      .find('th.select-all')
-      .prepend($(Drupal.theme('checkbox')).attr('title', strings.selectAll))
+      .find('th.select-all input[type="checkbox"]')
       .on('click', (event) => {
         if (event.target.matches('input[type="checkbox"]')) {
           // Loop through all checkboxes and set their state to the select all

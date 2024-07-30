@@ -182,6 +182,12 @@ messages:
   dependencies:
     - core/once
 
+dropbutton:
+  js:
+    dist/js/dropbutton.js: { minified: false }
+  dependencies:
+    - core/once
+
 # Custom CSS
 
 gin_custom_css:
@@ -199,8 +205,6 @@ scrollsync:
   js:
     js/libs/scrollsync.js: { minified: true, weight: -1 }
 
-# Overrides
-
 floating-ui:
   js:
     js/navigation/vendor/floating-ui/floating-ui.core.umd.js: { minified: true }
@@ -212,7 +216,11 @@ floating-ui:
 
 gin_media_embed_ckeditor_theme:
   js:
-    js/overrides/media_embed_ckeditor.theme.js: {}
+    js/overrides/media_embed_ckeditor.theme.js: { minified: false }
+
+webform_ui:
+  js:
+    js/overrides/webform_ui.js: { minified: false }
 
 # Components
 
@@ -356,13 +364,12 @@ settings_tray_edit:
 maintenance_page:
   css:
     theme:
-      dist/css/components/maintenance_page.css: {}
+      dist/css/components/maintenance_page.css: { minified: false }
   dependencies:
     - system/maintenance
     - gin/gin
     - gin/gin_accent
     - gin/gin_init
-
 
 # Modules
 
@@ -452,3 +459,8 @@ workspaces:
   css:
     component:
       dist/css/components/workspaces.css: { minified: false }
+
+project_browser:
+  css:
+    theme:
+      dist/css/components/project_browser.css: { minified: false }

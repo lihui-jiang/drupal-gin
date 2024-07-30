@@ -14,6 +14,7 @@ module.exports = {
     // ################################################
     'accent': ['./js/accent.js'],
     'description_toggle': ['./js/description_toggle.js'],
+    'dropbutton': ['./js/dropbutton.js'],
     'more_actions': ['./js/more_actions.js'],
     'gin_ckeditor': ['./js/gin_ckeditor.js'], // Can't rename as we would be in trouble
     'init': ['./js/init.js'],
@@ -58,6 +59,7 @@ module.exports = {
     'components/node_preview': ['./styles/components/node_preview.scss'],
     'components/paragraphs': ['./styles/components/paragraphs.scss'],
     'components/responsive_preview': ['./styles/components/responsive_preview.scss'],
+    'components/project_browser': ['./styles/components/project_browser.scss'],
     'components/revisions': ['./styles/components/revisions.scss'],
     'components/settings_tray': ['./styles/components/settings_tray.scss'],
     'components/settings_tray_edit': ['./styles/components/settings_tray_edit.scss'],
