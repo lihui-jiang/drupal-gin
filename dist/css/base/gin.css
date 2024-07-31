@@ -68,8 +68,7 @@ button.link,
 [open] .claro-details__summary--vertical-tabs-item,
 .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-link {
   color: var(--gin-color-primary);
-  -webkit-text-decoration-style: var(--gin-link-decoration-style);
-          text-decoration-style: var(--gin-link-decoration-style);
+  text-decoration-style: var(--gin-link-decoration-style);
 }
 
 a:hover,
@@ -96,8 +95,7 @@ button.link:active,
 
 *|*:any-link:not(svg|a) {
   text-decoration: underline;
-  -webkit-text-decoration-style: var(--gin-link-decoration-style);
-          text-decoration-style: var(--gin-link-decoration-style);
+  text-decoration-style: var(--gin-link-decoration-style);
 }
 
 .is-horizontal .tabs__link:hover,
@@ -1460,8 +1458,7 @@ table td a {
 
 table td a:hover {
   text-decoration: underline;
-  -webkit-text-decoration-style: var(--gin-link-decoration-style);
-          text-decoration-style: var(--gin-link-decoration-style);
+  text-decoration-style: var(--gin-link-decoration-style);
 }
 
 table td .group-label {

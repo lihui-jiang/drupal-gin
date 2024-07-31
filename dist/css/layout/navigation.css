@@ -113,10 +113,6 @@ body {
 
 /* @todo: Correct the class name with a BEM modifier. */
 
-.admin-toolbar-expanded .admin-toolbar {
-  /* Sticky section at the bottom */
-}
-
 .admin-toolbar-expanded .admin-toolbar .admin-toolbar__sticky-section {
   padding-inline: var(--space-xs);
 }
@@ -453,10 +449,6 @@ body {
 
 /* Collapsed styles.*/
 
-html:not(.admin-toolbar-expanded) {
-  /* First level specific styles. *//* Cloned flyout. */
-}
-
 html:not(.admin-toolbar-expanded) .admin-toolbar__item > .toolbar-menu {
   display: flex;
   flex-direction: column;
@@ -659,10 +651,6 @@ button.toolbar-link + a {
 }
 
 /* Sidebar collapsed styles.*/
-
-html:not(.admin-toolbar-expanded) {
-  /* Specific styles for the title duplicated for the flyout. *//* Hide the chevron when toolbar collapsed. */
-}
 
 html:not(.admin-toolbar-expanded) .toolbar-link {
   padding-inline: 10px;
