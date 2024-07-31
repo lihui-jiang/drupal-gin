@@ -81,16 +81,19 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  border-inline-end: 1px solid #aaa;
+  -webkit-border-end: 1px solid #aaa;
+          border-inline-end: 1px solid #aaa;
   background-color: white;
-  border-inline-end: 1px solid var(--color-gray-100);
+  -webkit-border-end: 1px solid var(--color-gray-100);
+          border-inline-end: 1px solid var(--color-gray-100);
   font-size: var(--font-size-base);
   inline-size: var(--sidebar-width);
   position: fixed;
   height: 100vh;
   z-index: 501;
   padding-inline: var(--space-xs);
-  padding-block-start: var(--space-xs);
+  -webkit-padding-before: var(--space-xs);
+          padding-block-start: var(--space-xs);
   overflow-y: scroll;
 }
 
@@ -102,8 +105,11 @@ body {
 
 @media (min-width: 61em) {
   .admin-toolbar ~ .dialog-off-canvas-main-canvas {
-    margin-inline-start: var(--drupal-displace-offset-left, var(--sidebar-width));
+    -webkit-margin-start: var(--drupal-displace-offset-left, var(--sidebar-width));
+            margin-inline-start: var(--drupal-displace-offset-left, var(--sidebar-width));
+    transition: -webkit-margin-start .2s linear;
     transition: margin-inline-start .2s linear;
+    transition: margin-inline-start .2s linear, -webkit-margin-start .2s linear;
   }
 }
 
@@ -131,8 +137,10 @@ body {
 
 .admin-toolbar__logo {
   display: inline-block;
-  margin-block-start: var(--space-xs);
-  margin-inline-start: var(--space-xs);
+  -webkit-margin-before: var(--space-xs);
+          margin-block-start: var(--space-xs);
+  -webkit-margin-start: var(--space-xs);
+          margin-inline-start: var(--space-xs);
   border-radius: var(--space-xs);
   overflow: hidden;
 }
@@ -155,7 +163,8 @@ body {
  */
 
 .admin-toolbar__content:not(:last-child) {
-  margin-block-end: 20px;
+  -webkit-margin-after: 20px;
+          margin-block-end: 20px;
 }
 
 /**
@@ -165,13 +174,15 @@ body {
 
 .admin-toolbar__sticky-section {
   background-color: white;
-  margin-block-start: auto;
+  -webkit-margin-before: auto;
+          margin-block-start: auto;
   position: sticky;
   bottom: 0;
   z-index: 40;
   margin-inline: -8px;
   width: calc(100% + var(--space-m));
-  border-block-start: 1px solid transparent;
+  -webkit-border-before: 1px solid transparent;
+          border-block-start: 1px solid transparent;
   box-sizing: inherit;
   padding-block: var(--space-m);
   padding-inline: var(--space-xs);
@@ -205,7 +216,8 @@ body {
 
 .toolbar-menu .toolbar-menu__item {
   list-style: none;
-  padding-block-start: 0;
+  -webkit-padding-before: 0;
+          padding-block-start: 0;
   word-break: break-word;
   -webkit-hyphens: auto;
           hyphens: auto;
@@ -213,17 +225,20 @@ body {
 
 .toolbar-menu .toolbar-menu__item--to-title {
   margin-block: var(--space-s) var(--space-xs);
-  margin-inline-start: var(--space-xs);
+  -webkit-margin-start: var(--space-xs);
+          margin-inline-start: var(--space-xs);
 }
 
 .toolbar-menu .toolbar-menu__item--level-2 {
-  margin-inline-start: var(--space-m);
+  -webkit-margin-start: var(--space-m);
+          margin-inline-start: var(--space-m);
 }
 
 /* Add extra bottom space to the main menu in the flyout. */
 
 .cloned-flyout > .toolbar-menu {
-  padding-block-end: var(--space-l);
+  -webkit-padding-after: var(--space-l);
+          padding-block-end: var(--space-l);
 }
 
 .toolbar-menu__submenu {
@@ -300,11 +315,13 @@ body {
 }
 
 .toolbar-menu__item--to-title .toolbar-link__label {
-  margin-inline-start: var(--space-xs);
+  -webkit-margin-start: var(--space-xs);
+          margin-inline-start: var(--space-xs);
 }
 
 .toolbar-menu__item--user {
-  margin-block-start: 10px;
+  -webkit-margin-before: 10px;
+          margin-block-start: 10px;
 }
 
 .toolbar-menu__item--user .navigation-box, .toolbar-menu__item--user .toolbar-menu__item--has-dropdown > button[aria-expanded=true] {
@@ -436,7 +453,8 @@ body {
 
 .toolbar-menu__item--level-2 > .toolbar-link {
   padding-inline: var(--space-xs);
-  margin-inline-start: var(--space-xs);
+  -webkit-margin-start: var(--space-xs);
+          margin-inline-start: var(--space-xs);
 }
 
 .toolbar-menu__item--level-2 > .toolbar-menu {
@@ -444,11 +462,13 @@ body {
 }
 
 .toolbar-menu__item--level-3.toolbar-menu__item {
-  margin-inline-start: var(--space-l);
+  -webkit-margin-start: var(--space-l);
+          margin-inline-start: var(--space-l);
 }
 
 .toolbar-menu__item--level-3.toolbar-menu__item > .toolbar-link {
-  padding-inline-start: var(--space-s);
+  -webkit-padding-start: var(--space-s);
+          padding-inline-start: var(--space-s);
 }
 
 /* Collapsed styles.*/
@@ -490,7 +510,8 @@ html:not(.admin-toolbar-expanded) .cloned-flyout {
   width: 248px;
   background-color: var(--color-gray-050);
   border-radius: var(--space-xs);
-  padding-inline-end: var(--space-xs);
+  -webkit-padding-end: var(--space-xs);
+          padding-inline-end: var(--space-xs);
   box-shadow: 0px 0px 56px 0px rgba(0, 0, 0, .14);
   height: -moz-fit-content;
   height: fit-content;
@@ -512,7 +533,8 @@ html:not(.admin-toolbar-expanded) .cloned-flyout .toolbar-menu__arrow-ref {
   block-size: 46px;
   display: flex;
   align-items: center;
-  margin-inline-start: -2px;
+  -webkit-margin-start: -2px;
+          margin-inline-start: -2px;
 }
 
 html:not(.admin-toolbar-expanded) .cloned-flyout .toolbar-menu__arrow-ref::before {
@@ -532,7 +554,8 @@ html[dir="rtl"]:not(.admin-toolbar-expanded) .cloned-flyout .toolbar-menu__arrow
 }
 
 html:not(.admin-toolbar-expanded) .cloned-flyout .toolbar-menu__item--level-2 {
-  margin-inline-start: calc(var(--space-l) + var(--space-xs));
+  -webkit-margin-start: calc(var(--space-l) + var(--space-xs));
+          margin-inline-start: calc(var(--space-l) + var(--space-xs));
 }
 
 .toolbar-menu__arrow-ref {
@@ -557,7 +580,8 @@ html:not(.admin-toolbar-expanded) .cloned-flyout .toolbar-menu__item--level-2 {
 /* Add extra space when the title is hidden. */
 
 .toolbar-block__title.visually-hidden + .toolbar-block__content {
-  margin-block-start: var(--space-l);
+  -webkit-margin-before: var(--space-l);
+          margin-block-start: var(--space-l);
 }
 
 /* Temporarily hide titles on collapse. */
@@ -597,7 +621,8 @@ html:not(.admin-toolbar-expanded) .admin-toolbar__content .admin-toolbar__item .
 }
 
 .toolbar-link + .toolbar-menu__item--has-dropdown > button {
-  margin-inline-start: 4px;
+  -webkit-margin-start: 4px;
+          margin-inline-start: 4px;
 }
 
 /**
@@ -637,7 +662,8 @@ button.toolbar-link:not(.toolbar-link--sidebar-toggle)::after {
   -webkit-mask-image: url("../../media/sprite.svg#chevron-down-view");
           mask-image: url("../../media/sprite.svg#chevron-down-view");
   content: "";
-  margin-inline-start: auto;
+  -webkit-margin-start: auto;
+          margin-inline-start: auto;
 }
 
 button.toolbar-link:hover::after, button.toolbar-link:focus::after {
@@ -645,7 +671,8 @@ button.toolbar-link:hover::after, button.toolbar-link:focus::after {
 }
 
 button.toolbar-link + a {
-  margin-inline-end: var(--space-xl);
+  -webkit-margin-end: var(--space-xl);
+          margin-inline-end: var(--space-xl);
 }
 
 /* Chevron styles when the item is expanded. */
@@ -729,7 +756,8 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
 }
 
 .admin-toolbar-expanded .toolbar-link--has-icon::before {
-  margin-inline-end: 10px;
+  -webkit-margin-end: 10px;
+          margin-inline-end: 10px;
 }
 
 .current > .toolbar-link--has-icon::before {
@@ -740,7 +768,8 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
 
 .toolbar-link__action {
   clip: rect(0 0 0 0);
-  clip-path: inset(50%);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
   position: absolute;
@@ -794,17 +823,22 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
 
 .gin--navigation .gin-secondary-toolbar--frontend {
   z-index: 102;
-  margin-inline-start: var(--gin-toolbar-x-offset);
+  -webkit-margin-start: var(--gin-toolbar-x-offset);
+          margin-inline-start: var(--gin-toolbar-x-offset);
 }
 
 [dir="ltr"] .admin-toolbar ~ .dialog-off-canvas-main-canvas,
 [dir="ltr"] .gin--navigation .gin-secondary-toolbar--frontend {
+  transition: margin-left var(--gin-transition-fast), -webkit-margin-start var(--gin-transition-fast);
   transition: margin-inline-start var(--gin-transition-fast), margin-left var(--gin-transition-fast);
+  transition: margin-inline-start var(--gin-transition-fast), margin-left var(--gin-transition-fast), -webkit-margin-start var(--gin-transition-fast);
 }
 
 [dir="rtl"] .admin-toolbar ~ .dialog-off-canvas-main-canvas,
 [dir="rtl"] .gin--navigation .gin-secondary-toolbar--frontend {
+  transition: margin-right var(--gin-transition-fast), -webkit-margin-start var(--gin-transition-fast);
   transition: margin-inline-start var(--gin-transition-fast), margin-right var(--gin-transition-fast);
+  transition: margin-inline-start var(--gin-transition-fast), margin-right var(--gin-transition-fast), -webkit-margin-start var(--gin-transition-fast);
 }
 
 .gin--navigation {
@@ -816,7 +850,8 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
   top: 0;
   overflow-y: initial;
   padding-inline: 0;
-  padding-block-start: 0;
+  -webkit-padding-before: 0;
+          padding-block-start: 0;
 }
 
 [dir="ltr"] .gin--navigation .admin-toolbar {
@@ -840,7 +875,8 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
 .gin--navigation .admin-toolbar__content {
   padding-block: var(--gin-spacing-xxs);
   padding-inline: var(--gin-spacing-xs);
-  margin-block-end: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
   overflow-y: auto;
 }
 
@@ -863,8 +899,10 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
   position: static;
   width: 100%;
   margin-inline: 0;
-  padding-block-start: var(--gin-spacing-xs);
-  padding-block-end: 0;
+  -webkit-padding-before: var(--gin-spacing-xs);
+          padding-block-start: var(--gin-spacing-xs);
+  -webkit-padding-after: 0;
+          padding-block-end: 0;
 }
 
 .gin--navigation .admin-toolbar,
@@ -881,7 +919,8 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
 }
 
 .gin--navigation .toolbar-block__content.toolbar-block__content--content {
-  margin-block-start: var(--space-s);
+  -webkit-margin-before: var(--space-s);
+          margin-block-start: var(--space-s);
 }
 
 .gin--navigation .toolbar-link {
@@ -1060,7 +1099,8 @@ html:not(.admin-toolbar-expanded) .toolbar-menu__item--to-title > button.toolbar
 }
 
 .gin--navigation .admin-toolbar__item > .toolbar-menu {
-  margin-block-start: 0;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
 }
 
 html:not(.admin-toolbar-expanded) .gin--navigation .cloned-flyout,
@@ -1202,11 +1242,13 @@ button.toolbar-link--sidebar-toggle:hover::before, button.toolbar-link--sidebar-
 }
 
 .admin-toolbar-expanded .admin-toolbar__logo .toolbar-link--gin-home {
-  margin-inline-start: 0;
+  -webkit-margin-start: 0;
+          margin-inline-start: 0;
 }
 
 .admin-toolbar-expanded .admin-toolbar__logo .toolbar-link--gin-home::before {
-  margin-inline-end: 0;
+  -webkit-margin-end: 0;
+          margin-inline-end: 0;
 }
 
 .admin-toolbar__content .toolbar-block:nth-last-child(n+2)::after {
