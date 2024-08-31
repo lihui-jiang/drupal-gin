@@ -2971,6 +2971,8 @@ html.js .dropbutton-wrapper:not(.open) .dropbutton__items {
 html.js .dropbutton-wrapper .dropbutton__items {
   visibility: visible;
   opacity: 1;
+  max-height: 50vh;
+  overflow: auto;
 }
 
 html.js .dropbutton-wrapper:not(.open) .dropbutton__item:first-of-type ~ .dropbutton__items {
@@ -4621,4 +4623,3 @@ blockquote::before {
 [dir="rtl"] .gin-status-icon {
   margin-right: -0.5em;
 }
-
