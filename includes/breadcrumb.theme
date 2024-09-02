@@ -19,6 +19,8 @@ function gin_preprocess_breadcrumb(&$variables) {
     $entity_id = $entity ? $entity->getEntityTypeId() : NULL;
     $url = $entity ? $entity->toUrl() : NULL;
 
+    $variables['#cache']['contexts'][] = 'url';
+
     foreach ($variables['breadcrumb'] as $key => $item) {
       // Back to site item.
       if ($key === 0) {
