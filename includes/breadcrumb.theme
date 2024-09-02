@@ -19,6 +19,17 @@ function gin_preprocess_breadcrumb(&$variables) {
     $entity_id = $entity ? $entity->getEntityTypeId() : NULL;
     $url = $entity ? $entity->toUrl() : NULL;
 
+    /** @var \Drupal\Core\Entity\EntityTypeInterface $entity_type */
+    $entity_type = $entity ? $entity->getEntityType() : NULL;
+    $bundle = NULL;
+    if (
+      $entity_type?->getKey('bundle')
+      && $entity?->hasField($entity_type->getKey('bundle'))
+      && !$entity?->get($entity_type->getKey('bundle'))->isEmpty()
+    ) {
+      $bundle = $entity->get($entity_type->getKey('bundle'))?->referencedEntities()[0] ?? NULL;
+    }
+
     $variables['#cache']['contexts'][] = 'url';
 
     foreach ($variables['breadcrumb'] as $key => $item) {
@@ -63,8 +74,11 @@ function gin_preprocess_breadcrumb(&$variables) {
         }
 
         // Add bundle info.
+        /** @var \Drupal\node\NodeTypeInterface $bundle */
         $variables['breadcrumb'][] = [
-          'text' => t('Edit') . ' ' . $node->type->entity->label(),
+          'text' => t('Edit %type', [
+            '%type' => $bundle->label(),
+          ]),
           'url' => '',
         ];
       }
@@ -73,7 +87,9 @@ function gin_preprocess_breadcrumb(&$variables) {
     elseif ($entity) {
       // Add bundle info.
       $variables['breadcrumb'][] = [
-        'text' => t('Edit') . ' ' . $entity->getEntityType()->getLabel(),
+        'text' => t('Edit %type', [
+          '%type' => $entity->getEntityType()->getLabel(),
+        ]),
         'url' => '',
       ];
     }
