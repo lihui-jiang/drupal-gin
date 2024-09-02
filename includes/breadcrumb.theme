@@ -24,11 +24,13 @@ function gin_preprocess_breadcrumb(&$variables) {
     $entity_type = $entity ? $entity->getEntityType() : NULL;
     $bundle = NULL;
     if (
-      $entity_type?->getKey('bundle')
-      && $entity?->hasField($entity_type->getKey('bundle'))
-      && !$entity?->get($entity_type->getKey('bundle'))->isEmpty()
+      $entity_type
+      && $entity
+      && $entity_type->getKey('bundle')
+      && $entity->hasField($entity_type->getKey('bundle'))
+      && !$entity->get($entity_type->getKey('bundle'))->isEmpty()
     ) {
-      $bundle = $entity->get($entity_type->getKey('bundle'))?->referencedEntities()[0] ?? NULL;
+      $bundle = $entity->get($entity_type->getKey('bundle'))->referencedEntities()[0] ?? NULL;
     }
 
     $variables['#cache']['contexts'][] = 'url';
