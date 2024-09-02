@@ -5,6 +5,7 @@
  * breadcrumb.theme
  */
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
@@ -81,6 +82,11 @@ function gin_preprocess_breadcrumb(&$variables) {
           ]),
           'url' => '',
         ];
+
+        $variables['#cache']['tags'] = Cache::mergeTags(
+          $variables['#cache']['tags'] ?? [],
+          $bundle->getCacheTags(),
+        );
       }
     }
     // Adjust breadcrumb for other entities.
