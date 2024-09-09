@@ -287,4 +287,10 @@ html.js.no-touchevents {
   .dropbutton--multiple.dropbutton--extrasmall .dropbutton__items .dropbutton__item {
     margin-right: 0;
   }
+
+  .dropbutton-wrapper.open {
+    .dropbutton--extrasmall {
+      height: auto;
+    }
+  }
 }
