@@ -38,17 +38,21 @@ libraries-override:
   core/drupal.dialog.off_canvas:
     css:
       base:
-        misc/dialog/off-canvas.base.css: false
-        misc/dialog/off-canvas.css: false
-        misc/dialog/off-canvas.theme.css: false
+        misc/dialog/off-canvas/css/reset.css: false
+        misc/dialog/off-canvas/css/base.css: false
+        misc/dialog/off-canvas/css/utility.css: false
       component:
-        misc/dialog/off-canvas.button.css: false
-        misc/dialog/off-canvas.form.css: false
-        misc/dialog/off-canvas.table.css: false
-        misc/dialog/off-canvas.details.css: false
-        misc/dialog/off-canvas.tabledrag.css: false
-        misc/dialog/off-canvas.dropbutton.css: false
-        misc/dialog/off-canvas.layout.css: false
+        misc/dialog/off-canvas/css/button.css: false
+        misc/dialog/off-canvas/css/drupal.css: false
+        misc/dialog/off-canvas/css/form.css: false
+        misc/dialog/off-canvas/css/table.css: false
+        misc/dialog/off-canvas/css/details.css: false
+        misc/dialog/off-canvas/css/messages.css: false
+        misc/dialog/off-canvas/css/tabledrag.css: false
+        misc/dialog/off-canvas/css/throbber.css: false
+        misc/dialog/off-canvas/css/dropbutton.css: false
+        misc/dialog/off-canvas/css/titlebar.css: false
+        misc/dialog/off-canvas/css/wrapper.css: false
 
   paragraphs_ee/paragraphs_ee.off_canvas:
     css:
