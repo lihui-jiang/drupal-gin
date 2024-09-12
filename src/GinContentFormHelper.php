@@ -422,6 +422,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
 
     return (in_array($wrapper_format, [
       'drupal_modal',
+      'drupal_ajax',
       'drupal_dialog',
       'drupal_dialog.off_canvas',
     ])) ? TRUE : FALSE;
