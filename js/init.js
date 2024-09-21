@@ -48,6 +48,13 @@ function ginInitDarkmode() {
   } else {
     document.documentElement.classList.contains(darkModeClass) === true && document.documentElement.classList.remove(darkModeClass);
   }
+
+  // Store in localStorage to avoid flickering.
+  if (typeof drupalSettings !== 'undefined') {
+    if (drupalSettings.gin.darkmode_localstorage == 'always' || drupalSettings.gin.darkmode_localstorage == 'adminpath' && drupalSettings.path.currentPathIsAdmin)  {
+      localStorage.setItem('Drupal.gin.darkmode', window.ginDarkmode)
+    }
+  }
 }
 
 ginInitDarkmode();

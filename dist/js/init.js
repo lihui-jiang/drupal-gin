@@ -3,7 +3,8 @@
     if (!localStorage.getItem("Drupal.gin.darkmode") && "undefined" == typeof drupalSettings) return;
     let darkmode = localStorage.getItem("Drupal.gin.darkmode") || drupalSettings.gin.darkmode;
     0 == darkmode || 1 == darkmode ? window.ginDarkmode = darkmode : darkmode = window.matchMedia("(prefers-color-scheme: dark)").matches ? 1 : 0;
-    1 == darkmode ? document.documentElement.classList.add("gin--dark-mode") : !0 === document.documentElement.classList.contains("gin--dark-mode") && document.documentElement.classList.remove("gin--dark-mode");
+    1 == darkmode ? document.documentElement.classList.add("gin--dark-mode") : !0 === document.documentElement.classList.contains("gin--dark-mode") && document.documentElement.classList.remove("gin--dark-mode"), 
+    "undefined" != typeof drupalSettings && ("always" == drupalSettings.gin.darkmode_localstorage || "adminpath" == drupalSettings.gin.darkmode_localstorage && drupalSettings.path.currentPathIsAdmin) && localStorage.setItem("Drupal.gin.darkmode", window.ginDarkmode);
   }
   if (localStorage.getItem("GinDarkMode") && (localStorage.setItem("Drupal.gin.darkmode", localStorage.getItem("GinDarkMode")), 
   localStorage.removeItem("GinDarkMode")), localStorage.getItem("GinSidebarOpen") && (localStorage.setItem("Drupal.gin.toolbarExpanded", localStorage.getItem("GinSidebarOpen")), 

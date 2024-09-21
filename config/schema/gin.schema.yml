@@ -12,6 +12,9 @@ gin.settings:
     enable_darkmode:
       type: string
       label: 'The darkmode'
+    enable_darkmode_localstorage:
+      type: string
+      label: 'Use localstorage for darkmode'
     classic_toolbar:
       type: string
       label: 'The classic toolbar'

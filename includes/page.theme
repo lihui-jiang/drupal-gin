@@ -82,6 +82,7 @@ function gin_page_attachments_alter(&$page) {
     // Get theme settings.
     $settings = \Drupal::classResolver(GinSettings::class);
     $page['#attached']['drupalSettings']['gin']['darkmode'] = $settings->get('enable_darkmode');
+    $page['#attached']['drupalSettings']['gin']['darkmode_localstorage'] = $settings->get('enable_darkmode_localstorage');
     $page['#attached']['drupalSettings']['gin']['darkmode_class'] = 'gin--dark-mode';
     $page['#attached']['drupalSettings']['gin']['preset_accent_color'] = $settings->get('preset_accent_color');
     $page['#attached']['drupalSettings']['gin']['accent_color'] = $settings->get('accent_color');

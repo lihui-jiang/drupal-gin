@@ -206,6 +206,11 @@ class GinSettings implements ContainerInjectionInterface {
       $value = (string) $value;
     }
 
+    // Darkmode-Localstorage legacy setting.
+    if ($name === 'enable_darkmode_localstorage') {
+      $value = (string) $value;
+    }
+
     // High contrast mode legacy setting.
     if ($name === 'high_contrast_mode') {
       $value = (bool) $value;
@@ -286,6 +291,19 @@ class GinSettings implements ContainerInjectionInterface {
         0 => $this->t('Light'),
         1 => $this->t('Dark'),
         'auto' => $this->t('Auto'),
+      ],
+    ];
+
+    // Enable localstorage for contrast mode.
+    $form['enable_darkmode_localstorage'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Use localStorage for Darkmode'),
+      '#description' => $this->t('The use of localStorage prevents the bright flickering when the page is loaded. (Prior consent may be required for the use of localStorage).'),
+      '#default_value' => (string) ($account ? $this->get('enable_darkmode_localstorage', $account) : $this->getDefault('enable_darkmode_localstorage')),
+      '#options' => [
+        'never' => $this->t('Never'),
+        'always' => $this->t('Always'),
+        'adminpath' => $this->t('Only on admin paths'),
       ],
     ];
 

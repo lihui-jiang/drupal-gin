@@ -120,7 +120,8 @@
   clear: both;
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios {
+[data-drupal-selector=edit-enable-darkmode] .form-radios,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios {
   display: inline-flex;
   flex-wrap: wrap;
   padding: 0 var(--gin-spacing-xxs);
@@ -128,24 +129,29 @@
   border-radius: var(--gin-spacing-xl);
 }
 
-.gin--dark-mode [data-drupal-selector=edit-enable-darkmode] .form-radios {
+.gin--dark-mode [data-drupal-selector=edit-enable-darkmode] .form-radios,
+.gin--dark-mode [data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios {
   background: var(--gin-bg-layer2);
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios .form-type--radio {
+[data-drupal-selector=edit-enable-darkmode] .form-radios .form-type--radio,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios .form-type--radio {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-[dir="ltr"] [data-drupal-selector=edit-enable-darkmode] .form-radios .form-type--radio {
+[dir="ltr"] [data-drupal-selector=edit-enable-darkmode] .form-radios .form-type--radio,
+[dir="ltr"] [data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios .form-type--radio {
   margin-left: 0;
 }
 
-[dir="rtl"] [data-drupal-selector=edit-enable-darkmode] .form-radios .form-type--radio {
+[dir="rtl"] [data-drupal-selector=edit-enable-darkmode] .form-radios .form-type--radio,
+[dir="rtl"] [data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios .form-type--radio {
   margin-right: 0;
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios .form-item__label {
+[data-drupal-selector=edit-enable-darkmode] .form-radios .form-item__label,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios .form-item__label {
   display: inline-block;
   padding: .375rem var(--gin-spacing-m);
   margin: var(--gin-spacing-xxs) 0;
@@ -154,12 +160,14 @@
   box-sizing: border-box;
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios .form-item__label:hover {
+[data-drupal-selector=edit-enable-darkmode] .form-radios .form-item__label:hover,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios .form-item__label:hover {
   color: var(--gin-color-primary);
   background: var(--gin-color-primary-light-hover);
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios input {
+[data-drupal-selector=edit-enable-darkmode] .form-radios input,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios input {
   opacity: 0;
   width: 1px;
   height: 1px;
@@ -168,11 +176,14 @@
   border: 0;
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios input:active + .form-item__label, [data-drupal-selector=edit-enable-darkmode] .form-radios input:focus + .form-item__label {
+[data-drupal-selector=edit-enable-darkmode] .form-radios input:active + .form-item__label, [data-drupal-selector=edit-enable-darkmode] .form-radios input:focus + .form-item__label,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios input:active + .form-item__label,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios input:focus + .form-item__label {
   box-shadow: 0 0 0 1px var(--gin-color-focus-border), 0 0 0 4px var(--gin-color-focus);
 }
 
-[data-drupal-selector=edit-enable-darkmode] .form-radios input:checked + .form-item__label {
+[data-drupal-selector=edit-enable-darkmode] .form-radios input:checked + .form-item__label,
+[data-drupal-selector=edit-enable-darkmode-localstorage] .form-radios input:checked + .form-item__label {
   color: var(--gin-color-button-text);
   background: var(--gin-color-primary);
 }
