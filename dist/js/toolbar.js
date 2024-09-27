@@ -4,13 +4,20 @@
     attach: context => {
       Drupal.ginToolbar.init(context), Drupal.ginToolbar.initKeyboardShortcut(context);
     }
+  }, Drupal.behaviors.ginEscapeAdmin = {
+    attach: context => {
+      once("ginEscapeAdmin", "[data-gin-toolbar-escape-admin]", context).forEach((el => {
+        const escapeAdminPath = sessionStorage.getItem("escapeAdminPath");
+        null !== escapeAdminPath ? drupalSettings.path.currentPathIsAdmin && el.setAttribute("href", escapeAdminPath) : el.parentElement.remove();
+      }));
+    }
   }, Drupal.ginToolbar = {
     init: function(context) {
       once("ginToolbarInit", "#gin-toolbar-bar", context).forEach((() => {
         const toolbarTrigger = document.querySelector(".toolbar-menu__trigger");
-        "classic" != toolbarVariant && localStorage.getItem("Drupal.toolbar.trayVerticalLocked") && localStorage.removeItem("Drupal.toolbar.trayVerticalLocked"), 
-        "true" === localStorage.getItem("Drupal.gin.toolbarExpanded") ? (document.body.setAttribute("data-toolbar-menu", "open"), 
-        toolbarTrigger.classList.add("is-active")) : (document.body.setAttribute("data-toolbar-menu", ""), 
+        "classic" != toolbarVariant && localStorage.getItem("Drupal.toolbar.trayVerticalLocked") && localStorage.removeItem("Drupal.toolbar.trayVerticalLocked"),
+        "true" === localStorage.getItem("Drupal.gin.toolbarExpanded") ? (document.body.setAttribute("data-toolbar-menu", "open"),
+        toolbarTrigger.classList.add("is-active")) : (document.body.setAttribute("data-toolbar-menu", ""),
         toolbarTrigger.classList.remove("is-active")), this.initDisplace();
       })), once("ginToolbarToggle", ".toolbar-menu__trigger", context).forEach((el => el.addEventListener("click", (e => {
         e.preventDefault(), this.toggleToolbar();
@@ -32,13 +39,13 @@
       toolbarTrigger.classList.toggle("is-active"), toolbarTrigger.classList.contains("is-active") ? this.showToolbar() : this.collapseToolbar();
     },
     showToolbar: function() {
-      document.body.setAttribute("data-toolbar-menu", "open"), localStorage.setItem("Drupal.gin.toolbarExpanded", "true"), 
+      document.body.setAttribute("data-toolbar-menu", "open"), localStorage.setItem("Drupal.gin.toolbarExpanded", "true"),
       this.dispatchToolbarEvent("true"), this.displaceToolbar(), window.innerWidth < 1280 && "vertical" === toolbarVariant && Drupal.ginSidebar.collapseSidebar();
     },
     collapseToolbar: function() {
       const toolbarTrigger = document.querySelector(".toolbar-menu__trigger"), elementToRemove = document.querySelector(".gin-toolbar-inline-styles");
-      toolbarTrigger.classList.remove("is-active"), document.body.setAttribute("data-toolbar-menu", ""), 
-      elementToRemove && elementToRemove.parentNode.removeChild(elementToRemove), localStorage.setItem("Drupal.gin.toolbarExpanded", "false"), 
+      toolbarTrigger.classList.remove("is-active"), document.body.setAttribute("data-toolbar-menu", ""),
+      elementToRemove && elementToRemove.parentNode.removeChild(elementToRemove), localStorage.setItem("Drupal.gin.toolbarExpanded", "false"),
       this.dispatchToolbarEvent("false"), this.displaceToolbar();
     },
     dispatchToolbarEvent: active => {
