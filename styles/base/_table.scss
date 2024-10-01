@@ -21,6 +21,9 @@ table.gin--sticky-table-header {
     width: max-content;
   }
 }
+.block-views table.gin--sticky-table-header {
+  top: unset;
+}
 
 .gin-horizontal-scroll-shadow {
   background-image:
