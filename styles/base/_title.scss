@@ -81,6 +81,7 @@
   &__message {
     z-index: 2;
     position: absolute;
+    display: none;
     top: 0;
     left: 100%;
     min-width: 120px;

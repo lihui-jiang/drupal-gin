@@ -18,8 +18,44 @@
   margin-left: var(--gin-spacing-m);
 }
 
+.paragraphs-tabs-wrapper .field-multiple-table > tbody {
+  display: block;
+}
+
 .paragraphs-tabs-wrapper .field-multiple-table > tbody > .draggable > td + td {
+  width: 95% !important;
+  display: block;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table > tbody > .draggable > td:nth-child(3) {
+  display: none;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table > thead {
+  display: block;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table > thead > tr {
+  display: flex;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table > thead > tr th:first-child.field-label {
+  display: flex;
   width: 100%;
+}
+
+[dir="ltr"] .paragraphs-tabs-wrapper .field-multiple-table > thead > tr th:first-child .paragraphs-actions {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .paragraphs-tabs-wrapper .field-multiple-table > thead > tr th:first-child .paragraphs-actions {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table > thead > tr .tabledrag-hide {
+  margin: auto;
 }
 
 .paragraphs-tabs-wrapper .field-multiple-table .draggable {
@@ -133,6 +169,45 @@
   margin-left: var(--gin-spacing-xs);
 }
 
+.js .field--widget-paragraphs .field-multiple-table,
+.js .field--widget-paragraphs-previewer .field-multiple-table {
+  display: block;
+}
+
+td .claro-details {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td {
+  display: block;
+  position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+  .paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td {
+    display: block;
+    min-width: 0;
+  }
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td:first-child {
+  width: 30px;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable > td.delta-order {
+  max-width: 60px;
+  width: 60px;
+}
+
 .paragraph .contextual {
   display: none;
 }
@@ -201,18 +276,6 @@
   margin-top: var(--gin-spacing-m);
 }
 
-html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle,
-html.js .field--widget-paragraphs .draggable .tabledrag-handle {
-  min-width: 20px;
-}
-
-@media (min-width: 61em) {
-  html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle,
-  html.js .field--widget-paragraphs .draggable .tabledrag-handle {
-    min-width: 24px;
-  }
-}
-
 html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after,
 html.js .field--widget-paragraphs .draggable .tabledrag-handle::after {
   position: relative;
@@ -235,28 +298,6 @@ html[dir="rtl"].js .field--widget-paragraphs .draggable .tabledrag-handle::after
 .js .draggable:hover .paragraphs-collapsed-description::after {
   top: 2px;
   background: var(--gin-bg-layer2);
-}
-
-html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle {
-  min-width: 32px;
-}
-
-@media (min-width: 61em) {
-  html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle {
-    min-width: 48px;
-  }
-
-  html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after {
-    top: -2px;
-  }
-
-  html[dir="ltr"].js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after {
-    left: 8px;
-  }
-
-  html[dir="rtl"].js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle::after {
-    right: 8px;
-  }
 }
 
 [dir="ltr"] .paragraphs-collapsed-description::after,

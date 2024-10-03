@@ -664,6 +664,7 @@ body:not(.toolbar-tray-open) .layout-container {
 .shortcut-action__message {
   z-index: 2;
   position: absolute;
+  display: none;
   top: 0;
   min-width: 120px;
   pointer-events: none;

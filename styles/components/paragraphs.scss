@@ -18,9 +18,40 @@
 
   .field-multiple-table {
     > tbody {
+      display: block;
+
       > .draggable {
         > td + td {
-          width: 100%;
+          width: 95% !important;
+          display: block;
+        }
+        > td:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+
+    > thead {
+      display: block;
+
+      > tr {
+        display: flex;
+
+        th:first-child {
+
+          &.field-label {
+            display: flex;
+            width: 100%;
+          }
+
+          .paragraphs-actions {
+            margin-left: auto;
+            margin-right: 0;
+          }
+        }
+
+        .tabledrag-hide {
+          margin: auto;
         }
       }
     }
@@ -107,6 +138,46 @@
   }
 }
 
+.js {
+  .field--widget-paragraphs,
+  .field--widget-paragraphs-previewer {
+    .field-multiple-table {
+      display: block;
+    }
+  }
+}
+
+td .claro-details {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.paragraphs-tabs-wrapper .field-multiple-table tr.draggable {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-wrap: nowrap;
+  flex-direction: row;
+
+  > td {
+    display: block;
+    position: relative;
+    @media screen and (max-width: 1200px) {
+      display: block;
+      min-width: 0;
+    }
+
+    &:first-child {
+      width: 30px;
+    }
+
+    &.delta-order {
+      width: 60px;
+    }
+  }
+}
+
 .paragraph {
   .contextual {
     display: none;
@@ -174,12 +245,6 @@
 html.js .field--widget-entity-reference-paragraphs,
 html.js .field--widget-paragraphs {
   .draggable .tabledrag-handle {
-    min-width: 20px;
-
-    @include mq(medium) {
-      min-width: 24px;
-    }
-
     &::after {
       position: relative;
       left: 0;
@@ -193,21 +258,6 @@ html.js .field--widget-paragraphs {
 .js .draggable:hover .paragraphs-collapsed-description::after {
   top: 2px;
   background: var(--gin-bg-layer2);
-}
-
-html.js .field--widget-entity-reference-paragraphs {
-  .draggable .tabledrag-handle {
-    min-width: 32px;
-
-    @include mq(medium) {
-      min-width: 48px;
-
-      &::after {
-        top: -2px;
-        left: 8px;
-      }
-    }
-  }
 }
 
 .paragraphs-collapsed-description::after,
