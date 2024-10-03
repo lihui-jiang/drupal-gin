@@ -86,12 +86,13 @@ table.entities-list {
       }
     }
 
-    .view-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      grid-gap: var(--gin-spacing-m);
-      margin-bottom: var(--gin-spacing-m);
-    }
+    // See https://www.drupal.org/i/3309235:
+    // .view-content {
+    //   display: grid;
+    //   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    //   grid-gap: var(--gin-spacing-m);
+    //   margin-bottom: var(--gin-spacing-m);
+    // }
 
     .views-row {
       border: 1px solid var(--gin-border-color);
