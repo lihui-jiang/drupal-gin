@@ -914,6 +914,7 @@ details summary {
 
 .view-preview-form .form-actions {
   align-items: flex-end;
+  margin-top: 0;
 }
 
 .view-preview-form .form-actions input {
