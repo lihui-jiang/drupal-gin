@@ -239,3 +239,21 @@
     background-color: var(--gin-bg-layer);
   }
 }
+
+#admin-toolbar-search-tab{
+  .form-item{
+    &::before {
+      left: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      @media (min-width: 21.5em) and (max-width: 58.25em) {
+        top: 45px;
+        transform: translateY(-13px);
+        left: 10px;
+      }
+    }
+    input{
+      height:30px
+    }
+  }
+}

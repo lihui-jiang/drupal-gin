@@ -274,3 +274,35 @@
   background-color: var(--gin-bg-layer);
 }
 
+#admin-toolbar-search-tab .form-item::before {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+[dir="ltr"] #admin-toolbar-search-tab .form-item::before {
+  left: 70px;
+}
+
+[dir="rtl"] #admin-toolbar-search-tab .form-item::before {
+  right: 70px;
+}
+
+@media (min-width: 21.5em) and (max-width: 58.25em) {
+  #admin-toolbar-search-tab .form-item::before {
+    top: 45px;
+    transform: translateY(-13px);
+  }
+
+  [dir="ltr"] #admin-toolbar-search-tab .form-item::before {
+    left: 10px;
+  }
+
+  [dir="rtl"] #admin-toolbar-search-tab .form-item::before {
+    right: 10px;
+  }
+}
+
+#admin-toolbar-search-tab .form-item input {
+  height: 30px;
+}
+
