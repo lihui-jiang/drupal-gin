@@ -158,6 +158,13 @@
     padding-top: var(--gin-toolbar-y-offset); // 39px;
   }
 
+  .toolbar .toolbar-bar #toolbar-item-administration-search {
+    &::before,
+    &:hover::before {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+  }
+
   table.sticky-header {
     @include mq(large) {
       margin-top: 0;
@@ -208,8 +215,13 @@
 
 #admin-toolbar-search-tab .form-item {
   &::before {
-    top: 6px;
-    left: 26px;
+    top: 33px;
+    left: 10px;
+
+    @include mq(large) {
+      top: 6px;
+      left: 68px;
+    }
   }
 }
 
@@ -225,5 +237,23 @@
 
   .toolbar-lining {
     background-color: var(--gin-bg-layer);
+  }
+}
+
+#admin-toolbar-search-tab{
+  .form-item{
+    &::before {
+      left: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      @media (min-width: 21.5em) and (max-width: 58.25em) {
+        top: 45px;
+        transform: translateY(-13px);
+        left: 10px;
+      }
+    }
+    input{
+      height:30px
+    }
   }
 }
