@@ -127,8 +127,10 @@
 
       // Watch save
       document.querySelector('[data-drupal-selector="edit-submit"]').addEventListener('click', () => {
-        // Reset darkmode localStorage.
-        localStorage.setItem('Drupal.gin.darkmode', '');
+        // Store in localStorage to avoid flickering.
+        if (drupalSettings.gin.darkmode_localstorage == 'always' || drupalSettings.gin.darkmode_localstorage == 'adminpath' && drupalSettings.path.currentPathIsAdmin)  {
+          localStorage.setItem('Drupal.gin.darkmode', darkmodeEnabled)
+        }
       });
     },
 
@@ -146,8 +148,10 @@
         document.querySelector('html').classList.remove(darkmodeClass);
       }
 
-      // Reset localStorage.
-      localStorage.setItem('Drupal.gin.darkmode', '');
+      // Store in localStorage to avoid flickering.
+      if (drupalSettings.gin.darkmode_localstorage == 'always' || drupalSettings.gin.darkmode_localstorage == 'adminpath' && drupalSettings.path.currentPathIsAdmin)  {
+        localStorage.setItem('Drupal.gin.darkmode', darkmodeEnabled)
+      }
 
       // Change to Darkmode.
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {

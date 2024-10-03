@@ -1,12 +1,16 @@
 (() => {
   function ginInitDarkmode() {
-    1 == localStorage.getItem("Drupal.gin.darkmode") || "auto" === localStorage.getItem("Drupal.gin.darkmode") && window.matchMedia("(prefers-color-scheme: dark)").matches ? document.documentElement.classList.add("gin--dark-mode") : !0 === document.documentElement.classList.contains("gin--dark-mode") && document.documentElement.classList.remove("gin--dark-mode");
+    if (!localStorage.getItem("Drupal.gin.darkmode") && "undefined" == typeof drupalSettings) return;
+    let darkmode = localStorage.getItem("Drupal.gin.darkmode") || drupalSettings.gin.darkmode;
+    0 == darkmode || 1 == darkmode ? window.ginDarkmode = darkmode : darkmode = window.matchMedia("(prefers-color-scheme: dark)").matches ? 1 : 0;
+    1 == darkmode ? document.documentElement.classList.add("gin--dark-mode") : !0 === document.documentElement.classList.contains("gin--dark-mode") && document.documentElement.classList.remove("gin--dark-mode"), 
+    "undefined" != typeof drupalSettings && ("always" == drupalSettings.gin.darkmode_localstorage || "adminpath" == drupalSettings.gin.darkmode_localstorage && drupalSettings.path.currentPathIsAdmin) && localStorage.setItem("Drupal.gin.darkmode", window.ginDarkmode);
   }
   if (localStorage.getItem("GinDarkMode") && (localStorage.setItem("Drupal.gin.darkmode", localStorage.getItem("GinDarkMode")), 
   localStorage.removeItem("GinDarkMode")), localStorage.getItem("GinSidebarOpen") && (localStorage.setItem("Drupal.gin.toolbarExpanded", localStorage.getItem("GinSidebarOpen")), 
-  localStorage.removeItem("GinSidebarOpen")), ginInitDarkmode(), window.addEventListener("DOMContentLoaded", (() => {
-    localStorage.getItem("Drupal.gin.darkmode") && (drupalSettings.gin.darkmode == localStorage.getItem("Drupal.gin.darkmode") || drupalSettings.gin.show_user_theme_settings) || (localStorage.setItem("Drupal.gin.darkmode", drupalSettings.gin.darkmode), 
-    ginInitDarkmode());
+  localStorage.removeItem("GinSidebarOpen")), window.ginDarkmode = "auto", ginInitDarkmode(), 
+  window.addEventListener("DOMContentLoaded", (() => {
+    ginInitDarkmode();
   })), localStorage.getItem("Drupal.gin.toolbarExpanded")) {
     const style = document.createElement("style"), className = "gin-toolbar-inline-styles";
     if (style.className = className, "true" === localStorage.getItem("Drupal.gin.toolbarExpanded")) {

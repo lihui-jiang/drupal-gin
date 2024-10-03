@@ -99,7 +99,8 @@
 }
 
 // Darkmode
-[data-drupal-selector="edit-enable-darkmode"] {
+[data-drupal-selector="edit-enable-darkmode"],
+[data-drupal-selector="edit-enable-darkmode-localstorage"] {
   .form-radios {
     display: inline-flex;
     flex-wrap: wrap;

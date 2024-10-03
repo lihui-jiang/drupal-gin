@@ -17,16 +17,43 @@ function checkLegacy() {
 
 checkLegacy();
 
-// Darkmode Check.
+// Global var for Gin Darkmode.
+window.ginDarkmode = 'auto';
+
+// Initialize ginDarkmode and set classes.
 function ginInitDarkmode() {
+
+  if (!localStorage.getItem('Drupal.gin.darkmode') && typeof drupalSettings === 'undefined') {
+    // No localStorage is set and drupalSettings are not loaded - come back kater.
+    return;
+  }
+
+  // Load darkmode setting from localstorare or drupalSettings.
+  let darkmode = localStorage.getItem('Drupal.gin.darkmode') || drupalSettings.gin.darkmode;
+
+  if (darkmode == 0 || darkmode == 1) {
+    // Fixed preset.
+    window.ginDarkmode = darkmode;
+  } else {
+    // Unset or auto,
+    darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 1 : 0;
+  }
+
+  // Darkmode class.
   const darkModeClass = 'gin--dark-mode';
-  if (
-    localStorage.getItem('Drupal.gin.darkmode') == 1 ||
-    (localStorage.getItem('Drupal.gin.darkmode') === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
+
+  // Set classes for darkmode.
+  if (darkmode == 1) {
     document.documentElement.classList.add(darkModeClass);
   } else {
     document.documentElement.classList.contains(darkModeClass) === true && document.documentElement.classList.remove(darkModeClass);
+  }
+
+  // Store in localStorage to avoid flickering.
+  if (typeof drupalSettings !== 'undefined') {
+    if (drupalSettings.gin.darkmode_localstorage == 'always' || drupalSettings.gin.darkmode_localstorage == 'adminpath' && drupalSettings.path.currentPathIsAdmin)  {
+      localStorage.setItem('Drupal.gin.darkmode', window.ginDarkmode)
+    }
   }
 }
 
@@ -34,13 +61,7 @@ ginInitDarkmode();
 
 // GinDarkMode is not set yet or config changes detected.
 window.addEventListener('DOMContentLoaded', () => {
-  if (
-    !localStorage.getItem('Drupal.gin.darkmode') ||
-    (drupalSettings.gin.darkmode != localStorage.getItem('Drupal.gin.darkmode') && !drupalSettings.gin.show_user_theme_settings)
-  ) {
-    localStorage.setItem('Drupal.gin.darkmode', drupalSettings.gin.darkmode);
-    ginInitDarkmode();
-  }
+  ginInitDarkmode();
 });
 
 // Toolbar Check.

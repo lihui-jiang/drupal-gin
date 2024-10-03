@@ -58,6 +58,7 @@ class GinTest extends BrowserTestBase {
     $response = $this->drupalGet('/admin/content');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertStringContainsString('"darkmode":"0"', $response);
+    $this->assertStringContainsString('"darkmode_localstorage":"never"', $response);
     $this->assertStringContainsString('"preset_accent_color":"blue"', $response);
     $this->assertStringContainsString('"preset_focus_color":"gin"', $response);
     $this->assertSession()->responseContains('gin.css');
@@ -73,6 +74,16 @@ class GinTest extends BrowserTestBase {
     $response = $this->drupalGet('/admin/content');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertStringContainsString('"darkmode":"1"', $response);
+  }
+
+  /**
+   * Tests Darkmode Localstorage setting.
+   */
+  public function testDarkLocalstorageModeSetting() {
+    \Drupal::configFactory()->getEditable('gin.settings')->set('enable_darkmode_localstorage', 'always')->save();
+    $response = $this->drupalGet('/admin/content');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertStringContainsString('"darkmode_localstorage":"always"', $response);
   }
 
   /**
@@ -115,17 +126,24 @@ class GinTest extends BrowserTestBase {
     $this->drupalLogin($user1);
 
     // Change something on the logged in user form.
-    $this->assertStringContainsString('"darkmode":"0"', $this->drupalGet($user1->toUrl('edit-form')));
+    $loadedEditForm = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"darkmode":"0"', $loadedEditForm);
+    $this->assertStringContainsString('"darkmode_localstorage":"never"', $loadedEditForm);
 
     $this->submitForm([
       'enable_user_settings' => TRUE,
       'enable_darkmode' => '1',
+      'enable_darkmode_localstorage' => 'always',
     ], 'Save', 'user-form');
-    $this->assertStringContainsString('"darkmode":"1"', $this->drupalGet($user1->toUrl('edit-form')));
+    $loadedEditForm = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"darkmode":"1"', $loadedEditForm);
+    $this->assertStringContainsString('"darkmode_localstorage":"always"', $loadedEditForm);
 
     // Login as admin.
     $this->drupalLogin($this->rootUser);
-    $this->assertStringContainsString('"darkmode":"0"', $this->drupalGet('edit-form'));
+    $loadedEditForm = $this->drupalGet('edit-form');
+    $this->assertStringContainsString('"darkmode":"0"', $loadedEditForm);
+    $this->assertStringContainsString('"darkmode_localstorage":"never"', $loadedEditForm);
 
     // Change something on user1 edit form.
     $this->drupalGet($user1->toUrl('edit-form'));

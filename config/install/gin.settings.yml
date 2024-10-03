@@ -1,6 +1,7 @@
 preset_accent_color: 'blue'
 preset_focus_color: 'gin'
 enable_darkmode: '0'
+enable_darkmode_localstorage: 'never'
 classic_toolbar: 'vertical'
 secondary_toolbar_frontend: true
 logo:
