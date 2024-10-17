@@ -90,7 +90,9 @@
 
       sidebarTrigger.querySelector('span').innerHTML = hideLabel;
       sidebarTrigger.setAttribute('title', hideLabel);
-      sidebarTrigger.nextSibling.innerHTML = hideLabel;
+      if (sidebarTrigger.nextSibling) {
+        sidebarTrigger.nextSibling.innerHTML = hideLabel;
+      }
       sidebarTrigger.setAttribute('aria-expanded', 'true');
       sidebarTrigger.classList.add('is-active');
 
@@ -118,7 +120,9 @@
 
       sidebarTrigger.querySelector('span').innerHTML = showLabel;
       sidebarTrigger.setAttribute('title', showLabel);
-      sidebarTrigger.nextSibling.innerHTML = showLabel;
+      if (sidebarTrigger.nextSibling) {
+        sidebarTrigger.nextSibling.innerHTML = showLabel;
+      }
       sidebarTrigger.setAttribute('aria-expanded', 'false');
       sidebarTrigger.classList.remove('is-active');
 
@@ -165,12 +169,18 @@
     },
 
     resizeStart: (e) => {
-      e.preventDefault();
-      isResizing = true;
-      startX = e.clientX;
-      startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+      var isIOS = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if ('ontouchstart' in window || isIOS) {
+        isResizing = true;
+        startX = e.touches[0].clientX;
+        startWidth = parseInt(window.getComputedStyle(resizable).width, 10);
+      }else{
+        e.preventDefault();
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+      }
     },
-
     resizeEnd: () => {
       isResizing = false;
       const setWidth = document.documentElement.style.getPropertyValue('--gin-sidebar-width');
@@ -179,19 +189,21 @@
       document.removeEventListener('mousemove', this.resizeWidth);
       document.removeEventListener('touchend', this.resizeWidth);
     },
-
     resizeWidth: (e) => {
       if (isResizing) {
-        let sidebarWidth = startWidth - (e.clientX - startX);
-
+        let sidebarWidth;
+        let isIOS = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if ('ontouchstart' in window || isIOS) {
+          sidebarWidth = startWidth - (e.touches[0].clientX - startX);
+        }else{
+          sidebarWidth = startWidth - (e.clientX - startX);
+        }
         if (sidebarWidth <= 240) {
           sidebarWidth = 240;
         } else if (sidebarWidth >= 560) {
           sidebarWidth = 560;
         }
-
         sidebarWidth = `${sidebarWidth}px`;
-        // resizable.style.width = sidebarWidth;
         document.documentElement.style.setProperty('--gin-sidebar-width', sidebarWidth);
       }
     }

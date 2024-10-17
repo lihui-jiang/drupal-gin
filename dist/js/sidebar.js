@@ -24,29 +24,24 @@
           }))));
         },
         toggleSidebar: () => {
-          var _Drupal$ginStickyForm, _Drupal$ginStickyForm2;
           document.querySelector(".meta-sidebar__trigger").classList.contains("is-active") ? (Drupal.ginSidebar.collapseSidebar(), 
-          null === (_Drupal$ginStickyForm = Drupal.ginStickyFormActions) || void 0 === _Drupal$ginStickyForm || _Drupal$ginStickyForm.hideMoreActions()) : (Drupal.ginSidebar.showSidebar(), 
-          null === (_Drupal$ginStickyForm2 = Drupal.ginStickyFormActions) || void 0 === _Drupal$ginStickyForm2 || _Drupal$ginStickyForm2.hideMoreActions());
+          Drupal.ginStickyFormActions?.hideMoreActions()) : (Drupal.ginSidebar.showSidebar(), 
+          Drupal.ginStickyFormActions?.hideMoreActions());
         },
         showSidebar: () => {
           const chooseStorage = window.innerWidth < 1024 ? "Drupal.gin.sidebarExpanded.mobile" : storageDesktop, hideLabel = Drupal.t("Hide sidebar panel"), sidebarTrigger = document.querySelector(".meta-sidebar__trigger");
-          var _Drupal$ginCoreNaviga;
-          if (sidebarTrigger.querySelector("span").innerHTML = hideLabel, sidebarTrigger.setAttribute("title", hideLabel), 
-          sidebarTrigger.nextSibling.innerHTML = hideLabel, sidebarTrigger.setAttribute("aria-expanded", "true"), 
-          sidebarTrigger.classList.add("is-active"), document.body.setAttribute("data-meta-sidebar", "open"), 
-          localStorage.setItem(chooseStorage, "true"), window.innerWidth < 1280) if (null === (_Drupal$ginCoreNaviga = Drupal.ginCoreNavigation) || void 0 === _Drupal$ginCoreNaviga || _Drupal$ginCoreNaviga.collapseToolbar(), 
-          "vertical" === toolbarVariant) Drupal.ginToolbar.collapseToolbar(); else if ("new" === toolbarVariant) {
-            var _Drupal$behaviors$gin;
-            null === (_Drupal$behaviors$gin = Drupal.behaviors.ginNavigation) || void 0 === _Drupal$behaviors$gin || _Drupal$behaviors$gin.collapseSidebar();
-          }
+          sidebarTrigger.querySelector("span").innerHTML = hideLabel, sidebarTrigger.setAttribute("title", hideLabel), 
+          sidebarTrigger.nextSibling && (sidebarTrigger.nextSibling.innerHTML = hideLabel), 
+          sidebarTrigger.setAttribute("aria-expanded", "true"), sidebarTrigger.classList.add("is-active"), 
+          document.body.setAttribute("data-meta-sidebar", "open"), localStorage.setItem(chooseStorage, "true"), 
+          window.innerWidth < 1280 && (Drupal.ginCoreNavigation?.collapseToolbar(), "vertical" === toolbarVariant ? Drupal.ginToolbar.collapseToolbar() : "new" === toolbarVariant && Drupal.behaviors.ginNavigation?.collapseSidebar());
         },
         collapseSidebar: () => {
           const chooseStorage = window.innerWidth < 1024 ? "Drupal.gin.sidebarExpanded.mobile" : storageDesktop, showLabel = Drupal.t("Show sidebar panel"), sidebarTrigger = document.querySelector(".meta-sidebar__trigger");
           sidebarTrigger.querySelector("span").innerHTML = showLabel, sidebarTrigger.setAttribute("title", showLabel), 
-          sidebarTrigger.nextSibling.innerHTML = showLabel, sidebarTrigger.setAttribute("aria-expanded", "false"), 
-          sidebarTrigger.classList.remove("is-active"), document.body.setAttribute("data-meta-sidebar", "closed"), 
-          localStorage.setItem(chooseStorage, "false");
+          sidebarTrigger.nextSibling && (sidebarTrigger.nextSibling.innerHTML = showLabel), 
+          sidebarTrigger.setAttribute("aria-expanded", "false"), sidebarTrigger.classList.remove("is-active"), 
+          document.body.setAttribute("data-meta-sidebar", "closed"), localStorage.setItem(chooseStorage, "false");
         },
         handleResize: function() {
           let windowSize = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : window;
@@ -62,7 +57,12 @@
           document.addEventListener("touchmove", this.resizeWidth), document.addEventListener("touchend", this.resizeEnd);
         },
         resizeStart: e => {
-          e.preventDefault(), isResizing = !0, startX = e.clientX, startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+          var isIOS = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          if ('ontouchstart' in window || isIOS) {
+            isResizing = !0, startX = e.touches[0].clientX, startWidth = parseInt(window.getComputedStyle(resizable).width, 10);
+          }else{
+            e.preventDefault(), isResizing = !0, startX = e.clientX, startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+          }
         },
         resizeEnd: () => {
           isResizing = !1;
@@ -72,7 +72,13 @@
         },
         resizeWidth: e => {
           if (isResizing) {
-            let sidebarWidth = startWidth - (e.clientX - startX);
+            let sidebarWidth;
+            let isIOS = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            if ('ontouchstart' in window || isIOS) {
+              sidebarWidth = startWidth - (e.touches[0].clientX - startX);
+            }else{
+              sidebarWidth = startWidth - (e.clientX - startX);
+            }
             sidebarWidth <= 240 ? sidebarWidth = 240 : sidebarWidth >= 560 && (sidebarWidth = 560), 
             sidebarWidth = `${sidebarWidth}px`, document.documentElement.style.setProperty("--gin-sidebar-width", sidebarWidth);
           }
