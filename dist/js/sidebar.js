@@ -57,7 +57,12 @@
           document.addEventListener("touchmove", this.resizeWidth), document.addEventListener("touchend", this.resizeEnd);
         },
         resizeStart: e => {
-          e.preventDefault(), isResizing = !0, startX = e.clientX, startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+          var isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          if ('ontouchstart' in window || isTouchDevice) {
+            isResizing = !0, startX = e.touches[0].clientX, startWidth = parseInt(window.getComputedStyle(resizable).width, 10);
+          }else{
+            e.preventDefault(), isResizing = !0, startX = e.clientX, startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+          }
         },
         resizeEnd: () => {
           isResizing = !1;
@@ -67,7 +72,13 @@
         },
         resizeWidth: e => {
           if (isResizing) {
-            let sidebarWidth = startWidth - (e.clientX - startX);
+            let sidebarWidth;
+            let isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            if ('ontouchstart' in window || isTouchDevice) {
+              sidebarWidth = startWidth - (e.touches[0].clientX - startX);
+            }else{
+              sidebarWidth = startWidth - (e.clientX - startX);
+            }
             sidebarWidth <= 240 ? sidebarWidth = 240 : sidebarWidth >= 560 && (sidebarWidth = 560), 
             sidebarWidth = `${sidebarWidth}px`, document.documentElement.style.setProperty("--gin-sidebar-width", sidebarWidth);
           }
