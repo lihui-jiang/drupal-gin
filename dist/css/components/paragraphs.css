@@ -186,6 +186,10 @@ html.js .field--widget-paragraphs .draggable .tabledrag-handle::after {
   background: var(--gin-bg-layer2);
 }
 
+form-actions .form-wrapper, field-actions .form-wrapper {
+  display: block;
+}
+
 html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle {
   min-width: 32px;
 }
