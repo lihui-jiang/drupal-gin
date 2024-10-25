@@ -201,11 +201,20 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     if (!$this->isContentForm($form, $form_state, $form_id)) {
       return;
     }
+    // Check if sidebar is empty.
+    $no_sidebar = TRUE;
+    foreach (Element::children($form) as $key) {
+      if (isset($form[$key]['#group']) && $form[$key]['#group'] == 'advanced') {
+        $no_sidebar = FALSE;
+        break;
+      }
+    }
+    $hide_meta = $form['hide-meta'] ?? FALSE;
 
     // Provide a default meta form element if not already provided.
     // @see NodeForm::form()
     $form['advanced']['#attributes']['class'][] = 'entity-meta';
-    if (!isset($form['meta'])) {
+    if (!isset($form['meta']) && !$hide_meta && !$no_sidebar) {
       $form['meta'] = [
         '#type' => 'container',
         '#group' => 'advanced',
@@ -227,40 +236,46 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     $form['revision_information']['#group'] = 'meta';
     $form['revision_information']['#attributes']['class'][] = 'entity-meta__revision';
 
+    if ($no_sidebar) {
+      unset($form['advanced']);
+    }
+
     // Action buttons.
     if (isset($form['actions'])) {
       // Add sidebar toggle.
-      $hide_panel = t('Hide sidebar panel');
-      $form['actions']['gin_sidebar_toggle'] = [
-        '#markup' => '<a href="#toggle-sidebar" class="meta-sidebar__trigger trigger" data-gin-tooltip role="button" title="' . $hide_panel . '" aria-controls="gin_sidebar"><span class="visually-hidden">' . $hide_panel . '</span></a>',
-        '#weight' => 1000,
-      ];
-      $form['#attached']['library'][] = 'gin/sidebar';
+      if (!$no_sidebar) {
+        $hide_panel = t('Hide sidebar panel');
+        $form['actions']['gin_sidebar_toggle'] = [
+          '#markup' => '<a href="#toggle-sidebar" class="meta-sidebar__trigger trigger" data-gin-tooltip  role="button" title="' . $hide_panel . '" aria-controls="gin_sidebar"><span class="visually-hidden">' . $hide_panel . '</span></a>',
+          '#weight' => '999',
+        ];
+        $form['#attached']['library'][] = 'gin/sidebar';
 
-      // Create gin_sidebar group.
-      $form['gin_sidebar'] = [
-        '#group' => 'meta',
-        '#type' => 'container',
-        '#weight' => 99,
-        '#multilingual' => TRUE,
-        '#attributes' => [
-          'class' => [
-            'gin-sidebar',
+        // Create gin_sidebar group.
+        $form['gin_sidebar'] = [
+          '#group' => 'meta',
+          '#type' => 'container',
+          '#weight' => 99,
+          '#multilingual' => TRUE,
+          '#attributes' => [
+            'class' => [
+              'gin-sidebar',
+            ],
           ],
-        ],
-      ];
-      // Copy footer over.
-      $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
+        ];
+        // Copy footer over.
+        $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
 
-      // Sidebar close button.
-      $close_sidebar_translation = t('Close sidebar panel');
-      $form['gin_sidebar']['gin_sidebar_close'] = [
-        '#markup' => '<a href="#close-sidebar" class="meta-sidebar__close trigger" data-gin-tooltip role="button" title="' . $close_sidebar_translation . '"><span class="visually-hidden">' . $close_sidebar_translation . '</span></a>',
-      ];
+        // Sidebar close button.
+        $close_sidebar_translation = t('Close sidebar panel');
+        $form['gin_sidebar']['gin_sidebar_close'] = [
+          '#markup' => '<a href="#close-sidebar" class="meta-sidebar__close trigger" data-gin-tooltip role="button" title="' . $close_sidebar_translation . '"><span class="visually-hidden">' . $close_sidebar_translation . '</span></a>',
+        ];
 
-      $form['gin_sidebar_overlay'] = [
-        '#markup' => '<div class="meta-sidebar__overlay trigger"></div>',
-      ];
+        $form['gin_sidebar_overlay'] = [
+          '#markup' => '<div class="meta-sidebar__overlay trigger"></div>',
+        ];
+      }
     }
 
     // Specify necessary node form theme and library.
