@@ -262,3 +262,21 @@ table.treetable {
 #drupal-modal .gin-sticky-form-actions.form-actions {
   display: none;
 }
+
+@include mq(small) {
+  #drupal-off-canvas-wrapper.workspaces-dialog {
+    .ui-dialog-content,
+    .ui-dialog-content > div {
+      margin-left: min(5vw, var(--gin-spacing-xxl));
+      margin-right: min(5vw, var(--gin-spacing-xxl));
+    }
+  }
+}
+
+#drupal-off-canvas-wrapper.workspaces-dialog {
+  .ui-dialog-content > div {
+    .workspaces {
+      display: block;
+    }
+  }
+}

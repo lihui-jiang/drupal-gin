@@ -60,6 +60,7 @@ $sprites: (
     'shortcut-filled': "../../media/sprite.svg#shortcut-filled-view",
     'shortcut': "../../media/sprite.svg#shortcut-view",
     'user': "../../media/sprite.svg#user-view",
+    'workspaces': "../../media/sprite.svg#workspaces-view",
     'appearance': "../../media/sprite.svg#appearance-view",
     'bat': "../../media/sprite.svg#bat-view",
     'commerce': "../../media/sprite.svg#commerce-view",
@@ -323,6 +324,10 @@ $sizes: (
         'height': 24px
     ),
     'user': (
+        'width': 24px,
+        'height': 24px
+    ),
+    'workspaces': (
         'width': 24px,
         'height': 24px
     ),

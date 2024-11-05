@@ -173,6 +173,7 @@
     align-items: center;
     height: 100%;
     border-block-end: none;
+    margin-top: 0 !important;
   }
 }
 

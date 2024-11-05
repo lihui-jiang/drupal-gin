@@ -1,0 +1,27 @@
+.toolbar {
+
+  .toolbar-bar {
+
+    .toolbar-icon-workspace {
+
+      &:before {
+        mask-image: icon('workspaces');
+      }
+
+    }
+
+  }
+
+}
+
+.gin-secondary-toolbar .toolbar-secondary {
+
+  .toolbar-bar {
+
+    .toolbar-tab {
+      border-radius: var(--gin-border-s) var(--gin-border-s) 0 0;
+    }
+
+  }
+
+}
