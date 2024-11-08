@@ -20,7 +20,6 @@ function gin_preprocess_breadcrumb(&$variables) {
     $entity_id = $entity ? $entity->getEntityTypeId() : NULL;
     $url = $entity ? $entity->toUrl() : NULL;
 
-
     if ($entity) {
       $variables['#cache']['tags'] = Cache::mergeTags(
         $variables['#cache']['tags'] ?? [],
