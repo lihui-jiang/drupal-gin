@@ -2,10 +2,10 @@
 
 namespace Drupal\gin;
 
-use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Url;
+use Drupal\block_content\Entity\BlockContentType;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -91,7 +91,6 @@ class GinNavigation implements ContainerInjectionInterface {
 
     // Get node types.
     if ($entity_type_manager->hasDefinition('node')) {
-      $create_item_url = Url::fromRoute('node.add_page')->toString();
       $content_types = $entity_type_manager->getStorage('node_type')->loadMultiple();
       $content_type_items = [];
 
@@ -99,7 +98,7 @@ class GinNavigation implements ContainerInjectionInterface {
         $content_type_items[] = [
           'title' => $item->label(),
           'class' => $item->id(),
-          'url' => $create_item_url,
+          'url' => Url::fromRoute('node.add', ['node_type' => $item->id()]),
         ];
       }
 
