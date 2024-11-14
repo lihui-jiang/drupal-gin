@@ -2747,6 +2747,18 @@ html.js.no-touchevents .dropbutton--multiple.dropbutton--extrasmall .dropbutton_
   margin-inline-end: 0;
 }
 
+.gin-table-scroll-wrapper .views-form__bulk-operations-row .dropbutton--extrasmall {
+  border-color: #d3d4da;
+  border-radius: 0 !important;
+  padding: 0;
+  background-color: #d3d4da;
+}
+
+.gin-table-scroll-wrapper .views-form__bulk-operations-row .dropbutton--extrasmall .dropbutton-toggle .dropbutton__toggle {
+  border-color: #d3d4da !important;
+  height: auto;
+}
+
 .action-link {
   color: var(--gin-color-primary);
   background: transparent;
@@ -4189,3 +4201,5 @@ blockquote::before {
   margin-inline-start: -0.5em;
 }
 
+
+/*# sourceMappingURL=gin.css.map*/

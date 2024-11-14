@@ -303,3 +303,20 @@ html.js.no-touchevents {
     margin-inline-end: 0;
   }
 }
+
+.gin-table-scroll-wrapper {
+  .views-form__bulk-operations-row {
+    .dropbutton--extrasmall {
+      border-color: #d3d4da;
+      border-radius: 0 !important;
+      padding: 0;
+      background-color: #d3d4da;
+      .dropbutton-toggle {
+        .dropbutton__toggle {
+          border-color: #d3d4da !important;
+          height: auto;
+        }
+      }
+    }
+  }
+}
