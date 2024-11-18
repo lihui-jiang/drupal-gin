@@ -51,6 +51,20 @@ function hook_gin_content_form_routes_alter(array &$routes) {
 }
 
 /**
+ * Alter the registered routes to enable or disable Gin’s edit form layout.
+ *
+ * @param array $routes
+ *   The list of routes.
+ *
+ * @see GinContentFormHelper->isContentForm()
+ * @see hook_gin_content_form_routes()
+ */
+function hook_gin_ignored_content_forms_alter(array &$form_ids_to_ignore) {
+  // Example: disable Gin edit form layout customizations for a custom form.
+  $form_ids_to_ignore = array_merge($form_ids_to_ignore, ['example_node_extension_form']);
+}
+
+/**
  * Register form ids to opt-out of Gin’s sticky action buttons.
  *
  * Leverage this hook to opt-out of Gin's sticky action buttons.

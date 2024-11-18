@@ -339,6 +339,9 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       'date_recur_modular_sierra_occurrences_modal',
       'date_recur_modular_sierra_modal',
     ];
+    // Allow modules and themes to alter which forms to ignore.
+    $this->moduleHandler->alter('gin_ignored_content_forms', $form_ids_to_ignore);
+    $this->themeManager->alter('gin_ignored_content_forms', $form_ids_to_ignore);
 
     foreach ($form_ids_to_ignore as $form_id_to_ignore) {
       if ($form_id && strpos($form_id, $form_id_to_ignore) !== FALSE) {
