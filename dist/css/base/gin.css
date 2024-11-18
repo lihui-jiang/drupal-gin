@@ -2460,6 +2460,7 @@ html.js .dropbutton-wrapper.open .dropbutton {
 .dropbutton__item:first-of-type > *, .dropbutton__toggle {
   background: none;
   white-space: nowrap;
+  color: var(--gin-color-primary) !important;
 }
 
 @media (forced-colors: active) {
@@ -2473,21 +2474,29 @@ html.js .dropbutton-wrapper.open .dropbutton {
 }
 
 .dropbutton__toggle {
-  inset-block-start: 2px;
-  inset-inline-end: 2px;
+  inset-block-start: 2px !important;
+  inset-inline-end: 2px !important;
   width: calc(var(--gin-spacing-xxl) + 1px);
   height: 2.75rem;
+  background-color: var(--gin-bg-input) !important;
+}
+
+[dir="ltr"] .dropbutton__toggle {
   border-inline-start: var(--dropbutton-border-size, 1px) solid var(--gin-color-primary) !important;
 }
 
+[dir="rtl"] .dropbutton__toggle {
+  border-inline-end: var(--dropbutton-border-size, 1px) solid var(--gin-color-primary) !important;
+}
+
 .dropbutton__toggle:hover {
-  background-color: var(--gin-color-primary);
+  background-color: var(--gin-color-primary) !important;
 }
 
 @media not (forced-colors: active) {
   .dropbutton__toggle::before {
-    background-image: none;
-    background-color: var(--gin-color-primary);
+    background-image: none !important;
+    background-color: var(--gin-color-primary) !important;
     -webkit-mask-image: url("../../media/sprite.svg#drop-view");
             mask-image: url("../../media/sprite.svg#drop-view");
     -webkit-mask-repeat: no-repeat;
@@ -2499,7 +2508,7 @@ html.js .dropbutton-wrapper.open .dropbutton {
   }
 
   .dropbutton__toggle:hover::before, .dropbutton__toggle:active::before, .dropbutton__toggle:focus::before {
-    background-color: var(--gin-color-button-text);
+    background-color: var(--gin-color-button-text) !important;
   }
 }
 
@@ -2593,7 +2602,7 @@ html.js .dropbutton-wrapper.open .dropbutton {
 .dropbutton .dropbutton__items > .dropbutton__item ~ .dropbutton__item > .button:hover,
 .dropbutton .dropbutton__items > .dropbutton__item ~ .dropbutton__item > .button:active,
 .dropbutton .dropbutton__items > .dropbutton__item ~ .dropbutton__item > .button:focus {
-  color: var(--gin-color-button-text);
+  color: var(--gin-color-button-text) !important;
   background: var(--gin-color-primary);
   border-radius: var(--gin-border-s);
 }
@@ -2635,6 +2644,12 @@ html.js .dropbutton-wrapper.open .dropbutton {
   }
 }
 
+.dropbutton > .dropbutton__item:first-of-type > a,
+.dropbutton > .dropbutton__item:first-of-type > input,
+.dropbutton > .dropbutton__item:first-of-type > .button {
+  background-color: var(--gin-bg-input);
+}
+
 .dropbutton > .dropbutton__item:first-of-type > a:hover, .dropbutton > .dropbutton__item:first-of-type > a:active, .dropbutton > .dropbutton__item:first-of-type > a:focus,
 .dropbutton > .dropbutton__item:first-of-type > input:hover,
 .dropbutton > .dropbutton__item:first-of-type > input:active,
@@ -2642,7 +2657,7 @@ html.js .dropbutton-wrapper.open .dropbutton {
 .dropbutton > .dropbutton__item:first-of-type > .button:hover,
 .dropbutton > .dropbutton__item:first-of-type > .button:active,
 .dropbutton > .dropbutton__item:first-of-type > .button:focus {
-  color: var(--gin-color-button-text);
+  color: var(--gin-color-button-text) !important;
   background: var(--gin-color-primary);
 }
 
@@ -2745,18 +2760,6 @@ html.js.no-touchevents .dropbutton--extrasmall .dropbutton__item:first-of-type >
 
 html.js.no-touchevents .dropbutton--multiple.dropbutton--extrasmall .dropbutton__items .dropbutton__item {
   margin-inline-end: 0;
-}
-
-.gin-table-scroll-wrapper .views-form__bulk-operations-row .dropbutton--extrasmall {
-  border-color: #d3d4da;
-  border-radius: 0 !important;
-  padding: 0;
-  background-color: #d3d4da;
-}
-
-.gin-table-scroll-wrapper .views-form__bulk-operations-row .dropbutton--extrasmall .dropbutton-toggle .dropbutton__toggle {
-  border-color: #d3d4da !important;
-  height: auto;
 }
 
 .action-link {
@@ -4201,5 +4204,3 @@ blockquote::before {
   margin-inline-start: -0.5em;
 }
 
-
-/*# sourceMappingURL=gin.css.map*/

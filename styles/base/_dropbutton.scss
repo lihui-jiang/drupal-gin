@@ -56,6 +56,7 @@ html.js {
   &__toggle {
     background: none;
     white-space: nowrap;
+    color: var(--gin-color-primary) !important;
 
     @media (forced-colors: active) {
       border-width: 0 !important;
@@ -67,20 +68,21 @@ html.js {
   }
 
   &__toggle {
-    inset-block-start: 2px;
-    inset-inline-end: 2px;
+    inset-block-start: 2px !important;
+    inset-inline-end: 2px !important;
     width: calc(var(--gin-spacing-xxl) + 1px);
     height: 2.75rem;
-    border-inline-start: var(--dropbutton-border-size, 1px) solid var(--gin-color-primary) !important;
+    border-left:  var(--dropbutton-border-size,1px) solid var(--gin-color-primary) !important;
+    background-color: var(--gin-bg-input) !important;
 
     &:hover {
-      background-color: var(--gin-color-primary);
+      background-color: var(--gin-color-primary) !important;
     }
 
     @media not (forced-colors: active) {
       &::before {
-        background-image: none;
-        background-color: var(--gin-color-primary);
+        background-image: none !important;
+        background-color: var(--gin-color-primary) !important;
         mask-image: icon('drop');
         mask-repeat: no-repeat;
         mask-position: center center;
@@ -90,7 +92,7 @@ html.js {
       &:hover::before,
       &:active::before,
       &:focus::before {
-        background-color: var(--gin-color-button-text);
+        background-color: var(--gin-color-button-text) !important;
       }
     }
   }
@@ -168,7 +170,7 @@ html.js {
       box-sizing: border-box;
 
       &:hover, &:active, &:focus {
-        color: var(--gin-color-button-text);
+        color: var(--gin-color-button-text) !important;
         background: var(--gin-color-primary);
         border-radius: var(--gin-border-s);
 
@@ -190,8 +192,9 @@ html.js {
     > a,
     > input,
     > .button {
+      background-color: var(--gin-bg-input);
       &:hover, &:active, &:focus {
-        color: var(--gin-color-button-text);
+        color: var(--gin-color-button-text) !important;
         background: var(--gin-color-primary);
       }
     }
@@ -301,22 +304,5 @@ html.js.no-touchevents {
 
   .dropbutton--multiple.dropbutton--extrasmall .dropbutton__items .dropbutton__item {
     margin-inline-end: 0;
-  }
-}
-
-.gin-table-scroll-wrapper {
-  .views-form__bulk-operations-row {
-    .dropbutton--extrasmall {
-      border-color: #d3d4da;
-      border-radius: 0 !important;
-      padding: 0;
-      background-color: #d3d4da;
-      .dropbutton-toggle {
-        .dropbutton__toggle {
-          border-color: #d3d4da !important;
-          height: auto;
-        }
-      }
-    }
   }
 }
