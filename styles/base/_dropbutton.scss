@@ -16,6 +16,10 @@ html.js {
   }
 }
 
+.dropbutton-wrapper {
+  box-shadow: none !important;
+}
+
 .dropbutton {
   border: 2px solid var(--gin-color-primary);
   border-radius: var(--gin-border-m);
@@ -65,6 +69,7 @@ html.js {
 
   &__item:first-of-type > * {
     padding: calc(.875rem - 1px) calc(var(--gin-spacing-l) - 1px);
+    border-radius: calc(var(--gin-border-s) - 0.14rem) 0 0 calc(var(--gin-border-s) - 0.14rem) !important;
   }
 
   &__toggle {
@@ -74,7 +79,8 @@ html.js {
     height: 2.75rem;
     border-left:  var(--dropbutton-border-size,1px) solid var(--gin-color-primary) !important;
     background-color: var(--gin-bg-input) !important;
-
+    border-radius: 0 calc(var(--gin-border-s) - 0.14rem) calc(var(--gin-border-s) - 0.14rem) 0 !important;
+    
     &:hover {
       background-color: var(--gin-color-primary) !important;
     }

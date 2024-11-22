@@ -2421,6 +2421,10 @@ html.js .dropbutton-wrapper.open .dropbutton {
   background: var(--gin-bg-layer3);
 }
 
+.dropbutton-wrapper {
+  box-shadow: none !important;
+}
+
 .dropbutton {
   border: 2px solid var(--gin-color-primary);
   border-radius: var(--gin-border-m);
@@ -2473,6 +2477,14 @@ html.js .dropbutton-wrapper.open .dropbutton {
   padding: calc(.875rem - 1px) calc(var(--gin-spacing-l) - 1px);
 }
 
+[dir="ltr"] .dropbutton__item:first-of-type > * {
+  border-radius: calc(var(--gin-border-s) - .14rem) 0 0 calc(var(--gin-border-s) - .14rem) !important;
+}
+
+[dir="rtl"] .dropbutton__item:first-of-type > * {
+  border-radius: 0 calc(var(--gin-border-s) - .14rem) calc(var(--gin-border-s) - .14rem) 0 !important;
+}
+
 .dropbutton__toggle {
   inset-block-start: 2px !important;
   inset-inline-end: 2px !important;
@@ -2483,10 +2495,12 @@ html.js .dropbutton-wrapper.open .dropbutton {
 
 [dir="ltr"] .dropbutton__toggle {
   border-inline-start: var(--dropbutton-border-size, 1px) solid var(--gin-color-primary) !important;
+  border-radius: 0 calc(var(--gin-border-s) - .14rem) calc(var(--gin-border-s) - .14rem) 0 !important;
 }
 
 [dir="rtl"] .dropbutton__toggle {
   border-inline-end: var(--dropbutton-border-size, 1px) solid var(--gin-color-primary) !important;
+  border-radius: calc(var(--gin-border-s) - .14rem) 0 0 calc(var(--gin-border-s) - .14rem) !important;
 }
 
 .dropbutton__toggle:hover {
