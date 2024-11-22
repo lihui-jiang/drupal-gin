@@ -182,5 +182,5 @@
           },
         });
     })(Drupal, drupalSettings, once);
-  },
+  }
 })["./js/sidebar.js"]();
