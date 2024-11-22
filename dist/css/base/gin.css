@@ -2189,7 +2189,7 @@ tr .form-item {
 .dropbutton__item:first-of-type > *,
 .dropbutton__toggle {
   font-size: var(--gin-font-size-s);
-  font-weight: var(--gin-font-weight-semibold);
+  font-weight: var(--gin-font-weight-semibold) !important;
   color: var(--gin-color-primary);
   background-color: transparent;
   box-shadow: none;
