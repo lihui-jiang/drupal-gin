@@ -137,7 +137,7 @@ function _gin_get_route_entity() {
  * Helper function to add cache tags to $variables from given entity.
  *
  * @param array $variables
- *    The variables array (modify in place).
+ *   The variables array (modify in place).
  * @param \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\EntityTypeInterface $entity
  *   Entity or entity type.
  */
