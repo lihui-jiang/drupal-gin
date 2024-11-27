@@ -5,10 +5,8 @@
  * breadcrumb.theme
  */
 
-use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
@@ -138,20 +136,13 @@ function _gin_get_route_entity() {
  *
  * @param array $variables
  *   The variables array (modify in place).
- * @param \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\EntityTypeInterface $entity
- *   Entity or entity type.
+ * @param \Drupal\Core\Cache\CacheableDependencyInterface|mixed $entity
+ *   The object whose cacheability metadata to retrieve.
+ *
+ * @see \Drupal\Core\Cache\CacheableMetadata::createFromObject()
  */
 function _gin_preprocess_add_entity_cache_tags(&$variables, $entity) {
-  if ($entity instanceof EntityInterface) {
-    $variables['#cache']['tags'] = Cache::mergeTags(
-      $variables['#cache']['tags'] ?? [],
-      $entity->getCacheTags()
-    );
-  }
-  if ($entity instanceof EntityTypeInterface) {
-    $variables['#cache']['tags'] = Cache::mergeTags(
-      $variables['#cache']['tags'] ?? [],
-      $entity->getListCacheTags()
-    );
-  }
+  CacheableMetadata::createFromRenderArray($variables)
+    ->merge(CacheableMetadata::createFromObject($entity))
+    ->applyTo($variables);
 }
