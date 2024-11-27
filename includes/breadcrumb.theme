@@ -7,6 +7,8 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
@@ -21,10 +23,7 @@ function gin_preprocess_breadcrumb(&$variables) {
     $url = $entity ? $entity->toUrl() : NULL;
 
     if ($entity) {
-      $variables['#cache']['tags'] = Cache::mergeTags(
-        $variables['#cache']['tags'] ?? [],
-        $entity->getCacheTags(),
-      );
+      _gin_preprocess_add_entity_cache_tags($variables, $entity);
     }
 
     foreach ($variables['breadcrumb'] as $key => $item) {
@@ -80,10 +79,7 @@ function gin_preprocess_breadcrumb(&$variables) {
           'url' => '',
         ];
 
-        $variables['#cache']['tags'] = Cache::mergeTags(
-          $variables['#cache']['tags'] ?? [],
-          $bundle->getCacheTags(),
-        );
+        _gin_preprocess_add_entity_cache_tags($variables, $bundle);
       }
     }
     // Adjust breadcrumb for other entities.
@@ -96,10 +92,7 @@ function gin_preprocess_breadcrumb(&$variables) {
         'url' => '',
       ];
 
-      $variables['#cache']['tags'] = Cache::mergeTags(
-        $variables['#cache']['tags'] ?? [],
-          $entity->getEntityType()->getListCacheTags()
-      );
+      _gin_preprocess_add_entity_cache_tags($variables, $entity->getEntityType());
     }
   }
 
@@ -137,5 +130,28 @@ function _gin_get_route_entity() {
         return NULL;
       }
     }
+  }
+}
+
+/**
+ * Helper function to add cache tags to $variables from given entity.
+ *
+ * @param array $variables
+ *    The variables array (modify in place).
+ * @param \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\EntityTypeInterface $entity
+ *   Entity or entity type.
+ */
+function _gin_preprocess_add_entity_cache_tags(&$variables, $entity) {
+  if ($entity instanceof EntityInterface) {
+    $variables['#cache']['tags'] = Cache::mergeTags(
+      $variables['#cache']['tags'] ?? [],
+      $entity->getCacheTags()
+    );
+  }
+  if ($entity instanceof EntityTypeInterface) {
+    $variables['#cache']['tags'] = Cache::mergeTags(
+      $variables['#cache']['tags'] ?? [],
+      $entity->getListCacheTags()
+    );
   }
 }
