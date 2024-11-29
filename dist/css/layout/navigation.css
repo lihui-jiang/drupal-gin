@@ -1307,6 +1307,11 @@ button.toolbar-link--sidebar-toggle[aria-expanded=true]::before {
   --icon: url("../../media/sprite.svg#rebuild-cache-view");
 }
 
+.toolbar-icon-entity-sync-admin::before,
+.toolbar-link--entity-sync-admin::before {
+  --icon: url("../../media/sprite.svg#rebuild-cache-view");
+}
+
 .responsive-preview-icon::before {
   --icon: url("../../media/sprite.svg#responsive-preview-view");
 }
