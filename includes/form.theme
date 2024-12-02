@@ -75,6 +75,7 @@ function gin_form_after_build(array $form, FormStateInterface $form_state): arra
       $new_label = [
         '#type' => 'html_tag',
         '#tag' => 'label',
+        '#access' => $button['#access'],
         '#attributes' => array_merge(
           $button['#attributes'],
           [
