@@ -18,8 +18,10 @@ function gin_preprocess_html(&$variables) {
 
   if ($gin_activated) {
     // Check if IMCE is active.
-    if (isset($variables['attributes']['class']) && in_array('imce-page', $variables['attributes']['class'])) {
-      return;
+    if (isset($variables['attributes']) && $variables['attributes'] instanceof \Drupal\Core\Template\AttributeArray) {
+      if ($variables['attributes']->hasClass('imce-page')) {
+        return;
+      }
     }
 
     // Get theme settings.
