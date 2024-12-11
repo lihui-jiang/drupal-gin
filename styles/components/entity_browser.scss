@@ -12,22 +12,25 @@
   }
 
   .item-container {
-    word-break: break-all;
     position: relative;
     margin: 0;
     min-height: 80px;
     border: 1px solid var(--gin-border-color);
     border-radius: var(--gin-border-l);
+    padding: 0 var(--gin-spacing-s) var(--gin-spacing-s);
+
+    article h2 {
+      margin-top: var(--gin-spacing-xl);;
+    }
 
     .field__item {
       border: 3px solid transparent;
       border-radius: var(--gin-border-xl);
       overflow: hidden;
 
-      &:hover,
-      &:focus {
-        border-color: var(--gin-color-primary) !important;
-        cursor: pointer;
+      .datetime {
+        display: block;
+        padding-left: var(--gin-spacing-xxs);
       }
     }
 
