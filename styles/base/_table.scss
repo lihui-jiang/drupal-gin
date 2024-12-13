@@ -95,7 +95,8 @@ table {
       border-block-end: 1px solid var(--gin-border-color-table);
     }
 
-    td {
+    td,
+    .table-file-multiple-widget td {
       height: auto;
       padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
     }
