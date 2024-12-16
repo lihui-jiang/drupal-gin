@@ -1280,8 +1280,12 @@ table tbody tr {
   border-block-end: 1px solid var(--gin-border-color-table);
 }
 
-table tbody td,
-table tbody .table-file-multiple-widget td {
+table tbody td {
+  height: auto;
+  padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
+}
+
+table.table-file-multiple-widget tbody td {
   height: auto;
   padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
 }
