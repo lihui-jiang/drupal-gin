@@ -5,12 +5,13 @@
  * breadcrumb.theme
  */
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
 /**
- * Breadcrumb.
+ * Implements hook_preprocess_breadcrumb().
  */
 function gin_preprocess_breadcrumb(&$variables) {
   // Alter node breadcrumb.
@@ -18,6 +19,10 @@ function gin_preprocess_breadcrumb(&$variables) {
     $entity = _gin_get_route_entity();
     $entity_id = $entity ? $entity->getEntityTypeId() : NULL;
     $url = $entity ? $entity->toUrl() : NULL;
+
+    if ($entity) {
+      _gin_preprocess_add_entity_cache_tags($variables, $entity);
+    }
 
     foreach ($variables['breadcrumb'] as $key => $item) {
       // Back to site item.
@@ -63,19 +68,29 @@ function gin_preprocess_breadcrumb(&$variables) {
         }
 
         // Add bundle info.
+        /** @var \Drupal\node\NodeTypeInterface $bundle */
+        $bundle = $node->get('type')->entity;
         $variables['breadcrumb'][] = [
-          'text' => t('Edit') . ' ' . $node->type->entity->label(),
+          'text' => t('Edit @type', [
+            '@type' => $bundle->label(),
+          ]),
           'url' => '',
         ];
+
+        _gin_preprocess_add_entity_cache_tags($variables, $bundle);
       }
     }
     // Adjust breadcrumb for other entities.
     elseif ($entity) {
       // Add bundle info.
       $variables['breadcrumb'][] = [
-        'text' => t('Edit') . ' ' . $entity->getEntityType()->getLabel(),
+        'text' => t('Edit @type', [
+          '@type' => $entity->getEntityType()->getLabel(),
+        ]),
         'url' => '',
       ];
+
+      _gin_preprocess_add_entity_cache_tags($variables, $entity->getEntityType());
     }
   }
 
@@ -87,6 +102,8 @@ function gin_preprocess_breadcrumb(&$variables) {
       }
     }
   }
+
+  $variables['#cache']['contexts'][] = 'route';
 }
 
 /**
@@ -112,4 +129,20 @@ function _gin_get_route_entity() {
       }
     }
   }
+}
+
+/**
+ * Helper function to add cache tags to $variables from given entity.
+ *
+ * @param array $variables
+ *   The variables array (modify in place).
+ * @param \Drupal\Core\Cache\CacheableDependencyInterface|mixed $entity
+ *   The object whose cacheability metadata to retrieve.
+ *
+ * @see \Drupal\Core\Cache\CacheableMetadata::createFromObject()
+ */
+function _gin_preprocess_add_entity_cache_tags(&$variables, $entity) {
+  CacheableMetadata::createFromRenderArray($variables)
+    ->merge(CacheableMetadata::createFromObject($entity))
+    ->applyTo($variables);
 }
