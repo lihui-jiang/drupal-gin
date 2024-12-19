@@ -384,8 +384,6 @@
   @include mq(wide) {
     .toolbar-bar {
       .toolbar-tab {
-        margin-inline-start: -.25em;
-
         .toolbar-item {
           font-size: var(--gin-font-size-xs);
           width: auto;
