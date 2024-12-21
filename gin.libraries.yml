@@ -452,6 +452,11 @@ term_reference_tree:
     component:
       dist/css/components/term_reference_tree.css: { minified: false }
 
+content_moderation:
+  css:
+    component:
+      dist/css/components/content_moderation.css: { minified: false }
+
 # Legacy
 
 legacy_css:

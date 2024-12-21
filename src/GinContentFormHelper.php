@@ -180,6 +180,22 @@ class GinContentFormHelper implements ContainerInjectionInterface {
           $form['status']['#group'] = 'status';
         }
 
+        if (isset($form['moderation_state'])) {
+          $form['#attached']['library'][] = 'gin/content_moderation';
+
+          // Create a new moderation state container inside the sticky actions
+          // and move the moderation state into it.
+          $form['gin_sticky_actions']['moderation_state'] = [
+            '#type' => 'container',
+            '#weight' => -1,
+            '#multilingual' => TRUE,
+          ];
+          $form['moderation_state']['#group'] = 'moderation_state';
+          if (!isset($form['moderation_state']['widget'][0]['#attributes']['class'])) {
+            $form['moderation_state']['widget'][0]['#attributes']['class'] = [];
+          }
+          $form['moderation_state']['widget'][0]['#attributes']['class'][] = 'gin--moderation-state';
+        }
       }
 
       // Helper item to move focus to sticky header.
