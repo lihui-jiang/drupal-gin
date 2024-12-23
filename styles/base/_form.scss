@@ -137,6 +137,17 @@
   position: relative;
   margin-inline-start: 0;
 
+  &:has(label.error) {
+    display: flex;
+    flex-wrap: wrap;
+
+    label.error {
+      flex: 0 0 100%;
+      order: 3;
+      color: var(--gin-color-danger);
+    }
+  }
+
   input {
     all: unset;
     appearance: none;
@@ -402,6 +413,7 @@ fieldset:not(.fieldgroup) {
   margin-block-end: var(--gin-spacing-xs);
 }
 
+label.error,
 .form-item__label.has-error,
 .form-item__error-message {
   color: var(--gin-color-danger);

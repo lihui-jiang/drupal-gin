@@ -1775,6 +1775,17 @@ table .views-field.views-field-operations {
   margin-inline-start: 0;
 }
 
+:not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox:has(label.error) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+:not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox:has(label.error) label.error {
+  flex: 0 0 100%;
+  order: 3;
+  color: var(--gin-color-danger);
+}
+
 :not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox input {
   all: unset;
   appearance: none;
@@ -2051,6 +2062,7 @@ fieldset:not(.fieldgroup).error {
   margin-block-end: var(--gin-spacing-xs);
 }
 
+label.error,
 .form-item__label.has-error,
 .form-item__error-message {
   color: var(--gin-color-danger);
