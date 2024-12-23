@@ -9,6 +9,7 @@
   const storageWidth = "Drupal.gin.sidebarWidth";
   const resizer = document.getElementById('gin-sidebar-draggable');
   const resizable = document.getElementById('gin_sidebar');
+  const isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   let isResizing = false;
   let startX, startWidth;
 
@@ -169,12 +170,11 @@
     },
 
     resizeStart: (e) => {
-      var isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       if ('ontouchstart' in window || isTouchDevice) {
         isResizing = true;
         startX = e.touches[0].clientX;
         startWidth = parseInt(window.getComputedStyle(resizable).width, 10);
-      }else{
+      } else {
         e.preventDefault();
         isResizing = true;
         startX = e.clientX;
@@ -192,10 +192,9 @@
     resizeWidth: (e) => {
       if (isResizing) {
         let sidebarWidth;
-        let isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         if ('ontouchstart' in window || isTouchDevice) {
           sidebarWidth = startWidth - (e.touches[0].clientX - startX);
-        }else{
+        } else {
           sidebarWidth = startWidth - (e.clientX - startX);
         }
         if (sidebarWidth <= 240) {
