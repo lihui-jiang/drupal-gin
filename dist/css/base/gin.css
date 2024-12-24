@@ -1267,7 +1267,8 @@ table th {
   background: var(--gin-bg-layer);
 }
 
-table th, table th .form-item__label {
+table th,
+table th .form-item__label {
   color: var(--gin-color-title);
 }
 
