@@ -43,8 +43,8 @@ function gin_preprocess_breadcrumb(&$variables) {
       }
     }
 
-    // Custom block handling (a custom block cannot be viewed standalone).
-    if ($entity_type_id === 'block_content') {
+    // Handle entities that cannot be viewed standalone.
+    if (in_array($entity_type_id, ['menu_link_content', 'block_content'], TRUE)) {
       $url = Url::fromRoute('<front>');
     }
   }
