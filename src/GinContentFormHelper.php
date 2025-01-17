@@ -181,14 +181,16 @@ class GinContentFormHelper implements ContainerInjectionInterface {
         if (isset($form['moderation_state'])) {
           $form['#attached']['library'][] = 'gin/content_moderation';
 
-          // Create a new moderation state container inside the sticky actions
-          // and move the moderation state into it.
-          $form['gin_sticky_actions']['moderation_state'] = [
-            '#type' => 'container',
-            '#weight' => -1,
-            '#multilingual' => TRUE,
-          ];
-          $form['moderation_state']['#group'] = 'moderation_state';
+          // Move the moderation state into the status container.
+          $form['moderation_state']['#group'] = 'status';
+
+          // Since this moves the moderation state outside of the form element,
+          // the form attribute needs to be added so the browser can associate
+          // the element with the wider form.
+          if (isset($form['moderation_state']['widget'][0]['state'])) {
+            $form['moderation_state']['widget'][0]['state']['#attributes']['form'] = $form['#id'];
+          }
+
           if (!isset($form['moderation_state']['widget'][0]['#attributes']['class'])) {
             $form['moderation_state']['widget'][0]['#attributes']['class'] = [];
           }
