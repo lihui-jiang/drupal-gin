@@ -221,8 +221,11 @@ html.js .field--widget-entity-reference-paragraphs .draggable .tabledrag-handle:
 html.js .field--widget-paragraphs .draggable .tabledrag-handle::after {
   position: relative;
   inset-inline-start: 0;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
   padding: 0;
   margin-inline-start: 0;
+  margin-block-start: 0;
 }
 
 .js .paragraphs-collapsed-description::after,
