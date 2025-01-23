@@ -34,3 +34,8 @@
     box-shadow: none;
   }
 }
+
+/** Override table scroll overflow if Chosen dropdown is present. **/
+.gin-table-scroll-wrapper:has(.form-element.chosen-container .chosen-drop) {
+  overflow: auto;
+}
