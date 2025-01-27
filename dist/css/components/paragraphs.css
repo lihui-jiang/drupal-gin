@@ -94,9 +94,27 @@
   min-width: 0;
 }
 
+.paragraphs-tabs-wrapper .field-multiple-table .draggable > td td {
+  flex: 1 1 auto;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table .draggable > td td.file-operations-cell {
+  width: auto;
+}
+
 .paragraphs-tabs-wrapper .field-multiple-table .draggable .has-multiple-fields-remove-button {
   width: 100%;
   padding-inline-end: 0 !important;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table .draggable .form-managed-file.has-value.is-multiple {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table .draggable .form-managed-file.has-value.is-multiple .form-managed-file__meta {
+  align-items: center;
 }
 
 .paragraphs-tabs-wrapper .field-multiple-table .draggable .tabledrag-handle::after {

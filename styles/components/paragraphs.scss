@@ -94,11 +94,27 @@
           flex: 1 0 0;
           min-width: 0;
         }
+
+        td {
+          flex: 1 1 auto;
+          &.file-operations-cell {
+            width: auto;
+          }
+        }
       }
 
       .has-multiple-fields-remove-button {
         width: 100%;
         padding-inline-end: 0 !important;
+      }
+
+      .form-managed-file.has-value.is-multiple {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1rem;
+        .form-managed-file__meta {
+          align-items: center;
+        }
       }
 
       .tabledrag-handle::after {
