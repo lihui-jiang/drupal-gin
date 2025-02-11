@@ -183,6 +183,50 @@ class GinTest extends BrowserTestBase {
     $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
     $this->assertStringContainsString('"highcontrastmode":false', $rootUserResponse);
     $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
+
+    // Enable all settings to ensure user storage if each option takes place.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'enable_darkmode',
+        'accent_color',
+        'focus_color',
+        'high_contrast_mode',
+        'classic_toolbar',
+        'sticky_action_buttons',
+        'layout_density',
+        'show_description_toggle',
+      ])
+      ->save();
+    $this->drupalGet($user1->toUrl('edit-form'));
+    $settings = [
+      'enable_darkmode' => '1',
+      'preset_accent_color' => 'pink',
+      'accent_color' => '#333333',
+      'preset_focus_color' => 'orange',
+      'focus_color' => '#444444',
+      'high_contrast_mode' => TRUE,
+      'classic_toolbar' => 'classic',
+      'sticky_action_buttons' => 1,
+      'layout_density' => 'small',
+      'show_description_toggle' => 0,
+    ];
+    $this->submitForm($settings, 'Save', 'user-form');
+    $user_data = \Drupal::service('user.data')->get('gin', $user1->id(), 'settings');
+    ksort($user_data);
+    ksort($settings);
+    $this->assertSame($user_data, $settings);
+
+    // Now remove most settings to ensure that resaving without any change
+    // clears those values.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'enable_darkmode',
+      ])
+      ->save();
+    $this->drupalGet($user1->toUrl('edit-form'));
+    $this->submitForm([], 'Save', 'user-form');
+    $user_data = \Drupal::service('user.data')->get('gin', $user1->id(), 'settings');
+    $this->assertSame(['enable_darkmode' => '1'], $user_data);
   }
 
 }
