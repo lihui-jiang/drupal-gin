@@ -212,7 +212,7 @@ class GinSettings implements ContainerInjectionInterface {
         '#type' => 'radios',
         '#title' => $this->t('Appearance'),
         '#description' => $this->t('Enables Darkmode for the admin interface.'),
-        '#default_value' => (string)($account ? $this->get('enable_darkmode', $account) : $this->getDefault('enable_darkmode')),
+        '#default_value' => (string) ($account ? $this->get('enable_darkmode', $account) : $this->getDefault('enable_darkmode')),
         '#options' => [
           0 => $this->t('Light'),
           1 => $this->t('Dark'),
@@ -374,7 +374,6 @@ class GinSettings implements ContainerInjectionInterface {
       ];
     }
 
-
     if (!$account || in_array('sticky_action_buttons', $enabled_settings)) {
       // Sticky action toggle.
       $form['sticky_action_buttons'] = [
@@ -401,7 +400,7 @@ class GinSettings implements ContainerInjectionInterface {
         '#type' => 'radios',
         '#title' => $this->t('Layout density'),
         '#description' => $this->t('Changes the layout density for tables in the admin interface.'),
-        '#default_value' => (string)($account ? $this->get('layout_density', $account) : $this->getDefault('layout_density')),
+        '#default_value' => (string) ($account ? $this->get('layout_density', $account) : $this->getDefault('layout_density')),
         '#options' => [
           'default' => $this->t('Default'),
           'medium' => $this->t('Compact'),
