@@ -80,13 +80,19 @@ class GinSettings implements ContainerInjectionInterface {
       $account = $this->currentUser;
     }
     if ($this->userOverrideEnabled($account)) {
-      $settings = $this->userData->get('gin', $account->id(), 'settings');
-      if (isset($settings[$name])) {
-        $value = $settings[$name];
-      }
-      else {
-        // Try loading legacy settings from user data.
-        $value = $this->userData->get('gin', $account->id(), $name);
+
+      // Only use the override from the user if the specific setting allows
+      // user overriding.
+      $enabled_settings = $this->getDefault('enabled_user_theme_settings');
+      if (in_array($name, $enabled_settings)) {
+        $settings = $this->userData->get('gin', $account->id(), 'settings');
+        if (isset($settings[$name])) {
+          $value = $settings[$name];
+        }
+        else {
+          // Try loading legacy settings from user data.
+          $value = $this->userData->get('gin', $account->id(), $name);
+        }
       }
     }
     if (is_null($value)) {
