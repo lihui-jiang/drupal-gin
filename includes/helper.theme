@@ -48,18 +48,34 @@ function _gin_user_form_submit(&$form, FormStateInterface $form_state) {
   /** @var \Drupal\gin\GinSettings $settings */
   $settings = \Drupal::classResolver(GinSettings::class);
   if ($enabledUserOverrides) {
-    $user_settings = [
-      'enable_darkmode' => $form_state->getValue('enable_darkmode'),
-      'preset_accent_color' => $form_state->getValue('preset_accent_color'),
-      'accent_color' => $form_state->getValue('accent_color'),
-      'classic_toolbar' => $form_state->getValue('classic_toolbar'),
-      'preset_focus_color' => $form_state->getValue('preset_focus_color'),
-      'focus_color' => $form_state->getValue('focus_color'),
-      'high_contrast_mode' => (bool) $form_state->getValue('high_contrast_mode'),
-      'layout_density' => $form_state->getValue('layout_density'),
-      'show_description_toggle' => $form_state->getValue('show_description_toggle'),
-      'sticky_action_buttons' => $form_state->getValue('sticky_action_buttons'),
-    ];
+    $enabled_settings = \Drupal::config('gin.settings')->get('enabled_user_theme_settings');
+    $user_settings = [];
+    if (in_array('enable_darkmode', $enabled_settings)) {
+      $user_settings['enable_darkmode'] = $form_state->getValue('enable_darkmode');
+    }
+    if (in_array('accent_color', $enabled_settings)) {
+      $user_settings['preset_accent_color'] = $form_state->getValue('preset_accent_color');
+      $user_settings['accent_color'] = $form_state->getValue('accent_color');
+    }
+    if (in_array('focus_color', $enabled_settings)) {
+      $user_settings['preset_focus_color'] = $form_state->getValue('preset_focus_color');
+      $user_settings['focus_color'] = $form_state->getValue('focus_color');
+    }
+    if (in_array('high_contrast_mode', $enabled_settings)) {
+      $user_settings['high_contrast_mode'] = (bool) $form_state->getValue('high_contrast_mode');
+    }
+    if (in_array('classic_toolbar', $enabled_settings)) {
+      $user_settings['classic_toolbar'] = $form_state->getValue('classic_toolbar');
+    }
+    if (in_array('sticky_action_buttons', $enabled_settings)) {
+      $user_settings['sticky_action_buttons'] = $form_state->getValue('sticky_action_buttons');
+    }
+    if (in_array('layout_density', $enabled_settings)) {
+      $user_settings['layout_density'] = $form_state->getValue('layout_density');
+    }
+    if (in_array('show_description_toggle', $enabled_settings)) {
+      $user_settings['show_description_toggle'] = $form_state->getValue('show_description_toggle');
+    }
     $settings->setAll($user_settings, $account);
   }
   else {
