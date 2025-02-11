@@ -23,6 +23,7 @@ class GinTest extends BrowserTestBase {
   protected static $modules = [
     'shortcut',
     'toolbar',
+    'node',
   ];
 
   /**
@@ -47,6 +48,7 @@ class GinTest extends BrowserTestBase {
       'access administration pages',
       'administer themes',
       'access toolbar',
+      'access content overview',
     ]);
     $this->drupalLogin($adminUser);
   }
@@ -109,20 +111,42 @@ class GinTest extends BrowserTestBase {
    * Test user settings.
    */
   public function testUserSettings() {
-    \Drupal::configFactory()->getEditable('gin.settings')->set('show_user_theme_settings', TRUE)->save();
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('show_user_theme_settings', TRUE)
+      ->set('enabled_user_theme_settings', [
+        'sticky_action_buttons',
+        'enable_darkmode',
+      ])
+      ->save();
 
     $user1 = $this->createUser();
     $this->drupalLogin($user1);
 
-    // Change something on the logged in user form.
     $this->assertStringContainsString('"darkmode":"0"', $this->drupalGet($user1->toUrl('edit-form')));
 
+    // Check that non-enabled settings do not appear.
+    $this->assertSession()->pageTextNotContains('Increase contrast');
+
+    // Enable the high contract mode expected later in the test.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'sticky_action_buttons',
+        'enable_darkmode',
+        'high_contrast_mode',
+      ])
+      ->save();
+
+    // Change something on the logged in user form.
     $this->submitForm([
       'sticky_action_buttons' => TRUE,
       'enable_user_settings' => TRUE,
       'enable_darkmode' => '1',
     ], 'Save');
     $this->assertStringContainsString('"darkmode":"1"', $this->drupalGet($user1->toUrl('edit-form')));
+
+    // Check that high contrast mode now appears as an option.
+    $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertSession()->pageTextContains('Increase contrast');
 
     // Login as admin.
     $this->drupalLogin($this->rootUser);

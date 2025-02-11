@@ -40,7 +40,7 @@ gin.settings:
       type: sequence
       label: 'Enabled user override options'
       sequence:
-        - type: string
+        type: string
     sticky_action_buttons:
       type: boolean
       label: 'Sticky action buttons'

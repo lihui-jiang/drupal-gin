@@ -76,7 +76,7 @@ function gin_form_system_theme_settings_alter(&$form, FormStateInterface $form_s
           'checked' => TRUE,
         ],
       ],
-    ]
+    ],
   ];
 
   /*
