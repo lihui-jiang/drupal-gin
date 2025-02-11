@@ -25,4 +25,9 @@ function gin_post_update_set_enabled_user_theme_settings() {
       'show_description_toggle',
     ])->save();
   }
+  else {
+
+    // Set the default to nothing enabled.
+    $config->set('enabled_user_theme_settings', [])->save();
+  }
 }
