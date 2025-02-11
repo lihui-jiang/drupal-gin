@@ -36,6 +36,11 @@ gin.settings:
     show_user_theme_settings:
       type: boolean
       label: 'Let user override theme'
+    enabled_user_theme_settings:
+      type: sequence
+      label: 'Enabled user override options'
+      sequence:
+        - type: string
     sticky_action_buttons:
       type: boolean
       label: 'Sticky action buttons'
