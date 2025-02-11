@@ -211,174 +211,188 @@ class GinSettings implements ContainerInjectionInterface {
    *   The theme setting form elements.
    */
   public function getSettingsForm(?AccountInterface $account = NULL): array {
+    $enabled_settings = $this->getDefault('enabled_user_theme_settings');
     $experimental_label = ' <span class="gin-experimental-flag">Experimental</span>';
     $beta_label = ' <span class="gin-beta-flag">Beta</span>';
     $new_label = ' <span class="gin-new-flag">New</span>';
 
-    $form['enable_darkmode'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Appearance'),
-      '#description' => $this->t('Enables Darkmode for the admin interface.'),
-      '#default_value' => (string) ($account ? $this->get('enable_darkmode', $account) : $this->getDefault('enable_darkmode')),
-      '#options' => [
-        0 => $this->t('Light'),
-        1 => $this->t('Dark'),
-        'auto' => $this->t('Auto'),
-      ],
-    ];
-
-    // Accent color setting.
-    $form['preset_accent_color'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Accent color'),
-      '#default_value' => $account ? $this->get('preset_accent_color', $account) : $this->getDefault('preset_accent_color'),
-      '#options' => [
-        'blue' => $this->t('Gin Blue (Default)'),
-        'light_blue' => $this->t('Light Blue'),
-        'dark_purple' => $this->t('Dark Purple'),
-        'purple' => $this->t('Purple'),
-        'teal' => $this->t('Teal'),
-        'green' => $this->t('Green'),
-        'pink' => $this->t('Pink'),
-        'red' => $this->t('Red'),
-        'orange' => $this->t('Orange'),
-        'yellow' => $this->t('Yellow'),
-        'neutral' => $this->t('Neutral'),
-        'custom' => $this->t('Custom'),
-      ],
-      '#after_build' => [
-        '_gin_accent_radios',
-      ],
-    ];
-
-    // Accent color group.
-    $form['accent_group'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Custom Accent color'),
-      '#description' => $this->t('Use with caution, values should meet a11y criteria.'),
-      '#states' => [
-        // Show if met.
-        'visible' => [
-          ':input[name="preset_accent_color"]' => ['value' => 'custom'],
+    if (!$account || in_array('enable_darkmode', $enabled_settings)) {
+      $form['enable_darkmode'] = [
+        '#type' => 'radios',
+        '#title' => $this->t('Appearance'),
+        '#description' => $this->t('Enables Darkmode for the admin interface.'),
+        '#default_value' => (string)($account ? $this->get('enable_darkmode', $account) : $this->getDefault('enable_darkmode')),
+        '#options' => [
+          0 => $this->t('Light'),
+          1 => $this->t('Dark'),
+          'auto' => $this->t('Auto'),
         ],
-      ],
-    ];
+      ];
+    }
 
-    // Main Accent color setting.
-    $form['accent_color'] = [
-      '#type' => 'textfield',
-      '#placeholder' => '#777777',
-      '#maxlength' => 7,
-      '#size' => 7,
-      '#title' => $this->t('Custom Accent color'),
-      '#title_display' => 'invisible',
-      '#default_value' => $account ? $this->get('accent_color', $account) : $this->getDefault('accent_color'),
-      '#group' => 'accent_group',
-      '#attributes' => [
-        'pattern' => '^#[a-fA-F0-9]{6}',
-      ],
-    ];
-
-    // Accent color picker (helper field).
-    $form['accent_group']['accent_picker'] = [
-      '#type' => 'color',
-      '#placeholder' => '#777777',
-      '#default_value' => $account ? $this->get('accent_color', $account) : $this->getDefault('accent_color'),
-      '#process' => [
-        [static::class, 'processColorPicker'],
-      ],
-    ];
-
-    // Focus color setting.
-    $form['preset_focus_color'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Focus color'),
-      '#default_value' => $account ? $this->get('preset_focus_color', $account) : $this->getDefault('preset_focus_color'),
-      '#options' => [
-        'gin' => $this->t('Gin Focus color (Default)'),
-        'green' => $this->t('Green'),
-        'claro' => $this->t('Claro Green'),
-        'orange' => $this->t('Orange'),
-        'dark' => $this->t('Neutral'),
-        'accent' => $this->t('Same as Accent color'),
-        'custom' => $this->t('Custom'),
-      ],
-    ];
-
-    // Focus color group.
-    $form['focus_group'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Custom Focus color') . $beta_label,
-      '#description' => $this->t('Use with caution, values should meet a11y criteria.'),
-      '#states' => [
-        // Show if met.
-        'visible' => [
-          ':input[name="preset_focus_color"]' => ['value' => 'custom'],
+    if (!$account || in_array('accent_color', $enabled_settings)) {
+      // Accent color setting.
+      $form['preset_accent_color'] = [
+        '#type' => 'radios',
+        '#title' => $this->t('Accent color'),
+        '#default_value' => $account ? $this->get('preset_accent_color', $account) : $this->getDefault('preset_accent_color'),
+        '#options' => [
+          'blue' => $this->t('Gin Blue (Default)'),
+          'light_blue' => $this->t('Light Blue'),
+          'dark_purple' => $this->t('Dark Purple'),
+          'purple' => $this->t('Purple'),
+          'teal' => $this->t('Teal'),
+          'green' => $this->t('Green'),
+          'pink' => $this->t('Pink'),
+          'red' => $this->t('Red'),
+          'orange' => $this->t('Orange'),
+          'yellow' => $this->t('Yellow'),
+          'neutral' => $this->t('Neutral'),
+          'custom' => $this->t('Custom'),
         ],
-      ],
-    ];
+        '#after_build' => [
+          '_gin_accent_radios',
+        ],
+      ];
 
-    // Focus color picker (helper).
-    $form['focus_group']['focus_picker'] = [
-      '#type' => 'color',
-      '#placeholder' => '#777777',
-      '#default_value' => $account ? $this->get('focus_color', $account) : $this->getDefault('focus_color'),
-      '#process' => [
-        [static::class, 'processColorPicker'],
-      ],
-    ];
+      // Accent color group.
+      $form['accent_group'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Custom Accent color'),
+        '#description' => $this->t('Use with caution, values should meet a11y criteria.'),
+        '#states' => [
+          // Show if met.
+          'visible' => [
+            ':input[name="preset_accent_color"]' => ['value' => 'custom'],
+          ],
+        ],
+      ];
 
-    // Custom Focus color setting.
-    $form['focus_color'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Custom Focus color') . $beta_label,
-      '#title_display' => 'invisible',
-      '#placeholder' => '#777777',
-      '#maxlength' => 7,
-      '#size' => 7,
-      '#default_value' => $account ? $this->get('focus_color', $account) : $this->getDefault('focus_color'),
-      '#group' => 'focus_group',
-      '#attributes' => [
-        'pattern' => '^#[a-fA-F0-9]{6}',
-      ],
-    ];
+      // Main Accent color setting.
+      $form['accent_color'] = [
+        '#type' => 'textfield',
+        '#placeholder' => '#777777',
+        '#maxlength' => 7,
+        '#size' => 7,
+        '#title' => $this->t('Custom Accent color'),
+        '#title_display' => 'invisible',
+        '#default_value' => $account ? $this->get('accent_color', $account) : $this->getDefault('accent_color'),
+        '#group' => 'accent_group',
+        '#attributes' => [
+          'pattern' => '^#[a-fA-F0-9]{6}',
+        ],
+      ];
 
-    // High contrast mode.
-    $form['high_contrast_mode'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Increase contrast') . $experimental_label,
-      '#description' => $this->t('Enables high contrast mode.'),
-      '#default_value' => $account ? $this->get('high_contrast_mode', $account) : $this->getDefault('high_contrast_mode'),
-    ];
+      // Accent color picker (helper field).
+      $form['accent_group']['accent_picker'] = [
+        '#type' => 'color',
+        '#placeholder' => '#777777',
+        '#default_value' => $account ? $this->get('accent_color', $account) : $this->getDefault('accent_color'),
+        '#process' => [
+          [static::class, 'processColorPicker'],
+        ],
+      ];
+    }
 
-    // Toolbar setting.
-    $is_navigation_active = _gin_module_is_active('navigation');
+    if (!$account || in_array('focus_color', $enabled_settings)) {
+      // Focus color setting.
+      $form['preset_focus_color'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Focus color'),
+        '#default_value' => $account ? $this->get('preset_focus_color', $account) : $this->getDefault('preset_focus_color'),
+        '#options' => [
+          'gin' => $this->t('Gin Focus color (Default)'),
+          'green' => $this->t('Green'),
+          'claro' => $this->t('Claro Green'),
+          'orange' => $this->t('Orange'),
+          'dark' => $this->t('Neutral'),
+          'accent' => $this->t('Same as Accent color'),
+          'custom' => $this->t('Custom'),
+        ],
+      ];
 
-    $form['classic_toolbar'] = [
-      '#disabled' => $is_navigation_active,
-      '#type' => 'radios',
-      '#title' => $this->t('Navigation (Drupal Toolbar)'),
-      '#default_value' => $account ? $this->get('classic_toolbar', $account) : $this->getDefault('classic_toolbar'),
-      '#options' => [
-        'new' => $this->t('New Drupal Navigation, Test integration') . $new_label . $experimental_label,
-        'vertical' => $this->t('Sidebar, Vertical Toolbar (Default)'),
-        'horizontal' => $this->t('Horizontal, Modern Toolbar'),
-        'classic' => $this->t('Legacy, Classic Drupal Toolbar'),
-      ],
-      '#attributes' => $is_navigation_active ? ['class' => ['gin-core-navigation--is-active']] : [],
-      '#description' => $is_navigation_active ? $this->t('This setting is currently deactivated as it is overwritten by the navigation module.') : '',
-      '#after_build' => [
-        '_gin_toolbar_radios',
-      ],
-    ];
+      // Focus color group.
+      $form['focus_group'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Custom Focus color') . $beta_label,
+        '#description' => $this->t('Use with caution, values should meet a11y criteria.'),
+        '#states' => [
+          // Show if met.
+          'visible' => [
+            ':input[name="preset_focus_color"]' => ['value' => 'custom'],
+          ],
+        ],
+      ];
 
-    // Sticky action toggle.
-    $form['sticky_action_buttons'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable sticky action buttons') . $beta_label . $new_label,
-      '#description' => $this->t('Displays all actions of the form in the sticky header.'),
-      '#default_value' => $account ? $this->get('sticky_action_buttons', $account) : $this->getDefault('sticky_action_buttons'),
-    ];
+      // Focus color picker (helper).
+      $form['focus_group']['focus_picker'] = [
+        '#type' => 'color',
+        '#placeholder' => '#777777',
+        '#default_value' => $account ? $this->get('focus_color', $account) : $this->getDefault('focus_color'),
+        '#process' => [
+          [static::class, 'processColorPicker'],
+        ],
+      ];
+
+      // Custom Focus color setting.
+      $form['focus_color'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Custom Focus color') . $beta_label,
+        '#title_display' => 'invisible',
+        '#placeholder' => '#777777',
+        '#maxlength' => 7,
+        '#size' => 7,
+        '#default_value' => $account ? $this->get('focus_color', $account) : $this->getDefault('focus_color'),
+        '#group' => 'focus_group',
+        '#attributes' => [
+          'pattern' => '^#[a-fA-F0-9]{6}',
+        ],
+      ];
+    }
+
+    if (!$account || in_array('high_contrast_mode', $enabled_settings)) {
+      // High contrast mode.
+      $form['high_contrast_mode'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Increase contrast') . $experimental_label,
+        '#description' => $this->t('Enables high contrast mode.'),
+        '#default_value' => $account ? $this->get('high_contrast_mode', $account) : $this->getDefault('high_contrast_mode'),
+      ];
+    }
+
+    if (!$account || in_array('classic_toolbar', $enabled_settings)) {
+      // Toolbar setting.
+      $is_navigation_active = _gin_module_is_active('navigation');
+
+      $form['classic_toolbar'] = [
+        '#disabled' => $is_navigation_active,
+        '#type' => 'radios',
+        '#title' => $this->t('Navigation (Drupal Toolbar)'),
+        '#default_value' => $account ? $this->get('classic_toolbar', $account) : $this->getDefault('classic_toolbar'),
+        '#options' => [
+          'new' => $this->t('New Drupal Navigation, Test integration') . $new_label . $experimental_label,
+          'vertical' => $this->t('Sidebar, Vertical Toolbar (Default)'),
+          'horizontal' => $this->t('Horizontal, Modern Toolbar'),
+          'classic' => $this->t('Legacy, Classic Drupal Toolbar'),
+        ],
+        '#attributes' => $is_navigation_active ? ['class' => ['gin-core-navigation--is-active']] : [],
+        '#description' => $is_navigation_active ? $this->t('This setting is currently deactivated as it is overwritten by the navigation module.') : '',
+        '#after_build' => [
+          '_gin_toolbar_radios',
+        ],
+      ];
+    }
+
+
+    if (!$account || in_array('sticky_action_buttons', $enabled_settings)) {
+      // Sticky action toggle.
+      $form['sticky_action_buttons'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable sticky action buttons') . $beta_label . $new_label,
+        '#description' => $this->t('Displays all actions of the form in the sticky header.'),
+        '#default_value' => $account ? $this->get('sticky_action_buttons', $account) : $this->getDefault('sticky_action_buttons'),
+      ];
+    }
 
     // Show secondary toolbar in Frontend.
     if (!$account) {
@@ -390,26 +404,30 @@ class GinSettings implements ContainerInjectionInterface {
       ];
     }
 
-    // Layout density setting.
-    $form['layout_density'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Layout density'),
-      '#description' => $this->t('Changes the layout density for tables in the admin interface.'),
-      '#default_value' => (string) ($account ? $this->get('layout_density', $account) : $this->getDefault('layout_density')),
-      '#options' => [
-        'default' => $this->t('Default'),
-        'medium' => $this->t('Compact'),
-        'small' => $this->t('Narrow'),
-      ],
-    ];
+    if (!$account || in_array('layout_density', $enabled_settings)) {
+      // Layout density setting.
+      $form['layout_density'] = [
+        '#type' => 'radios',
+        '#title' => $this->t('Layout density'),
+        '#description' => $this->t('Changes the layout density for tables in the admin interface.'),
+        '#default_value' => (string)($account ? $this->get('layout_density', $account) : $this->getDefault('layout_density')),
+        '#options' => [
+          'default' => $this->t('Default'),
+          'medium' => $this->t('Compact'),
+          'small' => $this->t('Narrow'),
+        ],
+      ];
+    }
 
-    // Description toggle.
-    $form['show_description_toggle'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable form description toggle'),
-      '#description' => $this->t('Show a help icon to show/hide form descriptions on content forms.'),
-      '#default_value' => $account ? $this->get('show_description_toggle', $account) : $this->getDefault('show_description_toggle'),
-    ];
+    if (!$account || in_array('show_description_toggle', $enabled_settings)) {
+      // Description toggle.
+      $form['show_description_toggle'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable form description toggle'),
+        '#description' => $this->t('Show a help icon to show/hide form descriptions on content forms.'),
+        '#default_value' => $account ? $this->get('show_description_toggle', $account) : $this->getDefault('show_description_toggle'),
+      ];
+    }
 
     if (!$account) {
       foreach ($form as $key => $element) {
