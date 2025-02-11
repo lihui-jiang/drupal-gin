@@ -127,7 +127,7 @@ class GinTest extends BrowserTestBase {
     // Check that non-enabled settings do not appear.
     $this->assertSession()->pageTextNotContains('Increase contrast');
 
-    // Enable the high contract mode expected later in the test.
+    // Enable the high contrast mode expected later in the test.
     \Drupal::configFactory()->getEditable('gin.settings')
       ->set('enabled_user_theme_settings', [
         'sticky_action_buttons',
@@ -169,6 +169,19 @@ class GinTest extends BrowserTestBase {
     $this->drupalLogin($user1);
     $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
     $this->assertStringContainsString('"highcontrastmode":true', $rootUserResponse);
+    $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
+
+    // Prevent the high contrast mode from being overridden by removing it from
+    // enabled settings. Expect to see high contrast mode disabled again for
+    // user 1.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'sticky_action_buttons',
+        'enable_darkmode',
+      ])
+      ->save();
+    $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"highcontrastmode":false', $rootUserResponse);
     $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
   }
 
