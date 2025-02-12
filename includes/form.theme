@@ -213,6 +213,22 @@ function gin_preprocess_inline_entity_form_entity_table(array &$variables) {
 }
 
 /**
+ * Implements template_preprocess_HOOK() for multiple_value_form fields.
+ */
+function gin_preprocess_field_multiple_value_form(&$variables) {
+  if ($variables['multiple']) {
+    $settings = \Drupal::classResolver(GinSettings::class);
+    if ($settings->get('show_description_toggle') && !empty($variables['description'])) {
+      $variables['table']['#header'][0]['class'][] = 'help-icon';
+      $variables['table']['#header'][0]['data']['#suffix'] .= '<button class="help-icon__description-toggle"></button>';
+
+      $variables['description_display'] = 'invisible';
+      $variables['description_toggle'] = TRUE;
+    }
+  }
+}
+
+/**
  * Set and get the form actions of the current request.
  *
  * @param array|null $actions

@@ -35,12 +35,9 @@
             event.currentTarget
               .closest('.help-icon__description-container')
               .querySelectorAll(
-                '.claro-details__description, .fieldset__description, .form-item__description',
+                `[aria-labelledby="${event.currentTarget.id}"]`
               )
               .forEach((description, index) => {
-                if (index > 1) {
-                  return;
-                }
                 const setStatus = description.classList.contains('visually-hidden');
                 event.currentTarget.setAttribute('aria-expanded', setStatus);
                 description.classList.toggle('visually-hidden');

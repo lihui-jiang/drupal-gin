@@ -85,3 +85,9 @@ fieldset.media-library-widget,
     inset-block-start: var(--gin-spacing-m);
   }
 }
+
+.form-item--multiple.help-icon__description-container {
+  th.help-icon {
+    align-items: center;
+  }
+}
