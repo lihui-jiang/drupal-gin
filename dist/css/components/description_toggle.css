@@ -85,5 +85,6 @@ fieldset.media-library-widget .fieldset__description,
 
 .form-item--multiple.help-icon__description-container th.help-icon {
   align-items: center;
+  display: table-cell;
 }
 

@@ -218,12 +218,18 @@ function gin_preprocess_inline_entity_form_entity_table(array &$variables) {
 function gin_preprocess_field_multiple_value_form(&$variables) {
   if ($variables['multiple']) {
     $settings = \Drupal::classResolver(GinSettings::class);
-    if ($settings->get('show_description_toggle') && !empty($variables['description'])) {
+    if (
+      $settings->get('show_description_toggle')
+      && !empty($variables['description'])
+      && !empty($variables['table']['#header'][0]['data'])
+    ) {
       $variables['table']['#header'][0]['class'][] = 'help-icon';
-      $variables['table']['#header'][0]['data']['#suffix'] .= '<button class="help-icon__description-toggle"></button>';
+      $variables['table']['#header'][0]['data']['#suffix'] = '<button class="help-icon__description-toggle"></button>';
 
       $variables['description_display'] = 'invisible';
       $variables['description_toggle'] = TRUE;
+
+      $variables['#attached']['library'][] = 'gin/gin_description_toggle';
     }
   }
 }
