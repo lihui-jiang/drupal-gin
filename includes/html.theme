@@ -5,6 +5,7 @@
  * html.theme
  */
 
+use Drupal\Core\Template\AttributeArray;
 use Drupal\gin\GinContentFormHelper;
 use Drupal\gin\GinNavigation;
 use Drupal\gin\GinSettings;
@@ -18,8 +19,10 @@ function gin_preprocess_html(&$variables) {
 
   if ($gin_activated) {
     // Check if IMCE is active.
-    if (isset($variables['attributes']['class']) && in_array('imce-page', $variables['attributes']['class'])) {
-      return;
+    if (isset($variables['attributes']) && $variables['attributes'] instanceof AttributeArray) {
+      if ($variables['attributes']->hasClass('imce-page')) {
+        return;
+      }
     }
 
     // Get theme settings.
