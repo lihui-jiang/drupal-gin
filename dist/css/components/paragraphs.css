@@ -221,6 +221,14 @@ html.js .field--widget-paragraphs .draggable .tabledrag-handle::after {
   margin-inline-start: 0;
 }
 
+html.js .field--widget-entity-reference-paragraphs .field-actions,
+html.js .field--widget-paragraphs .field-actions {
+  font-size: var(--gin-font-size-s);
+  display: flex;
+  align-items: baseline;
+  gap: var(--gin-spacing-xs);
+}
+
 .js .paragraphs-collapsed-description::after,
 .js .draggable:hover .paragraphs-collapsed-description::after {
   inset-block-start: 2px;
