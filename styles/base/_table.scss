@@ -282,6 +282,12 @@ td.webform-has-field-suffix > .form-item > .form-element {
   .ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
     flex-wrap: wrap;
   }
+
+  tr {
+    .form-item {
+      margin-block: var(--space-s);
+    }
+  }
 }
 
 .gin-layer-wrapper .views-table {
