@@ -179,5 +179,7 @@ body:has([data-drupal-selector="edit-preview"] + .ajax-progress) :where([data-dr
 body:has([data-drupal-selector="edit-delete"] + .ajax-progress) :where([data-drupal-selector="gin-sticky-edit-delete"]) {
   padding-left: var(--gin-spacing-xl);
   background-image: icon('loader');
-  animation: gin-pseudo-throbber 1s linear infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: gin-pseudo-throbber 1s linear infinite;
+  }
 }

@@ -62,7 +62,9 @@ div.autocomplete-deluxe-container div.autocomplete-deluxe-throbber.autocomplete-
     border-block-start: 2px solid var(--gin-color-primary);
     width: 14px;
     height: 14px;
-    animation: gin-throbber 1s linear infinite;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: gin-throbber 1s linear infinite;
+    }
   }
 }
 

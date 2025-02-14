@@ -187,7 +187,6 @@ body:has([data-drupal-selector=edit-save] + .ajax-progress) :where([data-drupal-
 body:has([data-drupal-selector=edit-preview] + .ajax-progress) :where([data-drupal-selector=gin-sticky-edit-preview]),
 body:has([data-drupal-selector=edit-delete] + .ajax-progress) :where([data-drupal-selector=gin-sticky-edit-delete]) {
   background-image: url("../../media/sprite.svg#loader-view");
-  animation: gin-pseudo-throbber 1s linear infinite;
 }
 
 [dir="ltr"] body:has([data-drupal-selector=edit-save] + .ajax-progress) :where([data-drupal-selector=gin-sticky-edit-save]),
@@ -202,3 +201,10 @@ body:has([data-drupal-selector=edit-delete] + .ajax-progress) :where([data-drupa
   padding-inline-end: var(--gin-spacing-xl);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  body:has([data-drupal-selector=edit-save] + .ajax-progress) :where([data-drupal-selector=gin-sticky-edit-save]),
+  body:has([data-drupal-selector=edit-preview] + .ajax-progress) :where([data-drupal-selector=gin-sticky-edit-preview]),
+  body:has([data-drupal-selector=edit-delete] + .ajax-progress) :where([data-drupal-selector=gin-sticky-edit-delete]) {
+    animation: gin-pseudo-throbber 1s linear infinite;
+  }
+}
