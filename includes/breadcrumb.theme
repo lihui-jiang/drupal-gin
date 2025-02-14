@@ -47,6 +47,16 @@ function gin_preprocess_breadcrumb(&$variables) {
     if ($entity_type_id === 'block_content') {
       $url = Url::fromRoute('<front>');
     }
+
+    if ($url) {
+      $route_provider = \Drupal::service('router.route_provider');
+      $route = $route_provider->getRouteByName($url->getRouteName());
+
+      // Heuristic for handling arbitrary entities - if 'back to site' would land on an admin page, override with front.
+      if (\Drupal::service('router.admin_context')->isAdminRoute($route)) {
+        $url = Url::fromRoute('<front>');
+      }
+    }
   }
 
   // Back to site item.
