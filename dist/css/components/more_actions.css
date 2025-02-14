@@ -208,3 +208,4 @@ body:has([data-drupal-selector=edit-delete] + .ajax-progress) :where([data-drupa
     animation: gin-pseudo-throbber 1s linear infinite;
   }
 }
+
