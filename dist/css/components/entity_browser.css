@@ -138,7 +138,7 @@ table.entities-list td {
 }
 
 .gin-entity-browser .entity-browser-form .views-row .views-field-name {
-  padding: var(--gin-spacing-xs);
+  padding: 0;
 }
 
 .gin-entity-browser .entity-browser-form .views-row .views-field-entity-browser-select {
