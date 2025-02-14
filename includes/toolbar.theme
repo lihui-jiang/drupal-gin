@@ -19,12 +19,17 @@ function gin_preprocess_menu(&$variables) {
       $variables['items'][$key]['gin_id'] = $gin_id;
     }
 
-    // Move config & help menu items to end.
-    $to_move = ['system.admin_config', 'help.main'];
-    foreach ($to_move as $id) {
-      $index = array_search($id, array_keys($variables['items']));
-      if (is_numeric($index)) {
-        $variables['items'] += array_splice($variables['items'], $index, 1);
+    /** @var \Drupal\gin\GinSettings $settings */
+    $settings = \Drupal::classResolver(GinSettings::class);
+    $rearrange_admin_menu_items = $settings->getDefault('rearrange_admin_menu_items');
+    if ($rearrange_admin_menu_items) {
+      // Move config & help menu items to end.
+      $to_move = ['system.admin_config', 'help.main'];
+      foreach ($to_move as $id) {
+        $index = array_search($id, array_keys($variables['items']));
+        if (is_numeric($index)) {
+          $variables['items'] += array_splice($variables['items'], $index, 1);
+        }
       }
     }
   }

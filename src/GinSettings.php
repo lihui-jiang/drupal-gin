@@ -481,6 +481,13 @@ class GinSettings implements ContainerInjectionInterface {
       }
     }
 
+    $form['rearrange_admin_menu_items'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Rearrange Admin menu items.'),
+      '#description' => $this->t('Move <em>Configuration</em> and <em>Help</em> menu items to end.'),
+      '#default_value' => $account ? $this->get('rearrange_admin_menu_items', $account) : $this->getDefault('rearrange_admin_menu_items'),
+    ];
+
     return $form;
   }
 
