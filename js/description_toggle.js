@@ -13,7 +13,10 @@
           elem.setAttribute('aria-expanded', 'false');
           elem.setAttribute('aria-controls', 'target');
           elem
-            .closest('.help-icon__description-container')
+            // Skip the textarea form container to use text format wrapper description.
+            // This fixes a bug where the toggle on a textarea element does not work
+            // because the description has been moved to the text format wrapper.
+            .closest('.help-icon__description-container:not(.form-type--textarea)')
             .querySelectorAll(
               '.claro-details__description, .fieldset__description, .form-item__description',
             )
@@ -33,7 +36,10 @@
 
             event.currentTarget.focus(); // firefox button focus issue
             event.currentTarget
-              .closest('.help-icon__description-container')
+              // Skip the textarea form container to use text format wrapper description.
+              // This fixes a bug where the toggle on a textarea element does not work
+              // because the description has been moved to the text format wrapper.
+              .closest('.help-icon__description-container:not(.form-type--textarea)')
               .querySelectorAll(
                 '.claro-details__description, .fieldset__description, .form-item__description',
               )
