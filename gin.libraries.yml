@@ -436,7 +436,7 @@ dropzonejs:
 entity_browser:
   css:
     component:
-      dist/css/components/entity_browser.css: { minified: false }
+      dist/css/components/entity_browser.css: { minified: false, weight: 99 }
 
 inline_entity_form:
   css:
