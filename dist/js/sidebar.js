@@ -1,7 +1,7 @@
 ({
   "./js/sidebar.js": function() {
     ((Drupal, drupalSettings, once) => {
-      const toolbarVariant = drupalSettings.gin.toolbar_variant, storageDesktop = "Drupal.gin.sidebarExpanded.desktop", resizer = document.getElementById("gin-sidebar-draggable"), resizable = document.getElementById("gin_sidebar");
+      const toolbarVariant = drupalSettings.gin.toolbar_variant, storageDesktop = "Drupal.gin.sidebarExpanded.desktop", resizer = document.getElementById("gin-sidebar-draggable"), resizable = document.getElementById("gin_sidebar"), isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       let startX, startWidth, isResizing = !1;
       Drupal.behaviors.ginSidebar = {
         attach: function(context) {
@@ -57,7 +57,9 @@
           document.addEventListener("touchmove", this.resizeWidth), document.addEventListener("touchend", this.resizeEnd);
         },
         resizeStart: e => {
-          e.preventDefault(), isResizing = !0, startX = e.clientX, startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+          "ontouchstart" in window || isTouchDevice ? (isResizing = !0, startX = e.touches[0].clientX, 
+          startWidth = parseInt(window.getComputedStyle(resizable).width, 10)) : (e.preventDefault(), 
+          isResizing = !0, startX = e.clientX, startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10));
         },
         resizeEnd: () => {
           isResizing = !1;
@@ -67,7 +69,8 @@
         },
         resizeWidth: e => {
           if (isResizing) {
-            let sidebarWidth = startWidth - (e.clientX - startX);
+            let sidebarWidth;
+            sidebarWidth = "ontouchstart" in window || isTouchDevice ? startWidth - (e.touches[0].clientX - startX) : startWidth - (e.clientX - startX), 
             sidebarWidth <= 240 ? sidebarWidth = 240 : sidebarWidth >= 560 && (sidebarWidth = 560), 
             sidebarWidth = `${sidebarWidth}px`, document.documentElement.style.setProperty("--gin-sidebar-width", sidebarWidth);
           }

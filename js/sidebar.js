@@ -9,6 +9,7 @@
   const storageWidth = "Drupal.gin.sidebarWidth";
   const resizer = document.getElementById('gin-sidebar-draggable');
   const resizable = document.getElementById('gin_sidebar');
+  const isTouchDevice = /Android|iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   let isResizing = false;
   let startX, startWidth;
 
@@ -169,12 +170,17 @@
     },
 
     resizeStart: (e) => {
-      e.preventDefault();
-      isResizing = true;
-      startX = e.clientX;
-      startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+      if ('ontouchstart' in window || isTouchDevice) {
+        isResizing = true;
+        startX = e.touches[0].clientX;
+        startWidth = parseInt(window.getComputedStyle(resizable).width, 10);
+      } else {
+        e.preventDefault();
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+      }
     },
-
     resizeEnd: () => {
       isResizing = false;
       const setWidth = document.documentElement.style.getPropertyValue('--gin-sidebar-width');
@@ -183,19 +189,20 @@
       document.removeEventListener('mousemove', this.resizeWidth);
       document.removeEventListener('touchend', this.resizeWidth);
     },
-
     resizeWidth: (e) => {
       if (isResizing) {
-        let sidebarWidth = startWidth - (e.clientX - startX);
-
+        let sidebarWidth;
+        if ('ontouchstart' in window || isTouchDevice) {
+          sidebarWidth = startWidth - (e.touches[0].clientX - startX);
+        } else {
+          sidebarWidth = startWidth - (e.clientX - startX);
+        }
         if (sidebarWidth <= 240) {
           sidebarWidth = 240;
         } else if (sidebarWidth >= 560) {
           sidebarWidth = 560;
         }
-
         sidebarWidth = `${sidebarWidth}px`;
-        // resizable.style.width = sidebarWidth;
         document.documentElement.style.setProperty('--gin-sidebar-width', sidebarWidth);
       }
     }
