@@ -400,10 +400,6 @@
 }
 
 @media (min-width: 80em) {
-  .gin-secondary-toolbar .toolbar-secondary .toolbar-bar .toolbar-tab {
-    margin-inline-start: -0.25em;
-  }
-
   .gin-secondary-toolbar .toolbar-secondary .toolbar-bar .toolbar-tab .toolbar-item {
     font-size: var(--gin-font-size-xs);
     width: auto;
