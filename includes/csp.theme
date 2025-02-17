@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * csp.theme
+ */
+
+use Drupal\csp\Csp;
+use Symfony\Component\HttpFoundation\Response;
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function gin_library_info_alter(array &$libraries, string $extension): void {
+  if ($extension !== 'gin') {
+    return;
+  }
+
+  if (!\Drupal::moduleHandler()->moduleExists('csp')) {
+    return;
+  }
+
+  $libraries['gin_accent']['dependencies'][] = 'csp/nonce';
+}
+
+/**
+ * Implements hook_csp_policy_alter().
+ */
+function gin_csp_policy_alter(Csp $policy, Response $response): void {
+  $nonce = \Drupal::service('csp.nonce')->getSource();
+  $policy->fallbackAwareAppendIfEnabled('style-src', [$nonce]);
+  $policy->fallbackAwareAppendIfEnabled('style-src-elem', [$nonce]);
+}

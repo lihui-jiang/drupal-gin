@@ -54,6 +54,10 @@
           }\n\
         `;
 
+        if (drupalSettings.csp && drupalSettings.csp.nonce) {
+          style.setAttribute('nonce', drupalSettings.csp.nonce);
+        }
+
         element.append(style);
       }
     },
@@ -93,6 +97,10 @@
           .gin--dark-mode [data-gin-focus="custom"] {\n\
             --gin-color-focus: ${darkAccentColor};\n\
           }`;
+
+        if (drupalSettings.csp && drupalSettings.csp.nonce) {
+          style.setAttribute('nonce', drupalSettings.csp.nonce);
+        }
 
         element.append(style);
       }
