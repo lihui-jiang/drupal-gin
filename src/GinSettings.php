@@ -38,6 +38,13 @@ class GinSettings implements ContainerInjectionInterface {
   protected $currentUser;
 
   /**
+   * Static settings cache.
+   *
+   * @var string[]
+   */
+  public static $staticCache;
+
+  /**
    * Settings constructor.
    *
    * @param \Drupal\Core\Session\AccountInterface $currentUser
@@ -51,6 +58,9 @@ class GinSettings implements ContainerInjectionInterface {
     }
     $this->currentUser = $currentUser;
     $this->configFactory = $configFactory;
+    if (!is_array(self::$staticCache)) {
+      self::$staticCache = [];
+    }
   }
 
   /**
@@ -79,6 +89,10 @@ class GinSettings implements ContainerInjectionInterface {
     if (!$account) {
       $account = $this->currentUser;
     }
+    // If we have this value, return early.
+    if (!empty(self::$staticCache[$account->id()][$name])) {
+      return self::$staticCache[$account->id()][$name];
+    }
     if ($this->userOverrideEnabled($account)) {
       $settings = $this->userData->get('gin', $account->id(), 'settings');
       if (isset($settings[$name])) {
@@ -93,7 +107,8 @@ class GinSettings implements ContainerInjectionInterface {
       $admin_theme = $this->getAdminTheme();
       $value = theme_get_setting($name, $admin_theme);
     }
-    return $this->handleLegacySettings($name, $value);
+    self::$staticCache[$account->id()][$name] = $this->handleLegacySettings($name, $value);
+    return self::$staticCache[$account->id()][$name];
   }
 
   /**
