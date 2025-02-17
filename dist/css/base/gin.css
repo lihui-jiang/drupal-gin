@@ -868,6 +868,13 @@ details summary {
 
 .view-preview-form .form-actions {
   align-items: flex-end;
+  margin-top: 0;
+}
+
+.view-preview-form .form-actions input {
+  min-height: 2.25rem;
+  padding-top: .474rem;
+  padding-bottom: .474rem;
 }
 
 .view-preview-form .form-item--live-preview {
