@@ -1642,6 +1642,10 @@ table .views-field.views-field-operations {
   display: flex;
 }
 
+.table-file-multiple-widget .tabledrag-cell-content {
+  display: flex;
+}
+
 .form-element {
   color: var(--gin-color-text);
   line-height: var(--input-line-height);
