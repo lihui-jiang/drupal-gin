@@ -15,7 +15,6 @@
   }
 
   [data-drupal-selector*=edit-header] {
-    order: 99;
     position: relative;
     inset-inline-start: 0;
 
@@ -32,10 +31,6 @@
       .form-actions {
         flex: 0 0 100%;
         max-width: 100%;
-      }
-
-      .form-actions {
-        justify-content: flex-end;
       }
 
       .form-type--checkbox {

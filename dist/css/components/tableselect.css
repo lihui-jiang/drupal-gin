@@ -17,7 +17,6 @@
 
 .block-system > .views-form [data-drupal-selector*=edit-header],
 .view-content .views-form [data-drupal-selector*=edit-header] {
-  order: 99;
   position: relative;
   inset-inline-start: 0;
 }
@@ -38,11 +37,6 @@
 .view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions {
   flex: 0 0 100%;
   max-width: 100%;
-}
-
-.block-system > .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions,
-.view-content .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-actions {
-  justify-content: flex-end;
 }
 
 .block-system > .views-form [data-drupal-selector*=edit-header] [data-drupal-selector*=edit-views-bulk-operations-bulk-form] .form-type--checkbox,
