@@ -1187,6 +1187,10 @@ a.views-field-excluded {
   margin-block-start: calc(var(--gin-spacing-xs) * -1);
 }
 
+.gin--sticky-table-header:first-of-type + .gin-table-scroll-wrapper {
+  margin-top: calc(var(--gin-spacing-xxxl));
+}
+
 table.gin--sticky-table-header {
   visibility: hidden;
   z-index: 97;
