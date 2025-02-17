@@ -37,6 +37,10 @@ function gin_preprocess_page(&$variables) {
     }
   }
 
+  if (\Drupal::service('access_manager')->checkNamedRoute('system.admin_content')) {
+    $variables['admin_content_url'] = \Drupal::service('url_generator')->generateFromRoute('system.admin_content');
+  }
+
   // Get form actions.
   if ($form_actions = _gin_form_actions()) {
     if (_gin_module_is_active('navigation_top_bar')) {
