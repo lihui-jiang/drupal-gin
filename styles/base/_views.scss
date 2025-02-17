@@ -89,12 +89,6 @@
   margin-inline-end: var(--gin-spacing-xs);
 }
 
-.views-exposed-form .form-item--no-label,
-.views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions {
-  margin-block: var(--gin-spacing-s) 0;
-  align-self: flex-end;
-}
-
 .gin-layer-wrapper {
   padding: var(--gin-spacing-s);
 
@@ -139,7 +133,7 @@
   }
 
   .form-actions {
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   .form-item--live-preview {
