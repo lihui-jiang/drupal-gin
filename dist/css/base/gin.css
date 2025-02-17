@@ -1180,26 +1180,15 @@ a.views-field-excluded {
 
 .gin-table-scroll-wrapper {
   clear: both;
-  overflow-x: auto;
-  overflow-y: hidden;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   margin-block-start: calc(var(--gin-spacing-xs) * -1);
 }
 
-table.gin--sticky-table-header {
-  visibility: hidden;
-  z-index: 97;
-  position: sticky;
-  inset-block-start: calc(var(--gin-toolbar-y-offset) + var(--gin-height-sticky) - 1px);
-  width: auto !important;
-  margin-block-start: calc(var(--gin-spacing-xs) * -1);
-  overflow: hidden;
-}
-
-table.gin--sticky-table-header tr {
-  display: block;
-  width: max-content;
+table {
+  width: 100%;
+  margin-block: var(--space-l);
+  border-collapse: collapse;
 }
 
 .gin-horizontal-scroll-shadow {
@@ -1226,19 +1215,35 @@ table.sticky-header {
   background: transparent;
 }
 
+[dir="ltr"] table.sticky-header {
+  left: auto !important;
+}
+
+[dir="rtl"] table.sticky-header {
+  right: auto !important;
+}
+
+table.position-sticky,
+table.sticky-header {
+  position: relative;
+  z-index: 1;
+}
+
 table.position-sticky thead,
 table.sticky-header thead {
-  position: static;
+  border-bottom: 2px solid var(--gin-border-color-table-header);
+}
+
+table.position-sticky th,
+table.sticky-header th {
+  position: sticky;
+  z-index: 98;
+  top: calc(var(--gin-toolbar-y-offset) + var(--gin-height-sticky) - 1px);
 }
 
 table.position-sticky.--is-processed thead,
 table.sticky-header.--is-processed thead {
   pointer-events: none;
-}
-
-table.position-sticky.--is-processed thead tr,
-table.sticky-header.--is-processed thead tr {
-  border-color: transparent;
 }
 
 table.position-sticky.--is-processed thead tr .sortable-heading.is-active > a::before,

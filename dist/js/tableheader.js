@@ -6,7 +6,7 @@
   }, Drupal.ginTableHeader = {
     init: function(context) {
       once("ginTableHeaderSticky", "table.position-sticky, table.sticky-header", context).forEach((el => {
-        this.updateTableHeader(el), this.showTableHeaderOnInit(), new ResizeObserver((() => {
+        this.updateTableHeader(el), new ResizeObserver((() => {
           Drupal.debounce(this.updateTableHeader(el), 150);
         })).observe(el), document.querySelectorAll('.gin--sticky-bulk-select > input[type="checkbox"]').forEach((checkbox => {
           checkbox.addEventListener("click", (event => {
@@ -14,11 +14,6 @@
           }));
         }));
       }));
-    },
-    showTableHeaderOnInit: function() {
-      const tableHeader = document.querySelector(".gin--sticky-table-header");
-      tableHeader && (tableHeader.hidden = !1, tableHeader.style.display = "block", tableHeader.style.visibility = "visible", 
-      document.body.style.overflowX = "hidden");
     },
     updateTableHeader: function(el) {
       const tableHeader = document.querySelector(".gin--sticky-table-header");
