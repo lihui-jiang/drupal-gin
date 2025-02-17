@@ -1224,6 +1224,7 @@ table.sticky-header {
   min-width: 100%;
   max-width: fit-content;
   background: transparent;
+  max-width: fit-content;
 }
 
 table.position-sticky thead,
