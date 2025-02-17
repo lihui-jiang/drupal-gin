@@ -1686,6 +1686,10 @@ table .views-field.views-field-operations {
   max-width: 100%;
 }
 
+.form-type--textfield input {
+  width: 100%;
+}
+
 .form-item--editor-format,
 .form-element--editor-format {
   width: auto;
