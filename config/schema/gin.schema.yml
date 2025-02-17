@@ -50,3 +50,12 @@ gin.settings:
             module_link:
               type: boolean
               label: 'Module Link'
+    icon_default:
+      type: boolean
+      label: 'Icon default'
+    icon_path:
+      type: string
+      label: 'Icon path'
+    icon_upload:
+      type: string
+      label: 'Icon upload'
