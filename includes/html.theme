@@ -5,6 +5,7 @@
  * html.theme
  */
 
+use Drupal\gin\GinColorHelper;
 use Drupal\gin\GinContentFormHelper;
 use Drupal\gin\GinNavigation;
 use Drupal\gin\GinSettings;
@@ -32,6 +33,47 @@ function gin_preprocess_html(&$variables) {
 
     // Set focus color.
     $variables['attributes']['data-gin-focus'] = $settings->get('preset_focus_color');
+
+    // Insert accent color styles if custom color is selected.
+    $preset_accent_color = $settings->get('preset_accent_color');
+    if ($preset_accent_color == 'custom') {
+      // Accent colors.
+      $accent_color = $settings->get('accent_color');
+      $stripped_accent_color = str_replace('#', '', $accent_color);
+      $dark_accent_color = GinColorHelper::mixColor($stripped_accent_color, 'ffffff', 65);
+      $stripped_dark_accent_color = str_replace('#', '', $dark_accent_color);
+      // Prepare styles for accent color.
+      $accent_style_data = [
+        [
+          'selectors' => ['[data-gin-accent="custom"]'],
+          'styles' => [
+            '--gin-color-primary-rgb' => GinColorHelper::hexToRgb($accent_color),
+            '--gin-color-primary-hover' => GinColorHelper::shadeColor($accent_color, -10),
+            '--gin-color-primary-active' => GinColorHelper::shadeColor($accent_color, -15),
+            '--gin-bg-app-rgb' => GinColorHelper::hexToRgb(GinColorHelper::mixColor('ffffff', $stripped_accent_color, 97)),
+            '--gin-bg-header' => GinColorHelper::mixColor('ffffff', $stripped_accent_color, 85),
+            '--gin-color-sticky-rgb' => GinColorHelper::hexToRgb(GinColorHelper::mixColor('ffffff', $stripped_accent_color, 92)),
+          ],
+        ],
+        [
+          'selectors' => [
+            '.gin--dark-mode[data-gin-accent="custom"]',
+            '.gin--dark-mode [data-gin-accent="custom"]',
+          ],
+          'styles' => [
+            '--gin-color-primary-rgb' => GinColorHelper::hexToRgb($dark_accent_color),
+            '--gin-color-primary-hover' => GinColorHelper::mixColor('ffffff', $stripped_accent_color, 55),
+            '--gin-color-primary-active' => GinColorHelper::mixColor('ffffff', $stripped_accent_color, 50),
+            '--gin-bg-header' => GinColorHelper::mixColor('2a2a2d', $stripped_dark_accent_color, 88),
+          ],
+        ],
+      ];
+      $accent_styles = GinColorHelper::prepareStyles($accent_style_data);
+      $accent_styles_tag = [
+        '#markup' => $accent_styles,
+      ];
+      $variables['gin_custom_colors'] = $accent_styles_tag;
+    }
 
     // High contrast mode.
     if ($settings->get('high_contrast_mode')) {
