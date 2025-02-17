@@ -1,5 +1,5 @@
 .responsive-preview {
-  z-index: 502;
+  z-index: 500;
 }
 
 .responsive-preview-item-list {
@@ -68,6 +68,27 @@
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-configure:hover {
   color: var(--gin-color-primary);
+}
+
+.toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active {
+  color: var(--gin-color-button-text);
+  background-color: var(--gin-color-primary);
+}
+
+.toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  background-position: center -160px;
+  background-color: var(--gin-color-button-text);
+  height: 18px;
+  top: .7em;
+  width: 18px;
+}
+
+[dir="ltr"] .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  left: .667em;
+}
+
+[dir="rtl"] .toolbar .toolbar-tab-responsive-preview.toolbar-tab .responsive-preview-options .responsive-preview-device.responsive-preview-icon-active.active:before {
+  right: .667em;
 }
 
 .toolbar .toolbar-tab-responsive-preview.toolbar-tab.open, .toolbar .toolbar-tab-responsive-preview.toolbar-tab.open::before {
