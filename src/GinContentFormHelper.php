@@ -277,6 +277,12 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       unset($form['meta']['author']);
     }
 
+    // Assign status to gin_actions if it input is checkbox.
+    $widget_type = $form['status']['widget']['#type'] ?? 'checkbox';
+    if ($widget_type === 'checkbox') {
+      $form['status']['#group'] = 'gin_actions';
+    }
+
   }
 
   /**
