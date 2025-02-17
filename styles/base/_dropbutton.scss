@@ -238,6 +238,10 @@ html.js {
     box-sizing: border-box;
   }
 
+  .dropbutton-wrapper {
+    box-shadow: none;
+  }
+
   .dropbutton-wrapper:not(.open) .dropbutton__items {
     visibility: hidden;
     opacity: 0;
@@ -273,11 +277,63 @@ html.js.no-touchevents {
     margin-inline-end: var(--gin-spacing-l);
   }
 
+  .dropbutton--extrasmall,
+  .dropbutton--small {
+    border-radius: var(--gin-border-s);
+    
+    .dropbutton {
+
+      &__toggle,
+      &__item:first-of-type > * {
+        font-weight: var(--gin-font-weight-semibold);
+      }
+
+      &__toggle {
+        background: transparent;
+        border: none !important;
+        color: var(--gin-color-primary);
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 2px;
+        border-radius: 0 calc(var(--gin-border-s) - 0.14rem) calc(var(--gin-border-s) - 0.14rem) 0;
+
+        &:before {
+          background: none;
+          background-color: var(--gin-color-primary);
+          background-image: none;
+        }
+
+        &:hover {
+          background-color: var(--gin-color-primary);
+
+          &:before {
+            background-color: var(--gin-color-button-text)
+          }
+        }
+      }
+
+      &__item:first-of-type {
+        border-right-color: var(--gin-color-primary);
+      }
+
+      &__item:first-of-type > * {
+        padding-inline: var(--gin-spacing-s);
+        background: transparent;
+        color: var(--gin-color-primary);
+        border-radius: calc(var(--gin-border-s) - 0.14rem) 0 0 calc(var(--gin-border-s) - 0.14rem);
+  
+        &:hover {
+          color: var(--gin-color-button-text);
+          background: var(--gin-color-primary);
+        }
+      }
+    }
+  }
   .dropbutton--small {
     min-width: 0;
     height: 2.25rem;
     min-height: 2.25rem;
-    border-radius: var(--gin-border-s);
 
     .dropbutton__toggle {
       width: calc(var(--dropbutton-small-toggle-size, 2rem) + 1px);
@@ -288,14 +344,9 @@ html.js.no-touchevents {
     min-width: 0;
     height: 1.75rem;
     min-height: 1.75rem;
-    border-radius: var(--gin-border-s);
 
     .dropbutton__toggle {
       width: calc(var(--dropbutton-extrasmall-toggle-size, 1.5rem) + 1px);
-    }
-
-    .dropbutton__item:first-of-type > * {
-      padding-inline: var(--gin-spacing-s);
     }
   }
 
