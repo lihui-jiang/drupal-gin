@@ -3976,6 +3976,8 @@ tr.color-error:focus,
 
 .ui-autocomplete {
   z-index: 2000;
+  max-height: 472px;
+  overflow-y: scroll;
 }
 
 [data-drupal-selector=edit-fields-field-image-settings-edit-form-third-party-settings-insert] .gin-layer-wrapper {
