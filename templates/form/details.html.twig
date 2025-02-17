@@ -68,7 +68,9 @@
     %}
     <summary{{ summary_attributes.addClass(summary_classes) }}>
       {{- title -}}
-      <span class="required-mark"></span>
+      {% if required %}
+        <span class="required-mark"></span>
+      {% endif %}
       {% if show_description_toggle %}
         {{ attach_library('gin/gin_description_toggle') }}
         <button class="help-icon__description-toggle"></button>
