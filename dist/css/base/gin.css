@@ -1178,6 +1178,10 @@ a.views-field-excluded {
   opacity: .75;
 }
 
+.feeds-mapping-form .gin-table-scroll-wrapper {
+  overflow: visible;
+}
+
 .gin-table-scroll-wrapper {
   clear: both;
   overflow-x: auto;
