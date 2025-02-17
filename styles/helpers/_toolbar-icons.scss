@@ -160,6 +160,11 @@
   --icon: #{icon('rebuild-cache')};
 }
 
+.toolbar-icon-entity-sync-admin::before,
+.toolbar-link--entity-sync-admin::before{
+  --icon: #{icon('rebuild-cache')};
+}
+
 .responsive-preview-icon::before {
   --icon: #{icon('responsive-preview')};
 }

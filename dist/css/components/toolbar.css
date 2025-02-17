@@ -355,6 +355,11 @@ body.gin--classic-toolbar {
   --icon: url("../../media/sprite.svg#rebuild-cache-view");
 }
 
+.toolbar .toolbar-bar .toolbar-icon-entity-sync-admin::before,
+.toolbar .toolbar-bar .toolbar-link--entity-sync-admin::before {
+  --icon: url("../../media/sprite.svg#rebuild-cache-view");
+}
+
 .toolbar .toolbar-bar .responsive-preview-icon::before {
   --icon: url("../../media/sprite.svg#responsive-preview-view");
 }
