@@ -1724,14 +1724,14 @@ table .views-field.views-field-operations {
   padding-inline-end: calc(var(--gin-spacing-xs) + var(--gin-spacing-xl) - 1px);
 }
 
-@media (forced-colors: active) {
-  .form-element--type-select {
-    background-image: none !important;
-  }
-}
-
 .gin--dark-mode .form-element--type-select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath fill='none' stroke-width='1.5' d='M1 1L7 7L13 1' stroke='%23ffffff'/%3E%3C/svg%3E%0A");
+}
+
+@media (forced-colors: active) {
+  .gin--dark-mode .form-element--type-select {
+    background-image: none;
+  }
 }
 
 .form-element--type-select--small {
