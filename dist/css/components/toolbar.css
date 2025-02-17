@@ -66,6 +66,12 @@ body.gin--classic-toolbar {
   background-color: var(--gin-color-primary-active);
 }
 
+.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon-shortcut.is-active {
+  color: var(--gin-color-text-light);
+  background-color: transparent;
+  border-bottom: none;
+}
+
 @media only screen and (min-width: 36em) {
   .toolbar .toolbar-bar .toolbar-tab > .toolbar-icon:before, .toolbar .toolbar-bar .toolbar-tab > .responsive-preview-icon:before {
     background-size: 90% auto;
@@ -672,6 +678,10 @@ body.gin--classic-toolbar {
   .toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon::before, .toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .responsive-preview-icon::before {
     background: linktext !important;
   }
+}
+
+.toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon-shortcut.is-active::before {
+  filter: none;
 }
 
 .toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon.toolbar-icon-edit.toolbar-item::before, .toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon-edit.toolbar-item.responsive-preview-icon::before {

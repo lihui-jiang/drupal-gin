@@ -66,6 +66,14 @@ body.gin--classic-toolbar {
       }
     }
 
+    .toolbar-tab > .toolbar-icon-shortcut {
+      &.is-active {
+        color: var(--gin-color-text-light);
+        background-color: transparent;
+        border-bottom: none;
+      }
+    }
+
     .toolbar-tab > .toolbar-icon:before {
       @media only screen and (min-width: 36em) {
         background-size: 90% auto;
@@ -460,6 +468,10 @@ body.gin--classic-toolbar {
   @media (forced-colors: active) {
     background: linktext !important;
   }
+}
+
+.toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon-shortcut.is-active::before {
+  filter: none;
 }
 
 .toolbar.toolbar-secondary .toolbar-bar .toolbar-tab > .toolbar-icon.toolbar-icon-edit.toolbar-item::before {
