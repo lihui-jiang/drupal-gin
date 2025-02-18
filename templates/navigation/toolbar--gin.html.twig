@@ -23,7 +23,7 @@
 {% set gin_toolbar_id = toolbar_variant != 'classic' or core_navigation ? 'gin-toolbar-bar' : 'toolbar-bar' %}
 <div{{ attributes.addClass('toolbar') }}>
   <nav{{ toolbar_attributes.addClass('toolbar-bar', 'clearfix').setAttribute('id', gin_toolbar_id) }}>
-    <h2 class="visually-hidden">{{ toolbar_heading }}</h2>
+    <div class="visually-hidden" role="heading" aria-level="2">{{ toolbar_heading }}</div>
     {% for key, tab in tabs %}
       {% set tray = trays[key] %}
       {% set user_menu = tray.links['user_links'] ? 'user-menu' : false %}
@@ -51,7 +51,7 @@
           <div{{ tray.attributes }}>
             {% if tray.label %}
               <nav class="toolbar-lining clearfix" role="navigation" aria-label="{{ tray.label }}">
-                <h3 class="toolbar-tray-name visually-hidden">{{ tray.label }}</h3>
+                <div role="heading" aria-label="3" class="toolbar-tray-name visually-hidden">{{ tray.label }}</div>
             {% else %}
               <nav class="toolbar-lining clearfix" role="navigation">
             {% endif %}

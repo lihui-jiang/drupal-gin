@@ -69,9 +69,9 @@
       {# Add Menu Titles #}
       {% if menu_level == 1 and loop.index == 1 %}
         <li class="menu-item-title">
-          <h2 class="toolbar-menu__title">
+          <div role="heading" aria-level="2" class="toolbar-menu__title">
             <a href="{{ parent.url }}">{{ parent.title }}</a>
-          </h2>
+          </div>
         </li>
         {% if toolbar_variant == 'vertical' %}
           <li class="menu-item">
@@ -80,9 +80,9 @@
         {% endif %}
       {% elseif menu_level > 1 and loop.index == 1 %}
         <li class="menu-item-title">
-          <h3 class="toolbar-menu__sub-title">
+          <div role="heading" aria-level="3" class="toolbar-menu__sub-title">
             <a href="{{ parent.url }}">{{ parent.title }}</a>
-          </h3>
+          </div>
         </li>
         {% if toolbar_variant == 'vertical' %}
           <li class="menu-item">
