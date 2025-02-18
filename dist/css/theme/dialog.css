@@ -464,7 +464,7 @@
 }
 
 .gin--dark-mode .ui-dialog :not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox input {
-  background-color: var(--gin-bg-input);
+  background-color: var(--gin-bg-input-checkbox);
 }
 
 @media (forced-colors: active) {

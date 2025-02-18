@@ -252,11 +252,13 @@
   --gin-color-info: #559bca;
 
   // Input
+  --gin-bg-input-checkbox: var(--gin-bg-layer1);
   --gin-bg-input: var(--gin-bg-layer2);
 
   // Layers
   --gin-bg-app: #{$colorDarkAppBackground};
   --gin-bg-layer: #2A2A2D;
+  --gin-bg-layer1: #909098;
   --gin-bg-layer2: #3B3B3F;
   --gin-bg-layer3: #47474c;
   --gin-bg-layer4: #19191b;
@@ -272,6 +274,7 @@
   --gin-border-color: #43454a;
   --gin-border-color-secondary: rgba(255, 255, 255, .075);
   --gin-border-color-layer: rgba(0, 0, 0, .05);
+  --gin-border-color-layer1: #28282A;
   --gin-border-color-layer2: #76777B;
   --gin-border-color-table: #43454a;
 
@@ -279,7 +282,7 @@
   --gin-border-color-table-header: rgba(255, 255, 255, .4);
 
   // Form element
-  --gin-border-color-form-element: var(--gin-border-color-layer2);
+  --gin-border-color-form-element: var(--gin-border-color-layer1);
 
   // Table
   --gin-bg-header: #{$colorDarkAppBackground};

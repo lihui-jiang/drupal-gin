@@ -13,6 +13,7 @@
 .gin--dark-mode [data-gin-accent] {
   --gin-bg-item-hover: rgba(var(--gin-color-primary-rgb), .08);
   --gin-bg-app-rgb: 27, 27, 29;
+  --gin-color-primary-light-active: rgba(var(--gin-color-primary-rgb), .63);
 }
 
 [data-gin-accent=blue] {
