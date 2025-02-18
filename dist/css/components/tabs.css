@@ -531,3 +531,13 @@
   }
 }
 
+@media (forced-colors: active) {
+  .gin--dark-mode .vertical-tabs__items {
+    border: 1px solid var(--color-white);
+    border-radius: 0;
+    padding-block-end: var(--vertical-tabs-menu-item-shadow-extraspace);
+  }
+}
+
+
+/*# sourceMappingURL=tabs.css.map*/
