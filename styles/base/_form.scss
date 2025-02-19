@@ -172,7 +172,7 @@
       transition: transform .3s;
 
       .gin--dark-mode & {
-        background-color: var(--gin-border-color-form-element);
+        background-color: LinkText !important;
       }
 
       @media (forced-colors: active) {
