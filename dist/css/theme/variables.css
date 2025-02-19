@@ -207,7 +207,7 @@
   --gin-color-danger-lightest: #483439;
   --gin-color-green: #32cea4;
   --gin-color-info: #559bca;
-  --gin-bg-input-checkbox: var(--gin-bg-layer1);
+  --gin-bg-input-dark: var(--gin-bg-layer1);
   --gin-bg-input: var(--gin-bg-layer2);
   --gin-bg-app: #1b1b1d;
   --gin-bg-layer: #2a2a2d;
