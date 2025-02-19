@@ -232,6 +232,10 @@
       &::before {
         display: none;
       }
+
+      @media (forced-colors: active) {
+        border: 2px solid;
+      }
     }
   }
 }
