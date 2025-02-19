@@ -172,11 +172,11 @@
       transition: transform .3s;
 
       .gin--dark-mode & {
-        background-color: LinkText !important;
+        background-color: var(--gin-border-color-form-element);
       }
 
       @media (forced-colors: active) {
-        background-color: CanvasText;
+        background-color: CanvasText!important;
       }
     }
 
