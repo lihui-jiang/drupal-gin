@@ -12,14 +12,15 @@
           elem.setAttribute('id', a11yLabel);
           elem.setAttribute('aria-expanded', 'false');
           elem.setAttribute('aria-controls', 'target');
-          elem
-            .closest('.help-icon__description-container')
-            .querySelectorAll(
+          const container = elem.closest('.help-icon__description-container');
+          if (container) {
+            container.querySelectorAll(
               '.claro-details__description, .fieldset__description, .form-item__description',
             )
-            .forEach((description) => {
-              description.setAttribute('aria-labelledby', a11yLabel);
-            });
+              .forEach((description) => {
+                description.setAttribute('aria-labelledby', a11yLabel);
+              });
+          }
 
           elem.addEventListener('click', (event) => {
             event.preventDefault();
@@ -32,20 +33,22 @@
             }
 
             event.currentTarget.focus(); // firefox button focus issue
-            event.currentTarget
-              .closest('.help-icon__description-container')
-              .querySelectorAll(
+            const container = event.currentTarget
+              .closest('.help-icon__description-container');
+            if (container) {
+              container.querySelectorAll(
                 '.claro-details__description, .fieldset__description, .form-item__description',
               )
-              .forEach((description, index) => {
-                if (index > 1) {
-                  return;
-                }
-                const setStatus = description.classList.contains('visually-hidden');
-                event.currentTarget.setAttribute('aria-expanded', setStatus);
-                description.classList.toggle('visually-hidden');
-                description.setAttribute('aria-hidden', !setStatus);
-              });
+                .forEach((description, index) => {
+                  if (index > 1) {
+                    return;
+                  }
+                  const setStatus = description.classList.contains('visually-hidden');
+                  event.currentTarget.setAttribute('aria-expanded', setStatus);
+                  description.classList.toggle('visually-hidden');
+                  description.setAttribute('aria-hidden', !setStatus);
+                });
+            }
           });
         });
     }
