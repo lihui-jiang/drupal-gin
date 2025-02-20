@@ -244,8 +244,10 @@ class GinContentFormHelper implements ContainerInjectionInterface {
           ],
         ],
       ];
-      // Copy footer over.
-      $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
+
+      if (!empty($form['footer'])) {
+        $form['footer']['#group'] = 'gin_sidebar';
+      }
 
       // Sidebar close button.
       $close_sidebar_translation = t('Close sidebar panel');
