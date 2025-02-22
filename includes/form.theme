@@ -16,14 +16,15 @@ use Drupal\gin\GinSettings;
  * Implements form_alter_HOOK() for some major form changes.
  */
 function gin_form_alter(&$form, $form_state, $form_id) {
+  // Call GinContentFormHelper::formAlter() for additional form alterations
   \Drupal::classResolver(GinContentFormHelper::class)->formAlter($form, $form_state, $form_id);
 
-  // User form (Login, Register or Forgot password).
+  // User form (Login, Register or Forgot password)
   if (strpos($form_id, 'user_login') !== FALSE || strpos($form_id, 'user_register') !== FALSE || strpos($form_id, 'user_pass') !== FALSE) {
     $form['actions']['submit']['#attributes']['class'][] = 'button--primary';
   }
 
-  // Bulk forms: update action & actions to small variants.
+  // Bulk forms: update action & actions to small variants
   if (strpos($form_id, 'views_form') !== FALSE) {
     if (isset($form['header'])) {
       $bulk_form = current(preg_grep('/_bulk_form/', array_keys($form['header'])));
@@ -32,11 +33,20 @@ function gin_form_alter(&$form, $form_state, $form_id) {
         $form['header'][$bulk_form]['action']['#attributes']['class'][] = 'form-element--type-select--small';
         $form['header'][$bulk_form]['actions']['submit']['#attributes']['class'][] = 'button--small';
 
-        // Remove double entry of submit button.
+        // Remove double entry of submit button
         unset($form['actions']['submit']);
       }
     }
   }
+
+  // Move moderation_state field to a different group (e.g., 'gin_sticky_actions')
+  if (isset($form['moderation_state'])) {
+    $form['moderation_state']['#group'] = 'gin_sticky_actions';  // Change this to 'status' if you prefer
+    // Ensure any necessary JavaScript libraries are attached
+    $form['moderation_state']['#attached']['library'][] = 'core/drupal.ajax';
+  }
+}
+
 
   // Delete forms: alter buttons.
   if (strpos($form_id, 'delete_form') !== FALSE) {
