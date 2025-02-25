@@ -45,9 +45,14 @@
         });
 
         // Resize observer.
+        let lastWidth = window.innerWidth;
         const resizeHandler = new ResizeObserver(entries => {
           for (let entry of entries) {
-            Drupal.debounce(this.handleResize(entry.contentRect), 150);
+            const newWidth = entry.contentRect.width;
+            if (newWidth !== lastWidth) {
+              lastWidth = newWidth;
+              Drupal.debounce(this.handleResize(entry.contentRect), 150);
+            }
           }
         });
         resizeHandler.observe(document.querySelector('html'));
