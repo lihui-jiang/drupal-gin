@@ -33,12 +33,12 @@ class GinAfterBuild implements TrustedCallbackInterface {
         $value = $element['#options'][$value];
       }
       if ($element['#type'] === 'checkbox') {
-        $value = $value ? t('Enabled') : t('Disabled');
+        $value = $value ? $this->t('Enabled') : $this->t('Disabled');
       }
 
       $element += ['#description' => ''];
       $element['#description'] .= '<span class="form-item__warning">' .
-        t('This setting is overridden by the <a href=":editUrl">current user</a>. @title: %value',
+        $this->t('This setting is overridden by the <a href=":editUrl">current user</a>. @title: %value',
           [
             '@title' => $element['#title'],
             '%value' => $value,
