@@ -1285,6 +1285,11 @@ table tbody td {
   padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
 }
 
+table.table-file-multiple-widget tbody td {
+  height: auto;
+  padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
+}
+
 table tr,
 table tr:focus-within,
 table .draggable-table.tabledrag-disabled tr {

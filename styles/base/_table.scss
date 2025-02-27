@@ -101,6 +101,15 @@ table {
     }
   }
 
+  &.table-file-multiple-widget {
+    tbody {
+      td {
+        height: auto;
+        padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
+      }
+    }
+  }
+
   tr,
   tr:focus-within,
   .draggable-table.tabledrag-disabled tr {
