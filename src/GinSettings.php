@@ -211,9 +211,9 @@ class GinSettings implements ContainerInjectionInterface {
    *   The theme setting form elements.
    */
   public function getSettingsForm(?AccountInterface $account = NULL): array {
-    $experimental_label = '<span class="gin-experimental-flag">' . $this->t('Experimental') . '</span>';
-    $beta_label = '<span class="gin-beta-flag">' . $this->t('Beta') . '</span>';
-    $new_label = '<span class="gin-new-flag">' . $this->t('New') . '</span>';
+    $experimental_label = ' <span class="gin-experimental-flag">' . $this->t('Experimental') . '</span>';
+    $beta_label = ' <span class="gin-beta-flag">' . $this->t('Beta') . '</span>';
+    $new_label = ' <span class="gin-new-flag">' . $this->t('New') . '</span>';
 
     $form['enable_darkmode'] = [
       '#type' => 'radios',
