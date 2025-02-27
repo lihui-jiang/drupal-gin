@@ -109,7 +109,6 @@
 
 .paragraphs-tabs-wrapper .field-multiple-table .draggable .form-managed-file.has-value.is-multiple {
   display: flex;
-  flex-direction: column-reverse;
   gap: 1rem;
 }
 
