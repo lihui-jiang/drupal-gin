@@ -446,6 +446,17 @@
   margin-inline-start: 0;
 }
 
+.ui-dialog :not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox:has(label.error) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ui-dialog :not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox:has(label.error) label.error {
+  flex: 0 0 100%;
+  order: 3;
+  color: var(--gin-color-danger);
+}
+
 .ui-dialog :not(.form-checkboxes):not(td):not(.tabledrag-cell-content__item):not(.media-library-item__click-to-select-checkbox):not(.field-content):not(.ajax-new-content):not(.tablesaw-cell-content) > .form-type--checkbox input {
   all: unset;
   appearance: none;
@@ -722,6 +733,7 @@
   margin-block-end: var(--gin-spacing-xs);
 }
 
+.ui-dialog label.error,
 .ui-dialog .form-item__label.has-error,
 .ui-dialog .form-item__error-message {
   color: var(--gin-color-danger);
