@@ -230,6 +230,9 @@ body.gin--core-navigation {
   color: var(--gin-color-primary);
   background-color: var(--gin-color-primary-light);
 
+  @media (forced-colors: active) {
+    border: 1px solid;
+  }
   &::before {
     background: var(--gin-color-primary);
   }
