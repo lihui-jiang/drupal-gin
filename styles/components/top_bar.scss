@@ -20,6 +20,10 @@ $topbar: 54px;
     align-self: center;
   }
 
+  .top-bar__context {
+    gap: var(--gin-spacing-xs);
+  }
+
   .top-bar__actions,
   .local-actions {
     display: flex;
@@ -34,6 +38,48 @@ $topbar: 54px;
   .gin-sticky-form-actions {
     width: auto;
     margin: 0;
+  }
+
+  .toolbar-dropdown__menu {
+    gap: 0;
+    padding: var(--gin-spacing-xs);
+    background-color: var(--gin-bg-layer3);
+    border-radius: var(--gin-border-l);
+    box-sizing: border-box;
+    box-shadow: var(--gin-shadow-l2);
+    transition: opacity var(--gin-transition-fast);
+
+    .toolbar-dropdown__link {
+      font-size: var(--gin-font-size-xs);
+      font-weight: var(--gin-font-weight-semibold);
+      line-height: 1;
+      text-align: start;
+      text-decoration: none;
+      width: 100%;
+      max-width: 240px;
+      padding: var(--gin-spacing-s);
+      margin: 0 !important;
+      border: 0 !important;
+      border-radius: var(--gin-border-s);
+      box-shadow: none;
+      box-sizing: border-box;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: var(--gin-color-button-text);
+        background-color: var(--gin-color-primary);
+        outline: none;
+
+        &::before {
+          background-color: var(--gin-bg-layer) !important;
+        }
+      }
+    }
+
+    .toolbar-dropdown__item + .toolbar-dropdown__item {
+      border: none;
+    }
   }
 
   button,

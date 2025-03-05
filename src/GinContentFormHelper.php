@@ -296,7 +296,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     // Sets default to TRUE if setting is enabled.
     $sticky_action_buttons = $settings->get('sticky_action_buttons') ? TRUE : FALSE;
 
-    // TEST: Always enable if navigation_top_bar is active.
+    // Always enable if navigation_top_bar is active.
     if (_gin_module_is_active('navigation_top_bar')) {
       $sticky_action_buttons = TRUE;
     }

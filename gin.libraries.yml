@@ -65,9 +65,6 @@ navigation:
     - core/drupal.displace
 
 core_navigation:
-  # component:
-  #   dist/css/components/toolbar.css: { minified: false }
-  #   dist/css/components/toolbar_secondary.css: { minified: false }
   css:
     theme:
       dist/css/layout/core_navigation.css: { minified: false }
@@ -82,6 +79,12 @@ core_navigation:
     - gin/breadcrumb
     - gin/settings_tray
     - gin/settings_tray_edit
+
+core_navigation_without_topbar:
+  css:
+    component:
+      dist/css/components/toolbar.css: { minified: false }
+      dist/css/components/toolbar_secondary.css: { minified: false }
 
 gin_toolbar:
   css:

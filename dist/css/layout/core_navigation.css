@@ -199,7 +199,7 @@ body.gin--core-navigation {
           mask-repeat: no-repeat;
   -webkit-mask-position: center center;
           mask-position: center center;
-  background-color: var(--gin-icon-color);
+  background: var(--gin-icon-color);
   -webkit-mask-image: url("../../media/sprite.svg#more-view");
           mask-image: url("../../media/sprite.svg#more-view");
   -webkit-mask-size: var(--gin-icon-size-toolbar-secondary) var(--gin-icon-size-toolbar-secondary);
@@ -208,11 +208,11 @@ body.gin--core-navigation {
 }
 
 .gin--navigation-top-bar .toolbar-button.toolbar-button--icon--dots:hover, .gin--navigation-top-bar .toolbar-button.toolbar-button--icon--dots:focus {
-  background-color: var(--gin-color-primary-light);
+  background: var(--gin-color-primary-light);
 }
 
 .gin--navigation-top-bar .toolbar-button.toolbar-button--icon--dots:hover::before, .gin--navigation-top-bar .toolbar-button.toolbar-button--icon--dots:focus::before {
-  background-color: var(--gin-color-primary);
+  background: var(--gin-color-primary);
 }
 
 .gin--navigation-top-bar .toolbar-button.toolbar-button--icon--dots.is-active {

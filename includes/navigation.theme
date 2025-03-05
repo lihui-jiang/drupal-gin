@@ -22,4 +22,8 @@ function gin_preprocess_navigation(&$variables) {
 
   // Attach the new drupal navigation styles.
   $variables['#attached']['library'][] = 'gin/core_navigation';
+
+  if (!_gin_module_is_active('navigation_top_bar')) {
+    $variables['#attached']['library'][] = 'gin/core_navigation_without_topbar';
+  }
 }

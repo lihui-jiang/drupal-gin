@@ -204,17 +204,17 @@ body.gin--core-navigation {
     content: "";
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: var(--gin-icon-color);
+    background: var(--gin-icon-color);
     mask-image: icon('more');
     mask-size: var(--gin-icon-size-toolbar-secondary) var(--gin-icon-size-toolbar-secondary);
     border-radius: 50%;
   }
 
   &:hover, &:focus {
-    background-color: var(--gin-color-primary-light);
+    background: var(--gin-color-primary-light);
 
     &::before {
-      background-color: var(--gin-color-primary);
+      background: var(--gin-color-primary);
     }
   }
 

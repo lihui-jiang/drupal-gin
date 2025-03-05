@@ -52,7 +52,11 @@ function gin_form_alter(&$form, $form_state, $form_id) {
  */
 function gin_form_after_build(array $form, FormStateInterface $form_state): array {
   // Allowlist for visible actions.
-  $includes = ['save', 'submit', 'preview'];
+  if (_gin_module_is_active('navigation_top_bar')) {
+    $includes = ['save', 'submit', 'preview', 'delete', 'cancel'];
+  } else {
+    $includes = ['save', 'submit', 'preview', 'cancel'];
+  }
 
   // Secondary action container options.
   $form['gin_sticky_actions']['more_actions']['more_actions_items']['#weight'] = 2;
