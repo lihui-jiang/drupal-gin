@@ -64,8 +64,9 @@ function gin_form_after_build(array $form, FormStateInterface $form_state): arra
       continue;
     }
 
-    if (in_array($key, $includes, TRUE) || _gin_module_is_active('navigation_top_bar')) {
+    if (_gin_module_is_active('navigation_top_bar')) {
       $form['gin_sticky_actions']['actions'][$key] = $button;
+      unset($form['gin_sticky_actions']['more_actions']);
     }
     elseif (isset($button['#type']) && $button['#type'] === 'submit') {
       // Update button.

@@ -1,12 +1,25 @@
 $topbar: 54px;
 
 .gin--navigation-top-bar {
+  padding-inline: calc(var(--admin-toolbar-sidebar-width) + var(--gin-spacing-m)) var(--gin-spacing-m);
   padding-block: var(--gin-spacing-xxxs);
-  border-block-end: 1px solid var(--admin-toolbar-color-gray-100);
-  background: var(--gin-bg-layer);
-  box-shadow: none;
   min-height: $topbar;
   height: auto;
+  border-block-end: 1px solid var(--gin-border-color-layer);
+  box-shadow: none;
+  opacity: .95;
+  background: var(--gin-bg-layer);
+
+  @supports (backdrop-filter: blur()) {
+    opacity: .999;
+    background: rgba(var(--gin-bg-layer-rgb), .8);
+    backdrop-filter: blur(12px);
+  }
+
+  .gin--high-contrast-mode & {
+    background: var(--gin-bg-layer);
+    backdrop-filter: none;
+  }
 
   &--offset {
     margin-top: calc(#{$topbar} + var(--gin-spacing-s));
@@ -100,6 +113,18 @@ body:has(.gin--navigation-top-bar .gin-sticky-form-actions) :where(#gin_sidebar)
   height: calc(100% - #{$topbar}) !important;
 }
 
-:where(.gin--edit-form) .gin-sticky-form-actions [data-drupal-selector="edit-delete"] {
-  display: none;
+:where(.gin--edit-form) .gin-sticky-form-actions {
+  gap: var(--gin-spacing-xs);
+
+  .button {
+    margin-right: 0;
+  }
+
+  [data-drupal-selector="edit-delete"] {
+    display: none;
+  }
+}
+
+#block-gin-page-title {
+  margin-block: var(--gin-spacing-xxs) var(--gin-spacing-s);
 }

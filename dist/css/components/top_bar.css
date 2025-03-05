@@ -1,10 +1,27 @@
 .gin--navigation-top-bar {
+  padding-inline: calc(var(--admin-toolbar-sidebar-width) + var(--gin-spacing-m)) var(--gin-spacing-m);
   padding-block: var(--gin-spacing-xxxs);
-  border-block-end: 1px solid var(--admin-toolbar-color-gray-100);
-  background: var(--gin-bg-layer);
-  box-shadow: none;
   min-height: 54px;
   height: auto;
+  border-block-end: 1px solid var(--gin-border-color-layer);
+  box-shadow: none;
+  opacity: .95;
+  background: var(--gin-bg-layer);
+}
+
+@supports ((-webkit-backdrop-filter: blur()) or (backdrop-filter: blur())) {
+  .gin--navigation-top-bar {
+    opacity: .999;
+    background: rgba(var(--gin-bg-layer-rgb), .8);
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+  }
+}
+
+.gin--high-contrast-mode .gin--navigation-top-bar {
+  background: var(--gin-bg-layer);
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
 }
 
 .gin--navigation-top-bar--offset {
@@ -96,7 +113,23 @@ body:has(.gin--navigation-top-bar .gin-sticky-form-actions) :where(#gin_sidebar)
   height: calc(100% - 54px) !important;
 }
 
+:where(.gin--edit-form) .gin-sticky-form-actions {
+  gap: var(--gin-spacing-xs);
+}
+
+[dir="ltr"] :where(.gin--edit-form) .gin-sticky-form-actions .button {
+  margin-inline-end: 0;
+}
+
+[dir="rtl"] :where(.gin--edit-form) .gin-sticky-form-actions .button {
+  margin-inline-start: 0;
+}
+
 :where(.gin--edit-form) .gin-sticky-form-actions [data-drupal-selector=edit-delete] {
   display: none;
+}
+
+#block-gin-page-title {
+  margin-block: var(--gin-spacing-xxs) var(--gin-spacing-s);
 }
 
