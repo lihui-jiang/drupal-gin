@@ -186,9 +186,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       ];
 
       // Attach library.
-      if (!_gin_module_is_active('navigation_top_bar')) {
-        $form['#attached']['library'][] = 'gin/more_actions';
-      }
+      $form['#attached']['library'][] = 'gin/more_actions';
 
       $form['#after_build'][] = 'gin_form_after_build';
     }
