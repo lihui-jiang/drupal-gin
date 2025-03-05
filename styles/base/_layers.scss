@@ -59,7 +59,8 @@
 
   // Remove extra spacing on top of form.
   > .form-wrapper:first-of-type .form-item,
-  .layout-region-node-main > .form-wrapper:first-of-type .form-item {
+  .layout-region-node-main > .form-wrapper:first-of-type .form-item,
+  > .form-wrapper.feeds-plugin-inline .form-item {
     margin-block-start: 0;
   }
 }
