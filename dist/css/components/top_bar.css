@@ -96,3 +96,7 @@ body:has(.gin--navigation-top-bar .gin-sticky-form-actions) :where(#gin_sidebar)
   height: calc(100% - 54px) !important;
 }
 
+:where(.gin--edit-form) .gin-sticky-form-actions [data-drupal-selector=edit-delete] {
+  display: none;
+}
+

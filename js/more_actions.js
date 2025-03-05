@@ -72,7 +72,7 @@
     moveFocus: function (newParent, form) {
       once('ginMoveFocusToStickyBar', '[gin-move-focus-to-sticky-bar]', form).forEach(el => el.addEventListener('focus', e => {
         e.preventDefault();
-        const focusableElements = ['button, input, select, textarea'];
+        const focusableElements = ['button, input, select, textarea, .action-link'];
 
         // Moves focus to first item.
         newParent.querySelector(focusableElements).focus();

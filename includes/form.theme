@@ -43,8 +43,6 @@ function gin_form_alter(&$form, $form_state, $form_id) {
     $form['actions']['submit']['#attributes']['class'][] = 'button--danger';
     $form['actions']['cancel']['#attributes']['class'][] = 'button--secondary';
   }
-
-  // $form['#attached']['library'][] = 'gin/more_actions';
 }
 
 /**
@@ -52,11 +50,7 @@ function gin_form_alter(&$form, $form_state, $form_id) {
  */
 function gin_form_after_build(array $form, FormStateInterface $form_state): array {
   // Allowlist for visible actions.
-  if (_gin_module_is_active('navigation_top_bar')) {
-    $includes = ['save', 'submit', 'preview', 'delete', 'cancel'];
-  } else {
-    $includes = ['save', 'submit', 'preview', 'cancel'];
-  }
+  $includes = ['save', 'submit', 'preview'];
 
   // Secondary action container options.
   $form['gin_sticky_actions']['more_actions']['more_actions_items']['#weight'] = 2;
@@ -70,7 +64,10 @@ function gin_form_after_build(array $form, FormStateInterface $form_state): arra
       continue;
     }
 
-    if (isset($button['#type']) && $button['#type'] === 'submit') {
+    if (in_array($key, $includes, TRUE) || _gin_module_is_active('navigation_top_bar')) {
+      $form['gin_sticky_actions']['actions'][$key] = $button;
+    }
+    elseif (isset($button['#type']) && $button['#type'] === 'submit') {
       // Update button.
       $button['#attributes']['id'] = 'gin-sticky-' . $button['#id'];
       $button['#attributes']['form'] = $form['#id'];

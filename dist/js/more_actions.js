@@ -30,7 +30,7 @@
     },
     moveFocus: function(newParent, form) {
       once("ginMoveFocusToStickyBar", "[gin-move-focus-to-sticky-bar]", form).forEach((el => el.addEventListener("focus", (e => {
-        e.preventDefault(), newParent.querySelector([ "button, input, select, textarea" ]).focus();
+        e.preventDefault(), newParent.querySelector([ "button, input, select, textarea, .action-link" ]).focus();
         let element = document.createElement("div");
         element.style.display = "contents", element.innerHTML = '<a href="#" class="visually-hidden" role="button" gin-move-focus-to-end-of-form>Moves focus back to form</a>', 
         newParent.appendChild(element), document.querySelector("[gin-move-focus-to-end-of-form]").addEventListener("focus", (eof => {
