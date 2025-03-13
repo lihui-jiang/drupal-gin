@@ -171,6 +171,20 @@ class GinTest extends BrowserTestBase {
     $this->assertStringContainsString('"highcontrastmode":true', $rootUserResponse);
     $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
 
+    // Install the overrides test to check that the API now prevents access.
+    $success = $this->container->get('module_installer')->install(['gin_overrides_test'], TRUE);
+    $this->assertTrue($success);
+    $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"highcontrastmode":false', $rootUserResponse);
+    $this->assertStringContainsString('"darkmode":"0"', $rootUserResponse);
+    // Disable the module again and confirm swap back in order to ensure
+    // subsequent tests works fine.
+    $success = $this->container->get('module_installer')->uninstall(['gin_overrides_test'], FALSE);
+    $this->assertTrue($success);
+    $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"highcontrastmode":true', $rootUserResponse);
+    $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
+
     // Prevent the high contrast mode from being overridden by removing it from
     // enabled settings. Expect to see high contrast mode disabled again for
     // user 1.
