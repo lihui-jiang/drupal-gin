@@ -66,21 +66,23 @@
   {{ page.gin_secondary_toolbar }}
 </div>
 
-<div class="region-sticky-watcher"></div>
+{% if active_navigation_top_bar or gin_form_actions or page.header[page_title_block]|render %}
+  <div class="region-sticky-watcher"></div>
 
-<header class="region region-sticky {{ gin_form_actions_class }}">
-  <div class="layout-container region-sticky__items">
-    <div class="region-sticky__items__inner">
-      {{ page.header[page_title_block] }}
-      {% if not active_navigation_top_bar %}
-        {{ page.content[local_actions_block] }}
-      {% endif %}
-      {{ gin_form_actions }}
+  <header class="region region-sticky {{ gin_form_actions_class }}">
+    <div class="layout-container region-sticky__items">
+      <div class="region-sticky__items__inner">
+        {{ page.header[page_title_block] }}
+        {% if not active_navigation_top_bar %}
+          {{ page.content[local_actions_block] }}
+        {% endif %}
+        {{ gin_form_actions }}
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="sticky-shadow"></div>
+  <div class="sticky-shadow"></div>
+{% endif %}
 
 <div class="content-header clearfix">
   <div class="layout-container">
