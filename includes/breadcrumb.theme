@@ -20,7 +20,16 @@ function gin_preprocess_breadcrumb(&$variables) {
   }
 
   $cacheability = new CacheableMetadata();
-  $cacheability->addCacheContexts(['route']);
+  $cacheability->addCacheContexts([
+    'route',
+    'languages:language_interface',
+    'theme',
+    'user:permissions',
+    'route',
+    'user:roles:authenticated',
+    'user',
+    'user.node_grants:view',
+  ]);
 
   $entity = _gin_get_route_entity();
   $route_name = \Drupal::routeMatch()->getRouteName();
