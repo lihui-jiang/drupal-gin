@@ -25,7 +25,6 @@ function gin_preprocess_breadcrumb(&$variables) {
     'languages:language_interface',
     'theme',
     'user:permissions',
-    'route',
     'user:roles:authenticated',
     'user',
     'user.node_grants:view',
