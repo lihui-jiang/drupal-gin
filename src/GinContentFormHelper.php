@@ -138,7 +138,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       ];
 
       // Create gin_more_actions group.
-      $toggle_more_actions = $this->t('More actions');
+      $toggle_more_actions = t('More actions');
       $form['gin_sticky_actions']['more_actions'] = [
         '#type' => 'container',
         '#multilingual' => TRUE,
@@ -181,7 +181,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
 
       // Helper item to move focus to sticky header.
       $form['gin_move_focus_to_sticky_bar'] = [
-        '#markup' => '<a href="#" class="visually-hidden" role="button" gin-move-focus-to-sticky-bar>' . $this->t('Moves focus to sticky header actions') . '</a>',
+        '#markup' => '<a href="#" class="visually-hidden" role="button" gin-move-focus-to-sticky-bar>' . t('Moves focus to sticky header actions') . '</a>',
         '#weight' => 999,
       ];
 
@@ -222,7 +222,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
     // Action buttons.
     if (isset($form['actions'])) {
       // Add sidebar toggle.
-      $hide_panel = $this->t('Hide sidebar panel');
+      $hide_panel = t('Hide sidebar panel');
       $form['gin_sticky_actions']['gin_sidebar_toggle'] = [
         '#markup' => '<a href="#toggle-sidebar" class="meta-sidebar__trigger trigger" data-gin-tooltip role="button" title="' . $hide_panel . '" aria-controls="gin_sidebar"><span class="visually-hidden">' . $hide_panel . '</span></a>',
         '#weight' => 1000,
@@ -245,7 +245,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
 
       // Sidebar close button.
-      $close_sidebar_translation = $this->t('Close sidebar panel');
+      $close_sidebar_translation = t('Close sidebar panel');
       $form['gin_sidebar']['gin_sidebar_close'] = [
         '#markup' => '<a href="#close-sidebar" class="meta-sidebar__close trigger" data-gin-tooltip role="button" title="' . $close_sidebar_translation . '"><span class="visually-hidden">' . $close_sidebar_translation . '</span></a>',
       ];

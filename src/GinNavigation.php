@@ -54,7 +54,7 @@ class GinNavigation implements ContainerInjectionInterface {
     // Remove content and help from admin menu.
     unset($build['#items']['system.admin_content']);
     unset($build['#items']['help.main']);
-    $build['#title'] = $this->t('Administration');
+    $build['#title'] = t('Administration');
 
     return $build;
   }
@@ -68,7 +68,7 @@ class GinNavigation implements ContainerInjectionInterface {
       $shortcuts = \Drupal::service('shortcut.lazy_builders')->lazyLinks()['shortcuts'];
       $shortcuts['#theme'] = 'menu_region__top';
       $shortcuts['#menu_name'] = 'bookmarks';
-      $shortcuts['#title'] = $this->t('Bookmarks');
+      $shortcuts['#title'] = t('Bookmarks');
       return $shortcuts;
     }
     else {
@@ -122,7 +122,7 @@ class GinNavigation implements ContainerInjectionInterface {
         $create_type_items,
         [
           [
-            'title' => $this->t('Blocks'),
+            'title' => t('Blocks'),
             'class' => 'blocks',
             'url' => '',
             'below' => $block_type_items,
@@ -148,7 +148,7 @@ class GinNavigation implements ContainerInjectionInterface {
         $create_type_items,
         [
           [
-            'title' => $this->t('Media'),
+            'title' => t('Media'),
             'class' => 'media',
             'url' => '',
             'below' => $media_type_items,
@@ -174,7 +174,7 @@ class GinNavigation implements ContainerInjectionInterface {
         $create_type_items,
         [
           [
-            'title' => $this->t('Taxonomy'),
+            'title' => t('Taxonomy'),
             'class' => 'taxonomy',
             'url' => '',
             'below' => $taxonomy_type_items,
@@ -189,7 +189,7 @@ class GinNavigation implements ContainerInjectionInterface {
 
     // Generate menu items.
     $create_items['create'] = [
-      'title' => $this->t('Create'),
+      'title' => t('Create'),
       'class' => 'create',
       'url' => $create_item_url,
       'below' => $create_type_items,
@@ -199,7 +199,7 @@ class GinNavigation implements ContainerInjectionInterface {
       '#theme' => 'menu_region__middle',
       '#items' => $create_items,
       '#menu_name' => 'create',
-      '#title' => $this->t('Create Navigation'),
+      '#title' => t('Create Navigation'),
     ];
   }
 
@@ -214,7 +214,7 @@ class GinNavigation implements ContainerInjectionInterface {
     // Get Content menu item.
     if ($entity_type_manager->hasDefinition('node')) {
       $create_content_items['content'] = [
-        'title' => $this->t('Content'),
+        'title' => t('Content'),
         'class' => 'content',
         'url' => Url::fromRoute('system.admin_content')->toString(),
       ];
@@ -223,7 +223,7 @@ class GinNavigation implements ContainerInjectionInterface {
     // Get Blocks menu item.
     if ($entity_type_manager->hasDefinition('block_content')) {
       $create_content_items['blocks'] = [
-        'title' => $this->t('Blocks'),
+        'title' => t('Blocks'),
         'class' => 'blocks',
         'url' => Url::fromRoute('entity.block_content.collection')->toString(),
       ];
@@ -232,7 +232,7 @@ class GinNavigation implements ContainerInjectionInterface {
     // Get File menu item.
     if ($entity_type_manager->hasDefinition('file')) {
       $create_content_items['files'] = [
-        'title' => $this->t('Files'),
+        'title' => t('Files'),
         'class' => 'files',
         'url' => '/admin/content/files',
       ];
@@ -241,7 +241,7 @@ class GinNavigation implements ContainerInjectionInterface {
     // Get Media menu item.
     if ($entity_type_manager->hasDefinition('media')) {
       $create_content_items['media'] = [
-        'title' => $this->t('Media'),
+        'title' => t('Media'),
         'class' => 'media',
         'url' => '/admin/content/media',
       ];
@@ -251,7 +251,7 @@ class GinNavigation implements ContainerInjectionInterface {
       '#theme' => 'menu_region__middle',
       '#items' => $create_content_items,
       '#menu_name' => 'content',
-      '#title' => $this->t('Content Navigation'),
+      '#title' => t('Content Navigation'),
     ];
   }
 
@@ -261,17 +261,17 @@ class GinNavigation implements ContainerInjectionInterface {
   public function getMenuNavigationUserItems(): array {
     $user_items = [
       [
-        'title' => $this->t('Profile'),
+        'title' => t('Profile'),
         'class' => 'profile',
         'url' => Url::fromRoute('user.page')->toString(),
       ],
       [
-        'title' => $this->t('Settings'),
+        'title' => t('Settings'),
         'class' => 'settings',
         'url' => Url::fromRoute('entity.user.admin_form')->toString(),
       ],
       [
-        'title' => $this->t('Log out'),
+        'title' => t('Log out'),
         'class' => 'logout',
         'url' => Url::fromRoute('user.logout')->toString(),
       ],
@@ -280,7 +280,7 @@ class GinNavigation implements ContainerInjectionInterface {
       '#theme' => 'menu_region__bottom',
       '#items' => $user_items,
       '#menu_name' => 'user',
-      '#title' => $this->t('User'),
+      '#title' => t('User'),
     ];
   }
 
