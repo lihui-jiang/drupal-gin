@@ -38,15 +38,6 @@ function _gin_toolbar_radios($element) {
 }
 
 /**
- * Implements helper function _gin_user_form_submit().
- */
-function _gin_user_form_submit(&$form, FormStateInterface $form_state) {
-  /** @var \Drupal\gin\GinSettings $settings */
-  $settings = \Drupal::classResolver(GinSettings::class);
-  $settings->submitSettingsForm($form, $form_state);
-}
-
-/**
  * Helper function for check if Gin is active.
  */
 function _gin_is_active() {
