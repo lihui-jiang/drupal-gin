@@ -5,6 +5,9 @@
  * helper.theme
  */
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\gin\GinSettings;
+
 /**
  * Accent color element.
  */
