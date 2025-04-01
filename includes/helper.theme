@@ -36,6 +36,7 @@ function _gin_toolbar_radios($element) {
 
   return $element;
 }
+
 /**
  * Implements helper function _gin_user_form_submit().
  */
