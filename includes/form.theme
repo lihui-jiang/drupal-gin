@@ -140,11 +140,7 @@ function gin_form_user_form_alter(&$form, FormStateInterface $form_state) {
     // Attach custom library.
     $form['#attached']['library'][] = 'gin/settings';
 
-    /** @var \Drupal\Core\Utility\CallableResolver $submit_handler */
-    $callable_resolver = \Drupal::service('callable_resolver');
-    $definition = GinSettings::class . '::submitSettingsForm';
-    $submit_handler = $callable_resolver->getCallableFromDefinition($definition);
-    array_unshift($form['actions']['submit']['#submit'], $submit_handler);
+    array_unshift($form['actions']['submit']['#submit'], '_gin_user_form_submit');
   }
 }
 
