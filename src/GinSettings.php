@@ -4,6 +4,7 @@ namespace Drupal\gin;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -48,6 +49,13 @@ class GinSettings implements ContainerInjectionInterface {
   protected $moduleHandler;
 
   /**
+   * The render cache.
+   *
+   * @var \Drupal\Core\Cache\CacheBackendInterface
+   */
+  protected $renderCache;
+
+  /**
    * Settings constructor.
    *
    * @param \Drupal\Core\Session\AccountInterface $currentUser
@@ -56,8 +64,15 @@ class GinSettings implements ContainerInjectionInterface {
    *   The config factory.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   The module handler.
+   * @param \Drupal\Core\Cache\CacheBackendInterface $renderCache
+   *   The render cache.
    */
-  public function __construct(AccountInterface $currentUser, ConfigFactoryInterface $configFactory, ModuleHandlerInterface $moduleHandler) {
+  public function __construct(
+    AccountInterface $currentUser,
+    ConfigFactoryInterface $configFactory,
+    ModuleHandlerInterface $moduleHandler,
+    CacheBackendInterface $renderCache,
+  ) {
     if (\Drupal::hasService('user.data')) {
       // @phpstan-ignore-next-line
       $this->userData = \Drupal::service('user.data');
@@ -66,6 +81,7 @@ class GinSettings implements ContainerInjectionInterface {
     $this->currentUser = $currentUser;
     $this->configFactory = $configFactory;
     $this->moduleHandler = $moduleHandler;
+    $this->renderCache = $renderCache;
   }
 
   /**
@@ -76,6 +92,7 @@ class GinSettings implements ContainerInjectionInterface {
       $container->get('current_user'),
       $container->get('config.factory'),
       $container->get('module_handler'),
+      $container->get('cache.render'),
     );
   }
 
@@ -488,6 +505,59 @@ class GinSettings implements ContainerInjectionInterface {
     }
 
     return $form;
+  }
+
+  /**
+   * Handle submission of the settings form for the individual account.
+   *
+   * @param array $form
+   *   The form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   */
+  public function submitSettingsForm(array &$form, FormStateInterface $form_state): void {
+    /** @var \Drupal\Core\Session\AccountInterface $account */
+    $account = $form_state->getBuildInfo()['callback_object']->getEntity();
+
+    $enabledUserOverrides = $form_state->getValue('enable_user_settings');
+    if ($enabledUserOverrides) {
+      $enabled_settings = $this->getDefault('enabled_user_theme_settings');
+      $user_settings = [];
+      if (in_array('enable_darkmode', $enabled_settings)) {
+        $user_settings['enable_darkmode'] = $form_state->getValue('enable_darkmode');
+      }
+      if (in_array('accent_color', $enabled_settings)) {
+        $user_settings['preset_accent_color'] = $form_state->getValue('preset_accent_color');
+        $user_settings['accent_color'] = $form_state->getValue('accent_color');
+      }
+      if (in_array('focus_color', $enabled_settings)) {
+        $user_settings['preset_focus_color'] = $form_state->getValue('preset_focus_color');
+        $user_settings['focus_color'] = $form_state->getValue('focus_color');
+      }
+      if (in_array('high_contrast_mode', $enabled_settings)) {
+        $user_settings['high_contrast_mode'] = (bool) $form_state->getValue('high_contrast_mode');
+      }
+      if (in_array('classic_toolbar', $enabled_settings)) {
+        $user_settings['classic_toolbar'] = $form_state->getValue('classic_toolbar');
+      }
+      if (in_array('sticky_action_buttons', $enabled_settings)) {
+        $user_settings['sticky_action_buttons'] = $form_state->getValue('sticky_action_buttons');
+      }
+      if (in_array('layout_density', $enabled_settings)) {
+        $user_settings['layout_density'] = $form_state->getValue('layout_density');
+      }
+      if (in_array('show_description_toggle', $enabled_settings)) {
+        $user_settings['show_description_toggle'] = $form_state->getValue('show_description_toggle');
+      }
+      $this->setAll($user_settings, $account);
+    }
+    else {
+      $this->clear($account);
+    }
+
+    // Clear render cache to ensure the correct
+    // templates are loaded for our toolbar options.
+    $this->renderCache->deleteAll();
   }
 
   /**
