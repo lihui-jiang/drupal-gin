@@ -2,6 +2,15 @@ include:
   # This remote project centralize our CI "golden path" https://docs.gitlab.com/ee/ci/yaml/#includefile
   remote: 'https://gitlab.com/drupalspoons/composer-plugin/-/raw/master/templates/.gitlab-ci.yml'
 
+# Override the default drupalspoons gitlab CI template.
+variables:
+  PHP_TAG:
+    value: "8.1"
+    description: The version of PHP to use for this Pipeline.
+  DRUPAL_CORE_CONSTRAINT:
+    value: ^10.2
+    description: The constraint which specifies the drupal/core version that is used.
+
 # Override phpcs config
 phpcs:
   stage: test
