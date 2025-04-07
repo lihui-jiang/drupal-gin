@@ -10,8 +10,7 @@
           description.setAttribute("aria-labelledby", a11yLabel);
         })), elem.addEventListener("click", (event => {
           event.preventDefault(), event.stopPropagation(), "SUMMARY" === event.currentTarget.parentElement.tagName && !1 === event.currentTarget.parentElement.parentElement.open && (event.currentTarget.parentElement.parentElement.open = !0), 
-          event.currentTarget.focus(), event.currentTarget.closest(".help-icon__description-container").querySelectorAll(".claro-details__description, .fieldset__description, .form-item__description").forEach(((description, index) => {
-            if (index > 1) return;
+          event.currentTarget.focus(), event.currentTarget.closest(".help-icon__description-container").querySelectorAll(`[aria-labelledby="${event.currentTarget.id}"]`).forEach(((description, index) => {
             const setStatus = description.classList.contains("visually-hidden");
             event.currentTarget.setAttribute("aria-expanded", setStatus), description.classList.toggle("visually-hidden"), 
             description.setAttribute("aria-hidden", !setStatus);
