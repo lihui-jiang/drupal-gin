@@ -69,5 +69,18 @@ function hook_gin_ignore_sticky_form_actions() {
 }
 
 /**
+ * Alter the list of buttons which are shown as visible actions.
+ *
+ * @param array $includes
+ *   The buttons to show as visible actions.
+ *
+ * @see gin_form_after_build())
+ */
+function hook_gin_form_allowlist_visible_actions_alter(array &$includes) {
+  // Example: Add an extra button to the allowlist.
+  $includes[] = 'alternative_submit_button';
+}
+
+/**
  * @} End of "addtogroup hooks".
  */
