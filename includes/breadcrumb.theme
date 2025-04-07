@@ -8,6 +8,7 @@
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
@@ -51,9 +52,13 @@ function gin_preprocess_breadcrumb(&$variables) {
 
   // Back to site item.
   foreach ($variables['breadcrumb'] as $key => $item) {
+    $variables['breadcrumb'][$key]['itemAttributes'] = new Attribute();
+    $variables['breadcrumb'][$key]['linkAttributes'] = new Attribute();
+
     if ($key === 0) {
       $variables['breadcrumb'][$key]['text'] = t('Back to site');
-      $variables['breadcrumb'][$key]['attributes']['title'] = t('Return to site content');
+      $variables['breadcrumb'][$key]['linkAttributes']->setAttribute('title', t('Return to site content'));
+      $variables['breadcrumb'][$key]['itemAttributes']->addClass('gin-breadcrumb__item--back-to-site');
 
       if (isset($url, $url_access) && $url_access->isAllowed()) {
         // Link to the canonical route of the entity.
@@ -61,7 +66,7 @@ function gin_preprocess_breadcrumb(&$variables) {
       }
       else {
         // Let escapeAdmin override the return URL.
-        $variables['breadcrumb'][$key]['attributes']['data'] = 'data-gin-toolbar-escape-admin';
+        $variables['breadcrumb'][$key]['linkAttributes']->setAttribute('data-gin-toolbar-escape-admin', TRUE);
       }
     }
     elseif (isset($url) && $item['url'] === $url->setAbsolute(FALSE)->toString()) {
@@ -85,6 +90,8 @@ function gin_preprocess_breadcrumb(&$variables) {
     $variables['breadcrumb'][] = [
       'text' => $operation_label,
       'url' => '',
+      'itemAttributes' => new Attribute(),
+      'linkAttributes' => new Attribute(),
     ];
   }
 
