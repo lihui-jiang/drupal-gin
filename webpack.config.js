@@ -56,6 +56,7 @@ module.exports = {
     'components/linkit': ['./styles/components/linkit.scss'],
     'components/maintenance_page': ['./styles/components/maintenance_page.scss'],
     'components/media_library': ['./styles/components/media_library.scss'],
+    'components/content_moderation': ['./styles/components/content_moderation.scss'],
     'components/module_filter': ['./styles/components/module_filter.scss'],
     'components/node_preview': ['./styles/components/node_preview.scss'],
     'components/paragraphs': ['./styles/components/paragraphs.scss'],

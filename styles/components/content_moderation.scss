@@ -1,0 +1,71 @@
+.gin--edit-form {
+  .page-wrapper__node-edit-form
+    .region-sticky
+    .gin-sticky-form-actions
+    .field--name-moderation-state {
+    @include mq(medium) {
+      margin-left: auto;
+    }
+
+    /* Textfield form widget */
+    & .form-item--moderation-state-0-value {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+
+      & .form-item__label {
+        margin-right: 1rem;
+        margin-bottom: 0;
+      }
+
+      & input {
+        max-width: 15rem;
+      }
+
+      & .form-item__description {
+        /* Let's hide this until we have a better solution. */
+        display: none;
+      }
+    }
+
+    /* Moderation state form widget */
+    & .gin--moderation-state {
+      display: flex;
+      margin-right: 0.5rem;
+
+      /* Moderation state current state */
+      & .form-item--moderation-state-0-current {
+        display: none;
+
+        & label {
+          margin-bottom: 0;
+        }
+      }
+
+      & .form-item--moderation-state-0-state {
+        text-align: right;
+
+        & label {
+          display: none;
+        }
+      }
+
+      @include mq(small) {
+        align-items: center;
+
+        & .form-item--moderation-state-0-current {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          margin-right: 1rem;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        & .form-item--moderation-state-0-state {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
