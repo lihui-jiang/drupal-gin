@@ -148,7 +148,7 @@ gin_accent:
   js:
     dist/js/accent.js: { minified: false }
   dependencies:
-    - core/drupalSettings
+    - core/drupal
     - core/once
 
 # Libraries
