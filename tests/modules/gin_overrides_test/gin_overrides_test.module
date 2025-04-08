@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Test Gin Override access hook.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_gin_override_access_alter().
+ */
+function gin_overrides_test_gin_override_access_alter(AccessResultInterface &$access_result, AccountInterface $account, string $name): void {
+  $access_result = AccessResult::forbidden();
+}

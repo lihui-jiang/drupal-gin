@@ -2,8 +2,11 @@
 
 namespace Drupal\gin;
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -30,13 +33,14 @@ class GinSettings implements ContainerInjectionInterface {
    *   The current user.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   The config factory.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+   *   The module handler.
    */
   public function __construct(
     protected AccountInterface $currentUser,
     protected ConfigFactoryInterface $configFactory,
+    protected ModuleHandlerInterface $moduleHandler,
   ) {
-    // phpcs:disable
-    // @phpstan-ignore-next-line
     if (\Drupal::hasService('user.data')) {
       // @phpstan-ignore-next-line
       $this->userData = \Drupal::service('user.data');
@@ -51,6 +55,7 @@ class GinSettings implements ContainerInjectionInterface {
     return new static(
       $container->get('current_user'),
       $container->get('config.factory'),
+      $container->get('module_handler'),
     );
   }
 
@@ -70,25 +75,18 @@ class GinSettings implements ContainerInjectionInterface {
     if (!$account) {
       $account = $this->currentUser;
     }
-    if ($this->userOverrideEnabled($account)) {
-
-      // Only use the override from the user if the specific setting allows
-      // user overriding.
-      $enabled_settings = $this->getDefault('enabled_user_theme_settings');
-      if (in_array($name, $enabled_settings)) {
-        $settings = $this->userData->get('gin', $account->id(), 'settings');
-        if (isset($settings[$name])) {
-          $value = $settings[$name];
-        }
-        else {
-          // Try loading legacy settings from user data.
-          $value = $this->userData->get('gin', $account->id(), $name);
-        }
+    if ($this->userOverrideAccess($name, $account)->isAllowed()) {
+      $settings = $this->userData->get('gin', $account->id(), 'settings');
+      if (isset($settings[$name])) {
+        $value = $settings[$name];
+      }
+      else {
+        // Try loading legacy settings from user data.
+        $value = $this->userData->get('gin', $account->id(), $name);
       }
     }
     if (is_null($value)) {
-      $admin_theme = $this->getAdminTheme();
-      $value = theme_get_setting($name, $admin_theme);
+      $value = $this->getDefault($name);
     }
     return $value;
   }
@@ -163,6 +161,42 @@ class GinSettings implements ContainerInjectionInterface {
       $account = $this->currentUser;
     }
     return $this->allowUserOverrides() && (bool) $this->userData->get('gin', $account->id(), 'enable_user_settings');
+  }
+
+  /**
+   * Determine if the user has access to the particular override.
+   *
+   * @param string $name
+   *   The name of the setting.
+   * @param \Drupal\Core\Session\AccountInterface|null $account
+   *   The account object. Current user if NULL.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   The access result.
+   */
+  public function userOverrideAccess(string $name, ?AccountInterface $account): AccessResultInterface {
+    if (!$account || !$this->userData) {
+      $account = $this->currentUser;
+    }
+
+    // If overrides are disabled at the theme level, nothing should be able
+    // to change that.
+    if (!$this->userOverrideEnabled($account)) {
+      return AccessResult::forbidden();
+    }
+
+    // Only use the override from the user if the specific setting allows
+    // user overriding.
+    $enabled_settings = $this->getDefault('enabled_user_theme_settings');
+    if (!in_array($name, $enabled_settings)) {
+      return AccessResult::forbidden();
+    }
+
+    // The user has permission now by default, however, other modules may now
+    // decide to override this. See 'gin_permissions' module for example.
+    $access_result = AccessResult::allowed();
+    $this->moduleHandler->alter('gin_override_access', $access_result, $account, $name);
+    return $access_result;
   }
 
   /**

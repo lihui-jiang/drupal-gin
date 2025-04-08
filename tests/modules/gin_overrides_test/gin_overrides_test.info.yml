@@ -1,0 +1,4 @@
+name: Gin Overrides Test
+type: module
+description: 'Provides functionality for testing the Gin settings overrides.'
+package: Testing
