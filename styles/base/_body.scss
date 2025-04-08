@@ -52,7 +52,8 @@ a {
   }
 
   &.skip-link {
-    color: var(--gin-color-button-text);
+    color: #FFF;
+    box-shadow: 0 0 0 2px var(--color-white), 0 0 0 5px var(--gin-color-focus);
   }
 }
 
