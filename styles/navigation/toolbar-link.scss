@@ -3,7 +3,7 @@
  * Toolbar link styles.
  */
 
- .toolbar-link {
+.toolbar-link {
   position: relative;
   padding-block: 10px;
   padding-inline: 0;
@@ -168,10 +168,6 @@ html:not(.admin-toolbar-expanded) {
 // Gin Custom start ---------------------
 // .toolbar-link--system-themes-page::before {
 //   --icon: url(../../assets/icons/appearance.svg);
-// }
-
-// .toolbar-link--blocks::before {
-//   --icon: url(../../assets/icons/blocks.svg);
 // }
 
 // .toolbar-link--bookmarks::before {
