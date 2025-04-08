@@ -43,8 +43,6 @@ function gin_form_alter(&$form, $form_state, $form_id) {
     $form['actions']['submit']['#attributes']['class'][] = 'button--danger';
     $form['actions']['cancel']['#attributes']['class'][] = 'button--secondary';
   }
-
-  // $form['#attached']['library'][] = 'gin/more_actions';
 }
 
 /**
@@ -66,7 +64,11 @@ function gin_form_after_build(array $form, FormStateInterface $form_state): arra
       continue;
     }
 
-    if (isset($button['#type']) && $button['#type'] === 'submit') {
+    if (_gin_module_is_active('navigation_top_bar')) {
+      $form['gin_sticky_actions']['actions'][$key] = $button;
+      unset($form['gin_sticky_actions']['more_actions']);
+    }
+    elseif (isset($button['#type']) && $button['#type'] === 'submit') {
       // Update button.
       $button['#attributes']['id'] = 'gin-sticky-' . $button['#id'];
       $button['#attributes']['form'] = $form['#id'];
