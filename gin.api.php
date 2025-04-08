@@ -5,6 +5,10 @@
  * Hooks for gin theme.
  */
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Session\AccountInterface;
+
 /**
  * @addtogroup hooks
  * @{
@@ -66,6 +70,18 @@ function hook_gin_ignore_sticky_form_actions() {
     // My custom form.
     'my_custom_form',
   ];
+}
+
+/**
+ * Modify a user's access to a particular Gin theme setting.
+ *
+ * Access is granted by default if user overrides are enabled and user override
+ * for the particular setting is enabled.
+ *
+ * @see GinSettings->userOverrideAccess()
+ */
+function hook_gin_override_access_alter(AccessResultInterface &$access_result, AccountInterface $account, string $name): void {
+  $access_result = AccessResult::forbidden();
 }
 
 /**

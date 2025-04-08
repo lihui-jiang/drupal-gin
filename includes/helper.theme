@@ -5,9 +5,6 @@
  * helper.theme
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\gin\GinSettings;
-
 /**
  * Accent color element.
  */
@@ -35,40 +32,6 @@ function _gin_toolbar_radios($element) {
   }
 
   return $element;
-}
-
-/**
- * Implements helper function _gin_user_form_submit().
- */
-function _gin_user_form_submit(&$form, FormStateInterface $form_state) {
-  /** @var \Drupal\Core\Session\AccountInterface $account */
-  $account = $form_state->getBuildInfo()['callback_object']->getEntity();
-
-  $enabledUserOverrides = $form_state->getValue('enable_user_settings');
-  /** @var \Drupal\gin\GinSettings $settings */
-  $settings = \Drupal::classResolver(GinSettings::class);
-  if ($enabledUserOverrides) {
-    $user_settings = [
-      'enable_darkmode' => $form_state->getValue('enable_darkmode'),
-      'preset_accent_color' => $form_state->getValue('preset_accent_color'),
-      'accent_color' => $form_state->getValue('accent_color'),
-      'classic_toolbar' => $form_state->getValue('classic_toolbar'),
-      'preset_focus_color' => $form_state->getValue('preset_focus_color'),
-      'focus_color' => $form_state->getValue('focus_color'),
-      'high_contrast_mode' => (bool) $form_state->getValue('high_contrast_mode'),
-      'layout_density' => $form_state->getValue('layout_density'),
-      'show_description_toggle' => $form_state->getValue('show_description_toggle'),
-      'sticky_action_buttons' => $form_state->getValue('sticky_action_buttons'),
-    ];
-    $settings->setAll($user_settings, $account);
-  }
-  else {
-    $settings->clear($account);
-  }
-
-  // Clear render cache to ensure the correct
-  // templates are loaded for our toolbar options.
-  \Drupal::service('cache.render')->deleteAll();
 }
 
 /**

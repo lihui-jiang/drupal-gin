@@ -111,20 +111,42 @@ class GinTest extends BrowserTestBase {
    * Test user settings.
    */
   public function testUserSettings() {
-    \Drupal::configFactory()->getEditable('gin.settings')->set('show_user_theme_settings', TRUE)->save();
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('show_user_theme_settings', TRUE)
+      ->set('enabled_user_theme_settings', [
+        'sticky_action_buttons',
+        'enable_darkmode',
+      ])
+      ->save();
 
     $user1 = $this->createUser();
     $this->drupalLogin($user1);
 
-    // Change something on the logged in user form.
     $this->assertStringContainsString('"darkmode":"0"', $this->drupalGet($user1->toUrl('edit-form')));
 
+    // Check that non-enabled settings do not appear.
+    $this->assertSession()->pageTextNotContains('Increase contrast');
+
+    // Enable the high contrast mode expected later in the test.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'sticky_action_buttons',
+        'enable_darkmode',
+        'high_contrast_mode',
+      ])
+      ->save();
+
+    // Change something on the logged in user form.
     $this->submitForm([
       'sticky_action_buttons' => TRUE,
       'enable_user_settings' => TRUE,
       'enable_darkmode' => '1',
     ], 'Save');
     $this->assertStringContainsString('"darkmode":"1"', $this->drupalGet($user1->toUrl('edit-form')));
+
+    // Check that high contrast mode now appears as an option.
+    $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertSession()->pageTextContains('Increase contrast');
 
     // Login as admin.
     $this->drupalLogin($this->rootUser);
@@ -148,6 +170,77 @@ class GinTest extends BrowserTestBase {
     $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
     $this->assertStringContainsString('"highcontrastmode":true', $rootUserResponse);
     $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
+
+    // Install the overrides test to check that the API now prevents access.
+    $success = $this->container->get('module_installer')->install(['gin_overrides_test'], TRUE);
+    $this->assertTrue($success);
+    $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"highcontrastmode":false', $rootUserResponse);
+    $this->assertStringContainsString('"darkmode":"0"', $rootUserResponse);
+    // Disable the module again and confirm swap back in order to ensure
+    // subsequent tests works fine.
+    $success = $this->container->get('module_installer')->uninstall(['gin_overrides_test'], FALSE);
+    $this->assertTrue($success);
+    $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"highcontrastmode":true', $rootUserResponse);
+    $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
+
+    // Prevent the high contrast mode from being overridden by removing it from
+    // enabled settings. Expect to see high contrast mode disabled again for
+    // user 1.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'sticky_action_buttons',
+        'enable_darkmode',
+      ])
+      ->save();
+    $rootUserResponse = $this->drupalGet($user1->toUrl('edit-form'));
+    $this->assertStringContainsString('"highcontrastmode":false', $rootUserResponse);
+    $this->assertStringContainsString('"darkmode":"1"', $rootUserResponse);
+
+    // Enable all settings to ensure user storage if each option takes place.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'enable_darkmode',
+        'accent_color',
+        'focus_color',
+        'high_contrast_mode',
+        'classic_toolbar',
+        'sticky_action_buttons',
+        'layout_density',
+        'show_description_toggle',
+      ])
+      ->save();
+    $this->drupalGet($user1->toUrl('edit-form'));
+    $settings = [
+      'enable_darkmode' => '1',
+      'preset_accent_color' => 'pink',
+      'accent_color' => '#333333',
+      'preset_focus_color' => 'orange',
+      'focus_color' => '#444444',
+      'high_contrast_mode' => TRUE,
+      'classic_toolbar' => 'classic',
+      'sticky_action_buttons' => 1,
+      'layout_density' => 'small',
+      'show_description_toggle' => 0,
+    ];
+    $this->submitForm($settings, 'Save', 'user-form');
+    $user_data = \Drupal::service('user.data')->get('gin', $user1->id(), 'settings');
+    ksort($user_data);
+    ksort($settings);
+    $this->assertSame($user_data, $settings);
+
+    // Now remove most settings to ensure that resaving without any change
+    // clears those values.
+    \Drupal::configFactory()->getEditable('gin.settings')
+      ->set('enabled_user_theme_settings', [
+        'enable_darkmode',
+      ])
+      ->save();
+    $this->drupalGet($user1->toUrl('edit-form'));
+    $this->submitForm([], 'Save', 'user-form');
+    $user_data = \Drupal::service('user.data')->get('gin', $user1->id(), 'settings');
+    $this->assertSame(['enable_darkmode' => '1'], $user_data);
   }
 
 }

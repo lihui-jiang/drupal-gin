@@ -50,6 +50,35 @@ function gin_form_system_theme_settings_alter(&$form, FormStateInterface $form_s
     '#default_value' => $settings->getDefault('show_user_theme_settings'),
   ];
 
+  $form['custom_settings']['enabled_user_theme_settings'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Enabled user override options'),
+    '#description' => t('Decide which of the admin theme settings the user can override.'),
+    '#default_value' => $settings->getDefault('enabled_user_theme_settings'),
+    '#options' => [
+      'enable_darkmode' => t('Appearance (dark mode option)'),
+      'accent_color' => t('Accent color'),
+      'focus_color' => t('Focus color'),
+      'high_contrast_mode' => t('Increase contrast'),
+      'classic_toolbar' => t('Navigation (Drupal Toolbar)'),
+      'sticky_action_buttons' => t('Enable sticky action buttons'),
+      'layout_density' => t('Layout density'),
+      'show_description_toggle' => t('Enable form description toggle'),
+    ],
+    '#states' => [
+      'visible' => [
+        'input[name="show_user_theme_settings"]' => [
+          'checked' => TRUE,
+        ],
+      ],
+      'required' => [
+        'input[name="show_user_theme_settings"]' => [
+          'checked' => TRUE,
+        ],
+      ],
+    ],
+  ];
+
   /*
    * //////////////////////////
    * Logo settings.
