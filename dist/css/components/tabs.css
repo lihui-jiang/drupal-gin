@@ -440,8 +440,16 @@
 }
 
 .gin--dark-mode .vertical-tabs__items {
-  background: none;
+  background: var(--gin-bg-app);
   border: 0 none;
+}
+
+[dir="ltr"] .gin--dark-mode .vertical-tabs__items {
+  border-end-start-radius: 0;
+}
+
+[dir="rtl"] .gin--dark-mode .vertical-tabs__items {
+  border-end-end-radius: 0;
 }
 
 .gin--dark-mode .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-link {
@@ -529,5 +537,17 @@
     float: inline-start;
     width: 100%;
   }
+}
+
+.vertical-tabs__panes {
+  padding-bottom: var(--gin-spacing-xs);
+}
+
+[dir="ltr"] .vertical-tabs__panes {
+  border-end-start-radius: 0;
+}
+
+[dir="rtl"] .vertical-tabs__panes {
+  border-end-end-radius: 0;
 }
 

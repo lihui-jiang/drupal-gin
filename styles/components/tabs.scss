@@ -17,13 +17,13 @@
 .tabs-wrapper:not(.is-horizontal) {
   .tabs {
     .gin--dark-mode & {
-      border-color: #8E929C;
+      border-color: #8e929c;
     }
 
     &__tab {
       .gin--dark-mode & {
         background-color: var(--gin-bg-item-hover);
-        border-color: #8E929C;
+        border-color: #8e929c;
       }
     }
   }
@@ -61,7 +61,7 @@
 }
 
 .tabs__link.is-active,
-.claro-details__summary[aria-expanded=true],
+.claro-details__summary[aria-expanded="true"],
 .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button.selected a {
   font-weight: var(--gin-font-weight-semibold);
 }
@@ -100,13 +100,13 @@
 
   @include mq(small) {
     width: 100%;
-    padding-block: .3125rem var(--gin-spacing-l);
+    padding-block: 0.3125rem var(--gin-spacing-l);
     padding-inline: var(--gin-spacing-xs);
     margin-block-end: calc(var(--gin-spacing-xl) * -1);
     overflow-x: auto;
 
     .gin--edit-form & {
-      padding-block-start: .4rem;
+      padding-block-start: 0.4rem;
     }
   }
 
@@ -294,7 +294,7 @@
         border-radius: var(--gin-border-m) var(--gin-border-m) 0 0;
 
         &::before {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
         }
@@ -355,7 +355,7 @@
 .claro-details[open] > .claro-details__summary::before {
   inset-inline-start: 1.125rem;
   background: var(--gin-color-text);
-  mask-image: icon('handle');
+  mask-image: icon("handle");
   mask-repeat: no-repeat;
   mask-position: center center;
   mask-size: 100% 100%;
@@ -419,8 +419,9 @@
 
   .vertical-tabs {
     &__items {
-      background: none;
+      background: var(--gin-bg-app);
       border: 0 none;
+      border-bottom-left-radius: 0;
     }
 
     &__menu-item.is-selected .vertical-tabs__menu-link {
@@ -503,8 +504,10 @@
   }
 }
 
-[open] > .claro-details__summary--vertical-tabs-item:not(:focus):not(:active)::after,
-[open] > .claro-details__summary--accordion-item:not(:focus):not(:active)::after {
+[open]
+  > .claro-details__summary--vertical-tabs-item:not(:focus):not(:active)::after,
+[open]
+  > .claro-details__summary--accordion-item:not(:focus):not(:active)::after {
   border-inline-start-width: 5px;
 }
 
@@ -513,5 +516,12 @@
     overflow: visible;
     float: inline-start;
     width: 100%;
+  }
+}
+
+.vertical-tabs {
+  &__panes {
+    border-bottom-left-radius: 0;
+    padding-bottom: var(--gin-spacing-xs);
   }
 }
