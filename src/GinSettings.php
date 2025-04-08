@@ -68,6 +68,7 @@ class GinSettings implements ContainerInjectionInterface {
    *   The render cache.
    */
   public function __construct(AccountInterface $currentUser, ConfigFactoryInterface $configFactory, ModuleHandlerInterface $moduleHandler, CacheBackendInterface $renderCache) {
+    // @phpstan-ignore-next-line
     if (\Drupal::hasService('user.data')) {
       // @phpstan-ignore-next-line
       $this->userData = \Drupal::service('user.data');
