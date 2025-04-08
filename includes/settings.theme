@@ -55,8 +55,8 @@ function gin_form_system_theme_settings_alter(&$form, FormStateInterface $form_s
    * Logo settings.
    * * ////////////////////////
    */
-  if (isset($form['logo']['settings']['logo_upload']['#upload_validators']['file_validate_extensions'])) {
-    $form['logo']['settings']['logo_upload']['#upload_validators'] = ['file_validate_extensions' => ['png gif jpg jpeg apng svg']];
+  if (isset($form['logo']['settings']['logo_upload']['#upload_validators']['FileExtension']['extensions'])) {
+    $form['logo']['settings']['logo_upload']['#upload_validators'] = ['FileExtension' => ['extensions' => 'png gif jpg jpeg apng svg']];
   }
 
   // Upgrade path:
