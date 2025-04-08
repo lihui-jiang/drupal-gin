@@ -14,8 +14,13 @@
             window.innerWidth >= 1024 && ("true" === localStorage.getItem(storageDesktop) ? this.showSidebar() : this.collapseSidebar()), 
             document.addEventListener("keydown", (e => {
               !0 === e.altKey && "KeyS" === e.code && this.toggleSidebar();
-            })), new ResizeObserver((entries => {
-              for (let entry of entries) Drupal.debounce(this.handleResize(entry.contentRect), 150);
+            }));
+            let lastWidth = window.innerWidth;
+            new ResizeObserver((entries => {
+              for (let entry of entries) {
+                const newWidth = entry.contentRect.width;
+                newWidth !== lastWidth && (lastWidth = newWidth, Drupal.debounce(this.handleResize(entry.contentRect), 150));
+              }
             })).observe(document.querySelector("html")), this.resizeInit();
           })), once("ginSidebarToggle", ".meta-sidebar__trigger", context).forEach((el => el.addEventListener("click", (e => {
             e.preventDefault(), this.removeInlineStyles(), this.toggleSidebar();
