@@ -211,6 +211,13 @@ body.gin--core-navigation {
   background-color: var(--gin-color-primary-light);
 }
 
+@media (forced-colors: active) {
+  .toolbar-button.current.is-active,
+  .toolbar-button:has(+ .toolbar-popover__wrapper .is-active) {
+    border: 1px solid;
+  }
+}
+
 .toolbar-button.current.is-active::before,
 .toolbar-button:has(+ .toolbar-popover__wrapper .is-active)::before {
   background: var(--gin-color-primary);
