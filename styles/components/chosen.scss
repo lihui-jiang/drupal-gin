@@ -34,3 +34,13 @@
     box-shadow: none;
   }
 }
+
+/** Override table scroll overflow if Chosen dropdown is present. **/
+.gin-table-scroll-wrapper:has(.form-element.chosen-container .chosen-drop) {
+  overflow: auto;
+}
+
+/** Override Views UI dialog form overflow **/
+.views-ui-dialog .form--flex {
+  overflow: inherit;
+}
