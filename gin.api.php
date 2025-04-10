@@ -69,5 +69,21 @@ function hook_gin_ignore_sticky_form_actions() {
 }
 
 /**
+ * Register action names to opt into Gin’s sticky action buttons.
+ *
+ * Leverage this hook to opt into Gin's sticky action buttons.
+ *
+ * @return array
+ *   An array of form action names to add as sticky actions.
+ *
+ * @see form.theme->gin_form_after_build()
+ */
+function hook_gin_extend_sticky_form_actions(array $actions) {
+  return [
+    'my_action_name'
+  ];
+}
+
+/**
  * @} End of "addtogroup hooks".
  */

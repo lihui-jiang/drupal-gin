@@ -54,6 +54,8 @@ function gin_form_after_build(array $form, FormStateInterface $form_state): arra
   // Allowlist for visible actions.
   $includes = ['save', 'submit', 'preview'];
 
+  $includes = \Drupal::moduleHandler()->invokeAll('gin_extend_sticky_form_actions', [$includes]);
+
   // Secondary action container options.
   $form['gin_sticky_actions']['more_actions']['more_actions_items']['#weight'] = 2;
   $form['gin_sticky_actions']['more_actions']['more_actions_items']['#attributes']['class'] = ['gin-more-actions__menu'];
