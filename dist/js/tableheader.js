@@ -6,7 +6,8 @@
   }, Drupal.ginTableHeader = {
     init: function(context) {
       once("ginTableHeaderSticky", "table.position-sticky, table.sticky-header", context).forEach((el => {
-        this.updateTableHeader(el), this.showTableHeaderOnInit(), new ResizeObserver((() => {
+        this.updateTableHeader(el), this.showTableHeaderOnInit(), this.removeTabindexFromMainTable(), 
+        new ResizeObserver((() => {
           Drupal.debounce(this.updateTableHeader(el), 150);
         })).observe(el), document.querySelectorAll('.gin--sticky-bulk-select > input[type="checkbox"]').forEach((checkbox => {
           checkbox.addEventListener("click", (event => {
@@ -27,6 +28,12 @@
       tableHeader.style.marginBottom = `-${el.querySelector("thead").getBoundingClientRect().height + offset}px`, 
       el.classList.add("--is-processed"), tableHeader.querySelectorAll("thead th").forEach(((th, index) => {
         th.style.width = `${el.querySelectorAll("thead th")[index].getBoundingClientRect().width}px`;
+      }));
+    },
+    removeTabindexFromMainTable: function() {
+      const stickyHeaderExists = document.querySelector(".gin--sticky-table-header"), mainTable = document.querySelector(".views-view-table");
+      stickyHeaderExists && mainTable && mainTable.querySelectorAll("th > a, th > input").forEach((el => {
+        el.setAttribute("tabindex", "-1");
       }));
     }
   };
