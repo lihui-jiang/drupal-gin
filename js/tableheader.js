@@ -11,6 +11,7 @@
       once('ginTableHeaderSticky', 'table.position-sticky, table.sticky-header', context).forEach(el => {
         this.updateTableHeader(el);
         this.showTableHeaderOnInit();
+        this.removeTabindexFromMainTable();
 
         // Resize observer.
         const resizeHandler = new ResizeObserver(() => {
@@ -49,6 +50,16 @@
       tableHeader.querySelectorAll('thead th').forEach((th, index) => {
         th.style.width = `${el.querySelectorAll('thead th')[index].getBoundingClientRect().width}px`;
       });
+    },
+    removeTabindexFromMainTable: function () {
+      const stickyHeaderExists = document.querySelector('.gin--sticky-table-header');
+      const mainTable = document.querySelector('.views-view-table');
+
+      if (stickyHeaderExists && mainTable) {
+        mainTable.querySelectorAll('th > a, th > input').forEach(el => {
+          el.setAttribute('tabindex', '-1');
+        });
+      }
     },
   };
 
