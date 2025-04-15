@@ -12,6 +12,15 @@ use Drupal\gin\GinSettings;
  * Implements hook_theme().
  */
 function gin_theme() {
+
+  // Register node edit form template if node module is not enabled.
+  if (!_gin_module_is_active('node')) {
+    $items['node_edit_form'] = [
+      'render element' => 'form',
+      'template' => 'node/node-edit-form',
+    ];
+  }
+
   // Check if Navigation module is active.
   if (_gin_module_is_active('navigation')) {
     $items['navigation_menu'] = [
