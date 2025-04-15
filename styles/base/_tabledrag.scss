@@ -129,4 +129,8 @@
 
 .table-file-multiple-widget .tabledrag-cell-content {
   display: flex;
+
+  a.tabledrag-handle{
+    align-self: center;
+  }
 }
