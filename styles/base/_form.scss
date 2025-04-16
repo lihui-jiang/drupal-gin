@@ -154,7 +154,7 @@
     box-sizing: border-box;
 
     .gin--dark-mode & {
-      background-color: var(--gin-bg-input);
+      background-color: var(--gin-bg-input-dark);
     }
 
     @media (forced-colors: active) {
@@ -176,7 +176,7 @@
       }
 
       @media (forced-colors: active) {
-        background-color: CanvasText;
+        background-color: CanvasText!important;
       }
     }
 

@@ -207,9 +207,11 @@
   --gin-color-danger-lightest: #483439;
   --gin-color-green: #32cea4;
   --gin-color-info: #559bca;
+  --gin-bg-input-dark: var(--gin-bg-layer1);
   --gin-bg-input: var(--gin-bg-layer2);
   --gin-bg-app: #1b1b1d;
   --gin-bg-layer: #2a2a2d;
+  --gin-bg-layer1: #909098;
   --gin-bg-layer2: #3b3b3f;
   --gin-bg-layer3: #47474c;
   --gin-bg-layer4: #19191b;
@@ -219,10 +221,11 @@
   --gin-border-color: #43454a;
   --gin-border-color-secondary: rgba(255, 255, 255, .075);
   --gin-border-color-layer: rgba(0, 0, 0, .05);
+  --gin-border-color-layer1: #28282a;
   --gin-border-color-layer2: #76777b;
   --gin-border-color-table: #43454a;
   --gin-border-color-table-header: rgba(255, 255, 255, .4);
-  --gin-border-color-form-element: var(--gin-border-color-layer2);
+  --gin-border-color-form-element: var(--gin-border-color-layer1);
   --gin-bg-header: #1b1b1d;
   --gin-switch: var(--gin-color-primary);
   --gin-status-text: #c3cbd0;
