@@ -41,6 +41,12 @@
   --ck-color-image-caption-text: var(--gin-color-text-light);
   --ck-color-image-caption-background: transparent;
   --ck-border-radius: var(--gin-border-m);
+  --ck-color-dropdown-panel-background: var(--gin-bg-input);
+  --ck-color-input-disabled-background: var(--gin-bg-input);
+  --ck-color-input-disabled-border: var(--gin-border-color-form-element);
+  --ck-focus-disabled-outer-shadow: var(--ck-focus-outer-shadow);
+  --ck-color-focus-outer-shadow: var(--gin-color-primary);
+  --ck-color-color-grid-check-icon: var(--gin-color-primary);
 }
 
 .ck .ck-content blockquote,
@@ -113,5 +119,10 @@
 .ck .ck.ck.ck-balloon-panel.ck-powered-by-balloon {
   z-index: 2;
   transform: translateY(-13px);
+}
+
+.ckeditor5-toolbar-active__buttons {
+  background: var(--gin-bg-app);
+  border: 0;
 }
 
