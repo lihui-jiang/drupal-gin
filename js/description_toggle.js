@@ -38,7 +38,7 @@
                 '.claro-details__description, .fieldset__description, .form-item__description',
               )
               .forEach((description, index) => {
-                if (index > 1) {
+                if (index > 0) {
                   return;
                 }
                 const setStatus = description.classList.contains('visually-hidden');
