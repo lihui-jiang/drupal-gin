@@ -318,6 +318,8 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       'views_exposed_form',
       'date_recur_modular_sierra_occurrences_modal',
       'date_recur_modular_sierra_modal',
+      'workflow-transition-',
+      'search_block_form',
     ];
 
     foreach ($form_ids_to_ignore as $form_id_to_ignore) {
