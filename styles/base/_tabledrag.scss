@@ -129,4 +129,13 @@
 
 .table-file-multiple-widget .tabledrag-cell-content {
   display: flex;
+
+  a.tabledrag-handle{
+    align-self: center;
+  }
+}
+
+table.table-file-multiple-widget tbody td{
+  height: auto;
+  padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
 }
