@@ -1280,8 +1280,7 @@ table tbody tr {
   border-block-end: 1px solid var(--gin-border-color-table);
 }
 
-table tbody td,
-table.table-file-multiple-widget tbody td {
+table tbody td {
   height: auto;
   padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
 }
@@ -1643,8 +1642,13 @@ table .views-field.views-field-operations {
   display: flex;
 }
 
-.table-file-multiple-widget .tabledrag-cell-content a.tabledrag-handle{
+.table-file-multiple-widget .tabledrag-cell-content a.tabledrag-handle {
   align-self: center;
+}
+
+table.table-file-multiple-widget tbody td {
+  height: auto;
+  padding: var(--gin-spacing-density-m) var(--gin-spacing-m);
 }
 
 .form-element {
