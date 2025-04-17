@@ -89,7 +89,7 @@
   flex: 0 0 auto;
 }
 
-.paragraphs-tabs-wrapper .field-multiple-table .draggable > td .tabledrag-cell {
+.paragraphs-tabs-wrapper .field-multiple-table .draggable > td.tabledrag-cell {
   flex: 0 1 auto;
 }
 
