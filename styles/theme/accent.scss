@@ -1,6 +1,6 @@
 [data-gin-accent] {
   --gin-color-primary: rgb(var(--gin-color-primary-rgb));
-  --gin-color-primary-light: rgba(var(--gin-color-primary-rgb), .15);
+  --gin-color-primary-light: rgba(var(--gin-color-primary-rgb), .9);
   --gin-bg-app: rgb(var(--gin-bg-app-rgb));
   --gin-bg-item: rgba(var(--gin-color-primary-rgb), .05);
   --gin-bg-item-hover: rgba(var(--gin-color-primary-rgb), .1);
@@ -13,6 +13,7 @@
 .gin--dark-mode [data-gin-accent] {
   --gin-bg-item-hover: rgba(var(--gin-color-primary-rgb), .08);
   --gin-bg-app-rgb: #{color.red($colorDarkAppBackground)}, #{color.green($colorDarkAppBackground)}, #{color.blue($colorDarkAppBackground)};
+  --gin-color-primary-light-active: rgba(var(--gin-color-primary-rgb), .63);
 }
 
 // Light mode
@@ -40,7 +41,7 @@ $ginColors: (
     --gin-color-primary-rgb: #{color.red($color)}, #{color.green($color)}, #{color.blue($color)};
     --gin-color-primary-light-rgb: #{color.red($lightColor)}, #{color.green($lightColor)}, #{color.blue($lightColor)};
     --gin-color-primary-hover: #{mix(black, $color, 15%)};
-    --gin-color-primary-active: #{mix(black, $color, 25%)};
+    --gin-color-primary-active: #{mix(white, $color, 95%)};
     --gin-bg-app-rgb: #{color.red($bgColor)}, #{color.green($bgColor)}, #{color.blue($bgColor)};
     --gin-bg-header: #{mix(white, $color, 88%)};
     --gin-color-sticky-rgb: #{color.red($stickyColor)}, #{color.green($stickyColor)}, #{color.blue($stickyColor)};
@@ -79,7 +80,7 @@ $ginDarkmodeColors: (
     --gin-color-primary-rgb: #{color.red($color)}, #{color.green($color)}, #{color.blue($color)};
     --gin-color-primary-light-rgb: #{color.red($lightColor)}, #{color.green($lightColor)}, #{color.blue($lightColor)};
     --gin-color-primary-hover: #{mix(white, $color, 10%)};
-    --gin-color-primary-active: #{mix(white, $color, 15%)};
+    --gin-color-primary-active: #{mix(black, $color, 95%)};
     --gin-bg-header: #{mix(#2A2A2D, $color, 87.5%)};
   }
 }

@@ -240,6 +240,12 @@
   display: none;
 }
 
+@media (forced-colors: active) {
+  .is-horizontal .tabs--primary .tabs__link.is-active {
+    border: 2px solid;
+  }
+}
+
 .tabs__trigger svg {
   stroke: var(--gin-color-primary);
 }
