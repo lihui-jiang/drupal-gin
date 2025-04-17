@@ -1429,7 +1429,7 @@
 
       // Check where to insert
       if ($changedWarning.parents('.gin-table-scroll-wrapper').has('.tabledrag-toggle-weight-wrapper')) {
-        $moveTo = '.tabledrag-toggle-weight-wrapper';
+        $moveTo = $(this.table).parent().find('.tabledrag-toggle-weight-wrapper');
       }
       else if ($changedWarning.parents('.gin-table-scroll-wrapper')) {
         $moveTo = '.gin-table-scroll-wrapper';
