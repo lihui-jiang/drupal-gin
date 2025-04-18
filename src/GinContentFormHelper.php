@@ -110,7 +110,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
 
       // Create gin_more_actions group.
       $toggle_more_actions = $this->t('More actions');
-      $menu_id = 'gin-more-actions-' . uniqid();
+      $actions_menu_id = 'gin-more-actions';
 
       $form['gin_sticky_actions']['more_actions'] = [
         '#type' => 'container',
@@ -120,14 +120,14 @@ class GinContentFormHelper implements ContainerInjectionInterface {
           'class' => ['gin-more-actions'],
         ],
         'more_actions_toggle' => [
-          '#markup' => '<a href="#toggle-more-actions" class="gin-more-actions__trigger trigger" data-gin-tooltip role="button" title="' . $toggle_more_actions . '" aria-controls="' . $menu_id . '"><span class="visually-hidden">' . $toggle_more_actions . '</span></a>',
+          '#markup' => '<a href="#toggle-more-actions" class="gin-more-actions__trigger trigger" data-gin-tooltip role="button" title="' . $toggle_more_actions . '" aria-controls="' . $actions_menu_id . '"><span class="visually-hidden">' . $toggle_more_actions . '</span></a>',
           '#weight' => 1,
         ],
         'more_actions_items' => [
           '#type' => 'container',
           '#multilingual' => TRUE,
           '#attributes' => [
-            'id' => $menu_id,
+            'id' => $actions_menu_id,
             'class' => ['gin-more-actions__menu'],
           ],
         ],
