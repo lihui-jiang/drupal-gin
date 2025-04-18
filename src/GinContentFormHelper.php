@@ -109,7 +109,7 @@ class GinContentFormHelper implements ContainerInjectionInterface {
       ];
 
       // Create gin_more_actions group.
-      $toggle_more_actions = t('More actions');
+      $toggle_more_actions = $this->t('More actions');
       $menu_id = 'gin-more-actions-' . uniqid();
 
       $form['gin_sticky_actions']['more_actions'] = [
