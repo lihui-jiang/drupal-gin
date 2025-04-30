@@ -19,6 +19,81 @@
   .field-multiple-table {
     > tbody {
       display: block;
+
+      > .draggable {
+        display: flex;
+        align-items: center;
+        position: relative;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        padding: var(--gin-spacing-m) var(--gin-spacing-xs);
+        margin-block-start: var(--gin-spacing-m);
+        border: 1px solid var(--gin-border-color-table);
+        border-radius: var(--gin-border-m);
+        box-shadow: 4px 4px 10px var(--gin-bg-layer2);
+
+        // Current draggable item
+        &.drag {
+          background-color: var(--gin-bg-warning-light);
+        }
+
+        // Flag Changes
+        &.drag-previous > .tabledrag-cell {
+          position: relative;
+
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            inset-block-start: var(--gin-spacing-xs);
+            inset-inline-start: 0;
+            width: 4px;
+            height: calc(100% - var(--gin-spacing-m));
+            background: var(--gin-color-warning);
+            border-radius: var(--gin-border-xxs);
+          }
+        }
+
+        td {
+          padding: var(--gin-spacing-xxs);
+        }
+
+        > td {
+          position: relative;
+          display: block;
+          flex: 0 0 auto;
+
+          &:nth-child(2) {
+            flex: 1 0 0;
+            min-width: 0;
+          }
+        }
+
+        .has-multiple-fields-remove-button {
+          width: 100%;
+          padding-inline-end: 0 !important;
+        }
+
+        .tabledrag-handle::after {
+          mask-image: icon('drag-dots');
+          mask-repeat: no-repeat;
+          mask-position: center center;
+          mask-size: 16px 16px;
+        }
+
+        .tabledrag-changed {
+          display: none;
+        }
+
+        // Highlight current paragraph.
+        &:hover,
+        &:focus-within {
+          position: relative;
+          border: 1px solid var(--gin-color-text);
+          box-shadow: 0 0 0 1px var(--gin-color-text);
+        }
+      }
+
     }
 
     > thead {
@@ -44,80 +119,6 @@
           align-items: center;
           margin: 0 auto;
         }
-      }
-    }
-
-    .draggable {
-      display: flex;
-      align-items: center;
-      position: relative;
-      flex-wrap: nowrap;
-      flex-direction: row;
-      padding: var(--gin-spacing-m) var(--gin-spacing-xs);
-      margin-block-start: var(--gin-spacing-m);
-      border: 1px solid var(--gin-border-color-table);
-      border-radius: var(--gin-border-m);
-      box-shadow: 4px 4px 10px var(--gin-bg-layer2);
-
-      // Current draggable item
-      &.drag {
-        background-color: var(--gin-bg-warning-light);
-      }
-
-      // Flag Changes
-      &.drag-previous > .tabledrag-cell {
-        position: relative;
-
-        &::before {
-          content: "";
-          display: block;
-          position: absolute;
-          inset-block-start: var(--gin-spacing-xs);
-          inset-inline-start: 0;
-          width: 4px;
-          height: calc(100% - var(--gin-spacing-m));
-          background: var(--gin-color-warning);
-          border-radius: var(--gin-border-xxs);
-        }
-      }
-
-      td {
-        padding: var(--gin-spacing-xxs);
-      }
-
-      > td {
-        position: relative;
-        display: block;
-        flex: 0 0 auto;
-
-        &:nth-child(2) {
-          flex: 1 0 0;
-          min-width: 0;
-        }
-      }
-
-      .has-multiple-fields-remove-button {
-        width: 100%;
-        padding-inline-end: 0 !important;
-      }
-
-      .tabledrag-handle::after {
-        mask-image: icon('drag-dots');
-        mask-repeat: no-repeat;
-        mask-position: center center;
-        mask-size: 16px 16px;
-      }
-
-      .tabledrag-changed {
-        display: none;
-      }
-
-      // Highlight current paragraph.
-      &:hover,
-      &:focus-within {
-        position: relative;
-        border: 1px solid var(--gin-color-text);
-        box-shadow: 0 0 0 1px var(--gin-color-text);
       }
     }
   }
