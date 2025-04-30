@@ -3522,7 +3522,7 @@ table.diff .diffchange {
   color: var(--gin-color-danger);
 }
 
-table.diff th .diff-context {
+table.diff tr .diff-context {
   background-color: transparent;
 }
 
