@@ -74,7 +74,7 @@
       {% if entity_title|length != 38 %}
         {{ page.header[page_title_block] }}
       {% else %}
-        {{ node_type_name }}
+        <h1 class="page-title">{{ node_type_name }}</h1>
       {% endif %}
       {% if not active_navigation_top_bar %}
         {{ page.content[local_actions_block] }}
