@@ -34,7 +34,7 @@ function gin_preprocess_page(&$variables) {
     $variables['entity_bundle'] = $entity->bundle();
     $node_type = \Drupal::entityTypeManager()->getStorage('node_type')->load($entity->bundle() );
     if ($node_type) {
-      $variables['node_type_title'] = $entity->label();
+      $variables['node_title'] = $entity->label();
       $variables['node_type_name'] = $node_type->label();
     }
 
