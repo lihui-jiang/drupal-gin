@@ -33,6 +33,14 @@ function gin_preprocess_page(&$variables) {
 
     if ($entity instanceof EntityInterface && $entity->hasLinkTemplate('edit-form') && $entity->access('update')) {
       $variables['entity_title'] = $entity->label();
+      // Baiyi
+      $variables['entity_bundle'] = $entity->bundle();
+      $node_type = \Drupal::entityTypeManager()->getStorage('node_type')->load($entity->bundle() );
+      if ($node_type) {
+        $label = $node_type->label();
+        $variables['node_type_name'] = $label;
+      }
+
       $variables['entity_edit_url'] = $entity->toUrl('edit-form');
     }
   }
