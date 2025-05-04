@@ -102,6 +102,11 @@
         {{ page.help }}
       </div>
     {% endif %}
+    
+    {% set puuid = '[current-page:query:puuid]'|token_replace %}
+    {% if puuid | length == 38 %}
+      {{ drupal_view('vw_patient_info','block_1',puuid|slice(0,36) ) }}
+    {% endif %}
     {{ page.content|without(local_actions_block) }}
   </main>
 </div>
